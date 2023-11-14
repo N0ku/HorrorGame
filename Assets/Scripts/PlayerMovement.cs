@@ -123,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void StateHandler()
     {
-    
+
 
         if (isGrounded && Input.GetKey(KeyCode.LeftControl))
         {
@@ -135,16 +135,22 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (isGrounded && Input.GetKey(sprintKey) && stamina > 0f && state != MovementState.Crouching)
         {
-            if (IsInvoking(nameof(StartToRecover))) {
+            if (IsInvoking(nameof(StartToRecover)))
+            {
                 CancelInvoke(nameof(StartToRecover));
-            }   
+            }
             state = MovementState.Sprinting;
             moveSpeed = sprintSpeed;
-            if (verticalInput != 0f || horizontalInput != 0f) {
+            if (verticalInput != 0f || horizontalInput != 0f)
+            {
                 stamina -= 0.1f;
-            } else if (verticalInput != 0f && horizontalInput != 0f) {
+            }
+            else if (verticalInput != 0f && horizontalInput != 0f)
+            {
                 stamina -= 0.2f;
-            } else {
+            }
+            else
+            {
                 stamina += 0.05f;
             }
 
@@ -156,10 +162,13 @@ public class PlayerMovement : MonoBehaviour
         {
             state = MovementState.Walking;
             moveSpeed = walkSpeed;
-            
-            if (stamina <= 0f) {
+
+            if (stamina <= 0f)
+            {
                 Invoke(nameof(StartToRecover), 2.5f);
-            } else if (stamina <= 100f) {
+            }
+            else if (stamina <= 100f)
+            {
                 Invoke(nameof(StartToRecover), 0.6f);
             }
 
@@ -168,10 +177,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void StartToRecover()
     {
-        if (stamina < 100f) {
+        if (stamina < 100f)
+        {
             stamina += 0.05f;
             stamina = Mathf.Round(stamina * 100f) / 100f;
-        } else if (stamina >= 100f) {
+        }
+        else if (stamina >= 100f)
+        {
             stamina = 100f;
         }
     }
