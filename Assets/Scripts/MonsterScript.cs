@@ -35,7 +35,7 @@ public class MonsterScript : MonoBehaviour
         {
             targetRender.material.color = Color.white;
             monster.destination = player.position;
-            monster.speed = 1 + playerStress / 100;
+            monster.speed = calculateSpeed(playerStress);
         }
     }
 
@@ -50,6 +50,11 @@ public class MonsterScript : MonoBehaviour
                 return false;
         }
         return true;
+    }
+
+    private float calculateSpeed(float playerStress)
+    {
+        return 0.5f + (playerStress / 100);
     }
 
 }
