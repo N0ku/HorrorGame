@@ -224,13 +224,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 87873405}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.11, y: 1.36, z: 4.25}
+  m_LocalRotation: {x: -0, y: -0.41437107, z: -0, w: 0.91010803}
+  m_LocalPosition: {x: 3.35, y: 1.36, z: 1.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 671.041, z: 0}
 --- !u!114 &87873410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,15 +249,15 @@ MonoBehaviour:
   target: {fileID: 87873405}
   footsteps: {fileID: 87873412}
   radius: 10
-  angle: 84
+  angle: 268
   targetMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   obtructionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
+  playerRef: {fileID: 802766822}
   canSeePlayer: 0
-  playerRef: {fileID: 0}
 --- !u!195 &87873411
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -851,7 +851,7 @@ GameObject:
   - component: {fileID: 802766823}
   - component: {fileID: 802766824}
   - component: {fileID: 802766825}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -867,7 +867,7 @@ Transform:
   m_GameObject: {fileID: 802766822}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.86, y: 1.78, z: -19.52}
+  m_LocalPosition: {x: -2.12, y: 1.78, z: -16.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -938,7 +938,7 @@ GameObject:
   - component: {fileID: 997643411}
   - component: {fileID: 997643410}
   - component: {fileID: 997643409}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1300,7 +1300,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1510295682}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CameraPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1331,7 +1331,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1530263649}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Orientation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1674,7 +1674,7 @@ GameObject:
   - component: {fileID: 1804255254}
   - component: {fileID: 1804255253}
   - component: {fileID: 1804255252}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1779,7 +1779,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2013192135}
   - component: {fileID: 2013192136}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerBindings
   m_TagString: Untagged
   m_Icon: {fileID: 0}

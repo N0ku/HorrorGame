@@ -25,15 +25,16 @@ public class MonsterScript : MonoBehaviour
     public LayerMask targetMask;
     public LayerMask obtructionMask;
 
-    public bool canSeePlayer = false;
+    private bool hasSeenPlayer;
 
     public GameObject playerRef;
+
+    public bool canSeePlayer = false;
 
     // Start is called before the first frame update
     void Start()
     {
         monster = GetComponent<NavMeshAgent>();
-        playerRef = GameObject.Find("Player");
         StartCoroutine(FOVRoutine());
     }
 
@@ -41,25 +42,29 @@ public class MonsterScript : MonoBehaviour
     void FixedUpdate()
     {
 
-        footsteps.enabled = true;
         var targetRender = target.GetComponent<Renderer>();
         footsteps.volume = monster.speed / 10;
 
-        Debug.Log(canSeePlayer);
 
-        if (isLooking(camera, target))
+        /*  if (isLooking(camera, target))
+         {
+             targetRender.material.color = Color.red;
+             timePlayerLookMonster++;
+             monster.destination = player.position.normalized * -timePlayerLookMonster;
+             monster.speed = 0.5f;
+         }
+         else
+         {
+             timePlayerLookMonster = 0;
+             targetRender.material.color = Color.white;
+             monster.destination = player.position;
+             monster.speed = calculateSpeed(playerStress);
+         } */
+
+        if (hasSeenPlayer)
         {
-            targetRender.material.color = Color.red;
-            timePlayerLookMonster++;
-            monster.destination = player.position.normalized * -timePlayerLookMonster;
-            monster.speed = 0.5f;
-        }
-        else
-        {
-            timePlayerLookMonster = 0;
-            targetRender.material.color = Color.white;
             monster.destination = player.position;
-            monster.speed = calculateSpeed(playerStress);
+            footsteps.enabled = true;
         }
     }
     private bool isLooking(Camera c, GameObject target)
@@ -114,6 +119,7 @@ public class MonsterScript : MonoBehaviour
 
                 if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obtructionMask))
                 {
+                    if (!hasSeenPlayer) hasSeenPlayer = true;
                     canSeePlayer = true;
                 }
                 else
