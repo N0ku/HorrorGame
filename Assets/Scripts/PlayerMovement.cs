@@ -125,7 +125,15 @@ public class PlayerMovement : MonoBehaviour
     {
     
 
-        if (isGrounded && Input.GetKey(sprintKey) && stamina > 0f)
+        if (isGrounded && Input.GetKey(KeyCode.LeftControl))
+        {
+            state = MovementState.Crouching;
+
+            Invoke(nameof(StartToRecover), 0.1f);
+
+            moveSpeed = crouchSpeed;
+        }
+        else if (isGrounded && Input.GetKey(sprintKey) && stamina > 0f && state != MovementState.Crouching)
         {
             if (IsInvoking(nameof(StartToRecover))) {
                 CancelInvoke(nameof(StartToRecover));
@@ -144,14 +152,6 @@ public class PlayerMovement : MonoBehaviour
                 stamina = 0f;
 
         }
-        else if (isGrounded && Input.GetKey(KeyCode.LeftControl))
-        {
-            state = MovementState.Crouching;
-
-            Invoke(nameof(StartToRecover), 0.1f);
-
-            moveSpeed = crouchSpeed;
-        }
         else
         {
             state = MovementState.Walking;
@@ -168,8 +168,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void StartToRecover()
     {
-        stamina += 0.05f;
-        stamina = Mathf.Round(stamina * 100f) / 100f;
+        if (stamina < 100f) {
+            stamina += 0.05f;
+            stamina = Mathf.Round(stamina * 100f) / 100f;
+        } else if (stamina >= 100f) {
+            stamina = 100f;
+        }
     }
 
     private void MovePlayer()
