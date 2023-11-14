@@ -45,6 +45,7 @@ public class MonsterScript : MonoBehaviour
         var targetRender = target.GetComponent<Renderer>();
         footsteps.volume = monster.speed / 10;
 
+        // FEATURE FOR FLASHLIGHT DON'T DELETE COMMENTED CODE
 
         /*  if (isLooking(camera, target))
          {
@@ -61,10 +62,15 @@ public class MonsterScript : MonoBehaviour
              monster.speed = calculateSpeed(playerStress);
          } */
 
-        if (hasSeenPlayer)
+        if (hasSeenPlayer && canSeePlayer)
         {
             monster.destination = player.position;
             footsteps.enabled = true;
+        }
+        else
+        {
+            footsteps.enabled = false;
+            monster.destination = transform.position;
         }
     }
     private bool isLooking(Camera c, GameObject target)
