@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public enum FlashlightState
 {
@@ -12,7 +13,9 @@ public enum FlashlightState
 
 public class FlashlightManager : MonoBehaviour
 {
-   [Header("Options")]
+    TextMeshProUGUI mText;
+
+    [Header("Options")]
     [SerializeField]
     float batteryLostTick = 0.1f;
 
@@ -39,48 +42,69 @@ public class FlashlightManager : MonoBehaviour
 
     AudioClip FlashlightOn_FX, FlashlightOff_FX;
 
-    public void Start() {
+    public void Start()
+    {
         currentBattery = startBattery;
         state = FlashlightState.On;
         flashlightIsOn = true;
+        mText = FindObjectOfType<TextMeshProUGUI>();
 
         InvokeRepeating(nameof(LoseBattery), 0, batteryLostTick);
     }
-    
-    public void Update() {
+
+    public void Update()
+    {
         if (Input.GetKeyDown(toggleFlashlightKey)) ToggleFlashlight();
 
         if (state == FlashlightState.Off) FlashlightLight.SetActive(false);
         else if (state == FlashlightState.OutOfBattery) FlashlightLight.SetActive(false);
         else if (state == FlashlightState.On && isUsable == true) FlashlightLight.SetActive(true);
 
-        if (state == FlashlightState.OutOfBattery && currentBattery >= startBattery) {
+        if (state == FlashlightState.OutOfBattery && currentBattery >= startBattery)
+        {
             isUsable = true;
+            mText.color = Color.green;
         }
+
+        if (isUsable == true && currentBattery <= 30)
+        {
+            mText.color = Color.yellow;
+        }
+
+        mText.text = "Flashlight: " + currentBattery + "%";
     }
 
     // On input pressed check the status of the flashlight and reload it
-    public void ReloadFlashlight() {
-        if (state == FlashlightState.Off) {
-            Debug.Log("Reloading Off " + currentBattery);
+    public void ReloadFlashlight()
+    {
+        if (state == FlashlightState.Off)
+        {
+            // Debug.Log("Reloading Off " + currentBattery);
             InvokeRepeating(nameof(GainBattery), 0, batteryWinTick);
         }
 
-        if (state == FlashlightState.OutOfBattery) {
-            Debug.Log("Reloading OutOfBattery " + currentBattery);
+        if (state == FlashlightState.OutOfBattery)
+        {
+            // Debug.Log("Reloading OutOfBattery " + currentBattery);
             InvokeRepeating(nameof(GainBattery), 0, batteryWinTick);
         }
     }
 
-    private void GainBattery() {
+    private void GainBattery()
+    {
 
-        Debug.Log("Gaining battery " + currentBattery);
-        if (currentBattery < startBattery) {
-            if (state == FlashlightState.OutOfBattery) {
+        // Debug.Log("Gaining battery " + currentBattery);
+        if (currentBattery < startBattery)
+        {
+            if (state == FlashlightState.OutOfBattery)
+            {
                 isUsable = false;
+                mText.color = Color.red;
             }
             currentBattery++;
-        } else if (currentBattery >= startBattery) {
+        }
+        else if (currentBattery >= startBattery)
+        {
             currentBattery = startBattery;
             isUsable = true;
             flashlightIsOn = false;
@@ -88,38 +112,49 @@ public class FlashlightManager : MonoBehaviour
         }
     }
 
-    private void LoseBattery() {
-        if (state == FlashlightState.On) {
-            Debug.Log("Losing battery " + currentBattery);
+    private void LoseBattery()
+    {
+        if (state == FlashlightState.On)
+        {
+            // Debug.Log("Losing battery " + currentBattery);
             currentBattery--;
-            
-            if (currentBattery <= 0) {
-                Debug.Log("OUT OF BATTERY " + currentBattery);
+
+            if (currentBattery <= 0)
+            {
+                // Debug.Log("OUT OF BATTERY " + currentBattery);
                 currentBattery = 0;
                 state = FlashlightState.OutOfBattery;
                 isUsable = false;
                 InvokeRepeating(nameof(GainBattery), 0, batteryWinTick);
                 CancelInvoke(nameof(LoseBattery));
             }
-        } else if (state == FlashlightState.Off) {
+        }
+        else if (state == FlashlightState.Off)
+        {
             Invoke(nameof(GainBattery), 0);
         }
     }
 
-    private void ToggleFlashlight() {
+    private void ToggleFlashlight()
+    {
         flashlightIsOn = !flashlightIsOn;
 
-        if (isUsable) {
-            if(IsInvoking(nameof(GainBattery))) CancelInvoke(nameof(GainBattery));
+        if (isUsable)
+        {
+            if (IsInvoking(nameof(GainBattery))) CancelInvoke(nameof(GainBattery));
         }
 
-        if (flashlightIsOn && isUsable) {
+        if (flashlightIsOn && isUsable)
+        {
             // GetComponent<AudioSource>().PlayOneShot(FlashlightOn_FX);
             state = FlashlightState.On;
-            if (!IsInvoking(nameof(LoseBattery))) {
+            if (!IsInvoking(nameof(LoseBattery)))
+            {
                 InvokeRepeating(nameof(LoseBattery), 0, batteryLostTick);
             }
-        } else if (isUsable) {
+        }
+        else if (isUsable)
+        {
             // GetComponent<AudioSource>().PlayOneShot(FlashlightOff_FX);
             state = FlashlightState.Off;
         }
