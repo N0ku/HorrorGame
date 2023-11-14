@@ -75,11 +75,15 @@ public class FlashlightManager : MonoBehaviour
     private void GainBattery() {
 
         Debug.Log("Gaining battery " + currentBattery);
-        if (currentBattery <= startBattery) {
+        if (currentBattery < startBattery) {
+            if (state == FlashlightState.OutOfBattery) {
+                isUsable = false;
+            }
             currentBattery++;
         } else if (currentBattery >= startBattery) {
             currentBattery = startBattery;
             isUsable = true;
+            flashlightIsOn = false;
             CancelInvoke(nameof(GainBattery));
         }
     }
@@ -104,16 +108,19 @@ public class FlashlightManager : MonoBehaviour
 
     private void ToggleFlashlight() {
         flashlightIsOn = !flashlightIsOn;
-        if (state == FlashlightState.OutOfBattery) {
-            flashlightIsOn = false;
-            isUsable = false;
+
+        if (isUsable) {
+            if(IsInvoking(nameof(GainBattery))) CancelInvoke(nameof(GainBattery));
         }
 
-        if (flashlightIsOn) {
-            GetComponent<AudioSource>().PlayOneShot(FlashlightOn_FX);
+        if (flashlightIsOn && isUsable) {
+            // GetComponent<AudioSource>().PlayOneShot(FlashlightOn_FX);
             state = FlashlightState.On;
-        } else {
-            GetComponent<AudioSource>().PlayOneShot(FlashlightOff_FX);
+            if (!IsInvoking(nameof(LoseBattery))) {
+                InvokeRepeating(nameof(LoseBattery), 0, batteryLostTick);
+            }
+        } else if (isUsable) {
+            // GetComponent<AudioSource>().PlayOneShot(FlashlightOff_FX);
             state = FlashlightState.Off;
         }
     }
