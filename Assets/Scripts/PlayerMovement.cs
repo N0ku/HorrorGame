@@ -48,9 +48,6 @@ public class PlayerMovement : MonoBehaviour
 
     float stamina;
 
-    bool justDecreased = false;
-
-
     Vector3 moveDirection;
 
     Rigidbody rb;
@@ -126,40 +123,53 @@ public class PlayerMovement : MonoBehaviour
 
     private void StateHandler()
     {
+    
+
         if (isGrounded && Input.GetKey(sprintKey) && stamina > 0f)
         {
+            if (IsInvoking(nameof(StartToRecover))) {
+                CancelInvoke(nameof(StartToRecover));
+            }   
             state = MovementState.Sprinting;
             moveSpeed = sprintSpeed;
-            stamina -= 0.1f;
+            if (verticalInput != 0f || horizontalInput != 0f) {
+                stamina -= 0.1f;
+            } else if (verticalInput != 0f && horizontalInput != 0f) {
+                stamina -= 0.2f;
+            } else {
+                stamina += 0.05f;
+            }
 
             if (stamina < 0f)
                 stamina = 0f;
 
-            justDecreased = true;
         }
         else if (isGrounded && Input.GetKey(KeyCode.LeftControl))
         {
             state = MovementState.Crouching;
+
+            Invoke(nameof(StartToRecover), 0.1f);
+
             moveSpeed = crouchSpeed;
         }
         else
         {
             state = MovementState.Walking;
             moveSpeed = walkSpeed;
-            // Log the justDecreased
-            Invoke("SetJustDecreasedToFalse", 5f);
-            if (stamina <= 100f && !justDecreased)
-            {
-                Debug.Log("stamina: " + stamina);
-                stamina += 0.05f;
-                stamina = Mathf.Round(stamina * 100f) / 100f;
+            
+            if (stamina <= 0f) {
+                Invoke(nameof(StartToRecover), 8f);
+            } else if (stamina <= 100f) {
+                Invoke(nameof(StartToRecover), 0.6f);
             }
+
         }
     }
 
-    private void SetJustDecreasedToFalse()
+    private void StartToRecover()
     {
-        justDecreased = false;
+        stamina += 0.05f;
+        stamina = Mathf.Round(stamina * 100f) / 100f;
     }
 
     private void MovePlayer()
