@@ -8,31 +8,55 @@ public class MonsterScript : MonoBehaviour
     public Transform player;
     private NavMeshAgent monster;
 
+    public GameObject playerObj;
     public Camera camera;
     public GameObject target;
     private float playerStress = 0;
 
+    public AudioSource footsteps;
+
+    private int timePlayerLookMonster = 0;
+
+    public float radius;
+
+    [Range(0, 360)]
+    public float angle;
+
+    public LayerMask targetMask;
+    public LayerMask obtructionMask;
+
+    public bool canSeePlayer = false;
+
+    public GameObject playerRef;
 
     // Start is called before the first frame update
     void Start()
     {
         monster = GetComponent<NavMeshAgent>();
+        playerRef = GameObject.Find("Player");
+        StartCoroutine(FOVRoutine());
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
 
+        footsteps.enabled = true;
         var targetRender = target.GetComponent<Renderer>();
+        footsteps.volume = monster.speed / 10;
+
+        Debug.Log(canSeePlayer);
 
         if (isLooking(camera, target))
         {
             targetRender.material.color = Color.red;
-            monster.destination = player.position.normalized * -1;
+            timePlayerLookMonster++;
+            monster.destination = player.position.normalized * -timePlayerLookMonster;
             monster.speed = 0.5f;
         }
         else
         {
+            timePlayerLookMonster = 0;
             targetRender.material.color = Color.white;
             monster.destination = player.position;
             monster.speed = calculateSpeed(playerStress);
@@ -42,14 +66,10 @@ public class MonsterScript : MonoBehaviour
     {
         Vector3 targetViewportPosition = c.WorldToViewportPoint(target.transform.position);
 
-        // return true if the camera is looking at the target and there is no obstacle in between
-
-        // verify if the target is inside the camera viewport
         if (targetViewportPosition.x >= 0 && targetViewportPosition.x <= 1 &&
             targetViewportPosition.y >= 0 && targetViewportPosition.y <= 1 &&
             targetViewportPosition.z > 0)
         {
-            // verify if there is an obstacle in between
             RaycastHit hit;
             if (Physics.Linecast(c.transform.position, target.transform.position, out hit))
             {
@@ -65,6 +85,51 @@ public class MonsterScript : MonoBehaviour
     private float calculateSpeed(float playerStress)
     {
         return 0.5f + (playerStress / 100);
+    }
+
+    private IEnumerator FOVRoutine()
+    {
+        float delay = 0.2f;
+        WaitForSeconds wait = new WaitForSeconds(delay);
+
+        while (true)
+        {
+            yield return wait;
+            FieldOfViewCheck();
+        }
+    }
+
+    private void FieldOfViewCheck()
+    {
+        Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
+
+        if (rangeChecks.Length != 0)
+        {
+            Transform target = rangeChecks[0].transform;
+            Vector3 directionToTarget = (target.position - transform.position).normalized;
+
+            if (Vector3.Angle(transform.position, directionToTarget) < angle / 2)
+            {
+                float distanceToTarget = Vector3.Distance(transform.position, target.position);
+
+                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obtructionMask))
+                {
+                    canSeePlayer = true;
+                }
+                else
+                {
+                    canSeePlayer = false;
+                }
+            }
+            else
+            {
+                canSeePlayer = false;
+            }
+        }
+        else if (canSeePlayer)
+        {
+            canSeePlayer = false;
+        }
     }
 
 }
