@@ -38,18 +38,28 @@ public class MonsterScript : MonoBehaviour
             monster.speed = calculateSpeed(playerStress);
         }
     }
-
     private bool isLooking(Camera c, GameObject target)
     {
-        var planes = GeometryUtility.CalculateFrustumPlanes(c);
-        var point = target.transform.position;
+        Vector3 targetViewportPosition = c.WorldToViewportPoint(target.transform.position);
 
-        foreach (var plane in planes)
+        // return true if the camera is looking at the target and there is no obstacle in between
+
+        // verify if the target is inside the camera viewport
+        if (targetViewportPosition.x >= 0 && targetViewportPosition.x <= 1 &&
+            targetViewportPosition.y >= 0 && targetViewportPosition.y <= 1 &&
+            targetViewportPosition.z > 0)
         {
-            if (plane.GetDistanceToPoint(point) < 0)
-                return false;
+            // verify if there is an obstacle in between
+            RaycastHit hit;
+            if (Physics.Linecast(c.transform.position, target.transform.position, out hit))
+            {
+                if (hit.transform.gameObject == target)
+                {
+                    return true;
+                }
+            }
         }
-        return true;
+        return false;
     }
 
     private float calculateSpeed(float playerStress)
