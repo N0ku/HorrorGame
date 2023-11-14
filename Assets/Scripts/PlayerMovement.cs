@@ -158,7 +158,7 @@ public class PlayerMovement : MonoBehaviour
             moveSpeed = walkSpeed;
             
             if (stamina <= 0f) {
-                Invoke(nameof(StartToRecover), 8f);
+                Invoke(nameof(StartToRecover), 2.5f);
             } else if (stamina <= 100f) {
                 Invoke(nameof(StartToRecover), 0.6f);
             }
