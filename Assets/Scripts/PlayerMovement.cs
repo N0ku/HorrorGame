@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -44,9 +46,13 @@ public class PlayerMovement : MonoBehaviour
     float horizontalInput;
     float verticalInput;
 
+    float stamina;
+
     Vector3 moveDirection;
 
     Rigidbody rb;
+
+    Slider slider;
 
     private MovementState state;
     private enum MovementState
@@ -61,8 +67,12 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        slider = FindObjectOfType<Slider>();
 
         startYScale = transform.localScale.y;
+
+        stamina = 100f;
+
     }
 
     private void Update()
@@ -72,6 +82,9 @@ public class PlayerMovement : MonoBehaviour
         MyInput();
         SpeedControl();
         StateHandler();
+
+        slider.value = stamina / 100f;
+
         // handle drag
         if (isGrounded)
             rb.drag = groundDrag;
@@ -110,20 +123,68 @@ public class PlayerMovement : MonoBehaviour
 
     private void StateHandler()
     {
-        if (isGrounded && Input.GetKey(sprintKey))
-        {
-            state = MovementState.Sprinting;
-            moveSpeed = sprintSpeed;
-        }
-        else if (isGrounded && Input.GetKey(KeyCode.LeftControl))
+
+
+        if (isGrounded && Input.GetKey(KeyCode.LeftControl))
         {
             state = MovementState.Crouching;
+
+            Invoke(nameof(StartToRecover), 0.1f);
+
             moveSpeed = crouchSpeed;
+        }
+        else if (isGrounded && Input.GetKey(sprintKey) && stamina > 0f && state != MovementState.Crouching)
+        {
+            if (IsInvoking(nameof(StartToRecover)))
+            {
+                CancelInvoke(nameof(StartToRecover));
+            }
+            state = MovementState.Sprinting;
+            moveSpeed = sprintSpeed;
+            if (verticalInput != 0f || horizontalInput != 0f)
+            {
+                stamina -= 0.1f;
+            }
+            else if (verticalInput != 0f && horizontalInput != 0f)
+            {
+                stamina -= 0.2f;
+            }
+            else
+            {
+                stamina += 0.05f;
+            }
+
+            if (stamina < 0f)
+                stamina = 0f;
+
         }
         else
         {
             state = MovementState.Walking;
             moveSpeed = walkSpeed;
+
+            if (stamina <= 0f)
+            {
+                Invoke(nameof(StartToRecover), 2.5f);
+            }
+            else if (stamina <= 100f)
+            {
+                Invoke(nameof(StartToRecover), 0.6f);
+            }
+
+        }
+    }
+
+    private void StartToRecover()
+    {
+        if (stamina < 100f)
+        {
+            stamina += 0.05f;
+            stamina = Mathf.Round(stamina * 100f) / 100f;
+        }
+        else if (stamina >= 100f)
+        {
+            stamina = 100f;
         }
     }
 
