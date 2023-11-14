@@ -73,7 +73,7 @@ public class FlashlightManager : MonoBehaviour
             mText.color = Color.yellow;
         }
 
-        int randomAmount = Random.Range(10, 40);
+        int randomAmount = Random.Range(10, 25);
         if (didItBug == false && currentBattery == randomAmount)
         {
             bugFlashlight(FlashlightLight);
@@ -174,7 +174,7 @@ public class FlashlightManager : MonoBehaviour
     public void bugFlashlight(GameObject FlashlightLight)
     {
         if(didItBug == false) {
-            float timing = Random.Range(1f, 5f);
+            float timing = Random.Range(0.2f, 1.5f);
             disableFlashlight();
             Invoke(nameof(enableFlashlight), timing);
 
