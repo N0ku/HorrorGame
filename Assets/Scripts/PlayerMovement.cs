@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -53,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody rb;
 
+    Slider slider;
+
     private MovementState state;
     private enum MovementState
     {
@@ -66,10 +70,12 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        slider = FindObjectOfType<Slider>();
 
         startYScale = transform.localScale.y;
 
         stamina = 100f;
+
     }
 
     private void Update()
@@ -79,6 +85,9 @@ public class PlayerMovement : MonoBehaviour
         MyInput();
         SpeedControl();
         StateHandler();
+
+        slider.value = stamina / 100f;
+
         // handle drag
         if (isGrounded)
             rb.drag = groundDrag;
@@ -122,8 +131,8 @@ public class PlayerMovement : MonoBehaviour
             state = MovementState.Sprinting;
             moveSpeed = sprintSpeed;
             stamina -= 0.1f;
-    
-            if (stamina < 0f) 
+
+            if (stamina < 0f)
                 stamina = 0f;
 
             justDecreased = true;
@@ -139,7 +148,8 @@ public class PlayerMovement : MonoBehaviour
             moveSpeed = walkSpeed;
             // Log the justDecreased
             Invoke("SetJustDecreasedToFalse", 5f);
-            if (stamina <= 100f && !justDecreased) {
+            if (stamina <= 100f && !justDecreased)
+            {
                 Debug.Log("stamina: " + stamina);
                 stamina += 0.05f;
                 stamina = Mathf.Round(stamina * 100f) / 100f;
