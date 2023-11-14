@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/MonsterTest.unity.meta
+guid: 395e491d8a0904058a58a5bcaf86fbf8
+========
+guid: 2244cd35f0f9c46089e9e47c2497b4a6
+>>>>>>>> c216694 (Add movement for player):Assets/Scenes/FirstScene.unity.meta
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
