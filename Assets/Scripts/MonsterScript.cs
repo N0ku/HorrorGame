@@ -31,6 +31,8 @@ public class MonsterScript : MonoBehaviour
 
     public bool canSeePlayer = false;
 
+    private Vector3 lastPlayerPosition;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,6 +67,13 @@ public class MonsterScript : MonoBehaviour
         if (hasSeenPlayer && canSeePlayer)
         {
             monster.destination = player.position;
+            footsteps.enabled = true;
+            lastPlayerPosition = player.position;
+        }
+        // To go on the last position of the player
+        else if (hasSeenPlayer && !canSeePlayer)
+        {
+            monster.destination = lastPlayerPosition;
             footsteps.enabled = true;
         }
         else
