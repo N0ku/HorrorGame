@@ -243,6 +243,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 802766823}
+  camera: {fileID: 1541093897}
+  target: {fileID: 87873405}
 --- !u!195 &87873411
 NavMeshAgent:
   m_ObjectHideFlags: 0
