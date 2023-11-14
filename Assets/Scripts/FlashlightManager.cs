@@ -30,6 +30,8 @@ public class FlashlightManager : MonoBehaviour
 
     private bool flashlightIsOn;
 
+    private bool didItBug = false;
+
     private bool isUsable = true;
 
     [SerializeField]
@@ -71,6 +73,12 @@ public class FlashlightManager : MonoBehaviour
             mText.color = Color.yellow;
         }
 
+        int randomAmount = Random.Range(10, 40);
+        if (didItBug == false && currentBattery == randomAmount)
+        {
+            bugFlashlight(FlashlightLight);
+        }
+
         mText.text = "Flashlight: " + currentBattery + "%";
     }
 
@@ -87,12 +95,15 @@ public class FlashlightManager : MonoBehaviour
         {
             // Debug.Log("Reloading OutOfBattery " + currentBattery);
             InvokeRepeating(nameof(GainBattery), 0, batteryWinTick);
+
         }
     }
 
     private void GainBattery()
     {
-
+        if (currentBattery > 50f) {
+            didItBug = false;
+        }
         // Debug.Log("Gaining battery " + currentBattery);
         if (currentBattery < startBattery)
         {
@@ -158,5 +169,35 @@ public class FlashlightManager : MonoBehaviour
             // GetComponent<AudioSource>().PlayOneShot(FlashlightOff_FX);
             state = FlashlightState.Off;
         }
+    }
+
+    public void bugFlashlight(GameObject FlashlightLight)
+    {
+        if(didItBug == false) {
+            float timing = Random.Range(1f, 5f);
+            disableFlashlight();
+            Invoke(nameof(enableFlashlight), timing);
+
+            didItBug = true;
+
+            CancelInvoke(nameof(bugFlashlight));
+        }
+    
+    }
+
+    public void disableFlashlight()
+    {
+        FlashlightLight.SetActive(false);
+        isUsable = false;
+        flashlightIsOn = false;
+        CancelInvoke(nameof(LoseBattery));
+    }
+
+    public void enableFlashlight()
+    {
+        FlashlightLight.SetActive(true);
+        isUsable = true;
+        flashlightIsOn = true;
+        InvokeRepeating(nameof(LoseBattery), 0, batteryLostTick);
     }
 }
