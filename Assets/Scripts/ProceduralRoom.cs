@@ -1,5 +1,12 @@
 using UnityEngine;
 
+public enum RoomType
+{
+    Standard,
+    Trapped,
+    CardRoom
+}
+
 public class ProceduralRoomGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject roomPrefab;
@@ -7,9 +14,9 @@ public class ProceduralRoomGenerator : MonoBehaviour
     [SerializeField] private int numberOfRooms = 5;
     [SerializeField] private float roomSizeMin = 1f;
     [SerializeField] private float roomSizeMax = 5f;
-
+    [SerializeField] private int numberOfTrappedRooms = 2;
+    [SerializeField] private int numberOfCardRooms = 1;
     [SerializeField] private float gridSize = 13f;
-
     [SerializeField] public ProceduralObject roomObject;
 
     void Start()
@@ -20,21 +27,38 @@ public class ProceduralRoomGenerator : MonoBehaviour
 
     void GenerateRooms()
     {
-        for (int i = 0; i < numberOfRooms; i++)
+        GenerateRoomsOfType(RoomType.Standard, numberOfRooms - numberOfTrappedRooms - numberOfCardRooms);
+        GenerateRoomsOfType(RoomType.Trapped, numberOfTrappedRooms);
+        GenerateRoomsOfType(RoomType.CardRoom, numberOfCardRooms);
+    }
+
+    void GenerateRoomsOfType(RoomType roomType,int count)
+    {
+        for (int i = 0; i < count; i++)
         {
-            GameObject room = CreateRoom();
+            GameObject room = CreateRoom(roomType);
             CreateDoorInWall(room);
+
             roomObject.GenerateObjectsOnFloor(room.transform.Find("Floor"));
         }
     }
 
-    GameObject CreateRoom()
+    GameObject CreateRoom(RoomType roomType)
     {
-
         Vector3 roomPosition = GetRandomGridPosition();
         GameObject room = Instantiate(roomPrefab, roomPosition, Quaternion.identity);
         room.tag = "Room";
-        room.transform.localScale = new Vector3(roomSizeMin, 1f, roomSizeMin);          
+        room.transform.localScale = new Vector3(roomSizeMin, 1f, roomSizeMin);
+
+        switch (roomType)
+        {
+            case RoomType.Standard:
+                break;
+            case RoomType.Trapped:
+                break;
+            case RoomType.CardRoom:
+                break;
+        }
 
         return room;
     }
@@ -43,7 +67,6 @@ public class ProceduralRoomGenerator : MonoBehaviour
     {
         float randomX = Mathf.Round(UnityEngine.Random.Range(-50f, 50f) / gridSize) * gridSize;
         float randomZ = Mathf.Round(UnityEngine.Random.Range(-50f, 50f) / gridSize) * gridSize;
-        
         return new Vector3(randomX, 0f, randomZ);
     }
 
