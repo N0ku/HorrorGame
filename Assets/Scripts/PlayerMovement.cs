@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     float horizontalInput;
     float verticalInput;
 
-    float stamina;
+    public static float stamina;
 
     Vector3 moveDirection;
 
@@ -135,28 +135,23 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (isGrounded && Input.GetKey(sprintKey) && stamina > 0f && state != MovementState.Crouching)
         {
-            if (IsInvoking(nameof(StartToRecover)))
-            {
-                CancelInvoke(nameof(StartToRecover));
-            }
             state = MovementState.Sprinting;
             moveSpeed = sprintSpeed;
             if (verticalInput != 0f || horizontalInput != 0f)
             {
-                stamina -= 0.1f;
-            }
-            else if (verticalInput != 0f && horizontalInput != 0f)
-            {
-                stamina -= 0.2f;
+                if (IsInvoking(nameof(StartToRecover)))
+                {
+                    CancelInvoke(nameof(StartToRecover));
+                }
+                stamina -= 10f * Time.deltaTime;
             }
             else
             {
-                stamina += 0.05f;
+                Invoke(nameof(StartToRecover), 0.6f);
             }
 
             if (stamina < 0f)
                 stamina = 0f;
-
         }
         else
         {
@@ -179,7 +174,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (stamina < 100f)
         {
-            stamina += 0.05f;
+            stamina += 12f * Time.deltaTime;
             stamina = Mathf.Round(stamina * 100f) / 100f;
         }
         else if (stamina >= 100f)
