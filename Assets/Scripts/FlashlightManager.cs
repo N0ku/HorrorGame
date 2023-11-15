@@ -28,11 +28,9 @@ public class FlashlightManager : MonoBehaviour
 
     public FlashlightState state;
 
-    private bool flashlightIsOn;
+    public static bool flashlightIsOn;
 
-    private bool didItBug = false;
-
-    private bool isUsable = true;
+    public static bool isUsable = true;
 
     [SerializeField]
     KeyCode toggleFlashlightKey = KeyCode.F;
@@ -65,6 +63,11 @@ public class FlashlightManager : MonoBehaviour
         if (state == FlashlightState.OutOfBattery && currentBattery >= startBattery)
         {
             isUsable = true;
+            mText.color = Color.green;
+        }
+
+        if (isUsable == true && currentBattery >= 70)
+        {
             mText.color = Color.green;
         }
 
@@ -101,7 +104,8 @@ public class FlashlightManager : MonoBehaviour
 
     private void GainBattery()
     {
-        if (currentBattery > 50f) {
+        if (currentBattery > 50f)
+        {
             didItBug = false;
         }
         // Debug.Log("Gaining battery " + currentBattery);
@@ -173,7 +177,8 @@ public class FlashlightManager : MonoBehaviour
 
     public void bugFlashlight(GameObject FlashlightLight)
     {
-        if(didItBug == false) {
+        if (didItBug == false)
+        {
             float timing = Random.Range(0.2f, 1.5f);
             disableFlashlight();
             Invoke(nameof(enableFlashlight), timing);
@@ -182,7 +187,7 @@ public class FlashlightManager : MonoBehaviour
 
             CancelInvoke(nameof(bugFlashlight));
         }
-    
+
     }
 
     public void disableFlashlight()
