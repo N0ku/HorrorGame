@@ -28,7 +28,7 @@ public class FlashlightManager : MonoBehaviour
 
     public FlashlightState state;
 
-    private bool flashlightIsOn;
+    public static bool flashlightIsOn;
 
     private bool didItBug = false;
 
@@ -65,6 +65,11 @@ public class FlashlightManager : MonoBehaviour
         if (state == FlashlightState.OutOfBattery && currentBattery >= startBattery)
         {
             isUsable = true;
+            mText.color = Color.green;
+        }
+
+        if (isUsable == true && currentBattery >= 70)
+        {
             mText.color = Color.green;
         }
 
