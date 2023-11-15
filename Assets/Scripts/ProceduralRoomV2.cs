@@ -1,14 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 83aaa42c859cb371005dcdbdd5e8179a0d16b8fe
 using static RoomGenerator;
 
 public class RoomGenerator : MonoBehaviour
 {
+<<<<<<< HEAD
     //TODO PERMETTRE DE SERIALIZER MALGRE LE STATIC PLS
 
 
 
+=======
+>>>>>>> 83aaa42c859cb371005dcdbdd5e8179a0d16b8fe
     [SerializeField] private int roomSizeX;
     [SerializeField] private int roomSizeY;
     [SerializeField] private List<Room> generatedRooms = new List<Room>();
@@ -36,11 +43,14 @@ public class RoomGenerator : MonoBehaviour
     static public int staticRoomSizeX { get; set; }
     static public int staticRoomSizeY { get; set; }
 
+<<<<<<< HEAD
 
 
 
 
 
+=======
+>>>>>>> 83aaa42c859cb371005dcdbdd5e8179a0d16b8fe
     void Start()
     {
 
@@ -61,7 +71,11 @@ public class RoomGenerator : MonoBehaviour
         Room newRoom = new Room(namedRoom);
         int randomOffsetX = Mathf.RoundToInt(Random.Range(-50f, 50f));
         int randomOffsetY = Mathf.RoundToInt(Random.Range(-50f, 50f));
+<<<<<<< HEAD
         newRoom.SetPosition(new Vector3(randomOffsetX*2+1, 0, randomOffsetY*2));
+=======
+        newRoom.SetPosition(new Vector3(randomOffsetX * 2 + 1, 0, randomOffsetY * 2));
+>>>>>>> 83aaa42c859cb371005dcdbdd5e8179a0d16b8fe
 
 
         for (int x = 0; x < roomSizeX; x++)
@@ -175,7 +189,11 @@ public class RoomGenerator : MonoBehaviour
         {
             GameObject cellObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
             cellObject.transform.parent = gridParent.transform;
+<<<<<<< HEAD
             cellObject.transform.position = cell.position; 
+=======
+            cellObject.transform.position = cell.position;
+>>>>>>> 83aaa42c859cb371005dcdbdd5e8179a0d16b8fe
             cellObject.GetComponent<Renderer>().material.color = cell.color;
         }
     }
@@ -218,7 +236,11 @@ public class RoomGenerator : MonoBehaviour
 
     public class Room
     {
+<<<<<<< HEAD
      
+=======
+
+>>>>>>> 83aaa42c859cb371005dcdbdd5e8179a0d16b8fe
         public GameObject RoomObject { get; set; }
         public List<WallReference> RoomWalls { get; set; }
         public Cell[,] Grid { get; set; }

@@ -12,7 +12,11 @@ GameObject:
   - component: {fileID: 33021288513546990}
   - component: {fileID: 23442346080546012}
   - component: {fileID: 64238574145938260}
+<<<<<<< HEAD
   m_Layer: 0
+=======
+  m_Layer: 9
+>>>>>>> 83aaa42c859cb371005dcdbdd5e8179a0d16b8fe
   m_Name: SM_Buildings_Wall_2x3_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

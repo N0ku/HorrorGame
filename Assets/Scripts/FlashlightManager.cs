@@ -28,9 +28,10 @@ public class FlashlightManager : MonoBehaviour
 
     public FlashlightState state;
 
-    private bool flashlightIsOn;
+    public static bool flashlightIsOn;
 
-    private bool isUsable = true;
+    private bool didItBug = false;
+    public static bool isUsable = true;
 
     [SerializeField]
     KeyCode toggleFlashlightKey = KeyCode.F;
@@ -66,9 +67,20 @@ public class FlashlightManager : MonoBehaviour
             mText.color = Color.green;
         }
 
+        if (isUsable == true && currentBattery >= 70)
+        {
+            mText.color = Color.green;
+        }
+
         if (isUsable == true && currentBattery <= 30)
         {
             mText.color = Color.yellow;
+        }
+
+        int randomAmount = Random.Range(10, 25);
+        if (didItBug == false && currentBattery == randomAmount)
+        {
+            bugFlashlight(FlashlightLight);
         }
 
         mText.text = "Flashlight: " + currentBattery + "%";
@@ -87,12 +99,16 @@ public class FlashlightManager : MonoBehaviour
         {
             // Debug.Log("Reloading OutOfBattery " + currentBattery);
             InvokeRepeating(nameof(GainBattery), 0, batteryWinTick);
+
         }
     }
 
     private void GainBattery()
     {
-
+        if (currentBattery > 50f)
+        {
+            didItBug = false;
+        }
         // Debug.Log("Gaining battery " + currentBattery);
         if (currentBattery < startBattery)
         {
@@ -158,5 +174,36 @@ public class FlashlightManager : MonoBehaviour
             // GetComponent<AudioSource>().PlayOneShot(FlashlightOff_FX);
             state = FlashlightState.Off;
         }
+    }
+
+    public void bugFlashlight(GameObject FlashlightLight)
+    {
+        if (didItBug == false)
+        {
+            float timing = Random.Range(0.2f, 1.5f);
+            disableFlashlight();
+            Invoke(nameof(enableFlashlight), timing);
+
+            didItBug = true;
+
+            CancelInvoke(nameof(bugFlashlight));
+        }
+
+    }
+
+    public void disableFlashlight()
+    {
+        FlashlightLight.SetActive(false);
+        isUsable = false;
+        flashlightIsOn = false;
+        CancelInvoke(nameof(LoseBattery));
+    }
+
+    public void enableFlashlight()
+    {
+        FlashlightLight.SetActive(true);
+        isUsable = true;
+        flashlightIsOn = true;
+        InvokeRepeating(nameof(LoseBattery), 0, batteryLostTick);
     }
 }
