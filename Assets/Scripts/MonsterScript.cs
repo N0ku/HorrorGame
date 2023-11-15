@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Unity.AI.Navigation;
 
 public class MonsterScript : MonoBehaviour
 {
@@ -33,11 +34,15 @@ public class MonsterScript : MonoBehaviour
 
     private Vector3 lastPlayerPosition;
 
+    public NavMeshSurface navMeshSurface;
+
     // Start is called before the first frame update
     void Start()
     {
         monster = GetComponent<NavMeshAgent>();
         StartCoroutine(FOVRoutine());
+
+        navMeshSurface.BuildNavMesh();
     }
 
     // Update is called once per frame

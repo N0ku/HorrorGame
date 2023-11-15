@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Room
   - Ground
+  - ProceduralObject
   layers:
   - Default
   - TransparentFX

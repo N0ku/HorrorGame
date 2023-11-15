@@ -31,8 +31,8 @@ public class FlashlightManager : MonoBehaviour
     public static bool flashlightIsOn;
 
     private bool didItBug = false;
-
-    private bool isUsable = true;
+    
+    public static bool isUsable = true;
 
     [SerializeField]
     KeyCode toggleFlashlightKey = KeyCode.F;
@@ -187,7 +187,6 @@ public class FlashlightManager : MonoBehaviour
 
             CancelInvoke(nameof(bugFlashlight));
         }
-    
     }
 
     public void disableFlashlight()

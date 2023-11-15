@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
         SpeedControl();
         StateHandler();
 
-        slider.value = stamina / 100f;
+        //slider.value = stamina / 100f;
 
         // handle drag
         if (isGrounded)
