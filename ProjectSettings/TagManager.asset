@@ -12,6 +12,8 @@ TagManager:
   - adviceHitbox
   - yetiHitbox
   - virusHitbox
+  - historyAdviceHitbox
+  - warningAdviceHitbox
   layers:
   - Default
   - TransparentFX
