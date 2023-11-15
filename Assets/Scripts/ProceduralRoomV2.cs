@@ -1,14 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 using static RoomGenerator;
 
 public class RoomGenerator : MonoBehaviour
 {
-    //TODO PERMETTRE DE SERIALIZER MALGRE LE STATIC PLS
-
-
-
     [SerializeField] private int roomSizeX;
     [SerializeField] private int roomSizeY;
     [SerializeField] private List<Room> generatedRooms = new List<Room>();
@@ -36,11 +33,6 @@ public class RoomGenerator : MonoBehaviour
     static public int staticRoomSizeX { get; set; }
     static public int staticRoomSizeY { get; set; }
 
-
-
-
-
-
     void Start()
     {
 
@@ -61,7 +53,7 @@ public class RoomGenerator : MonoBehaviour
         Room newRoom = new Room(namedRoom);
         int randomOffsetX = Mathf.RoundToInt(Random.Range(-50f, 50f));
         int randomOffsetY = Mathf.RoundToInt(Random.Range(-50f, 50f));
-        newRoom.SetPosition(new Vector3(randomOffsetX*2+1, 0, randomOffsetY*2));
+        newRoom.SetPosition(new Vector3(randomOffsetX * 2 + 1, 0, randomOffsetY * 2));
 
 
         for (int x = 0; x < roomSizeX; x++)
@@ -175,7 +167,7 @@ public class RoomGenerator : MonoBehaviour
         {
             GameObject cellObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
             cellObject.transform.parent = gridParent.transform;
-            cellObject.transform.position = cell.position; 
+            cellObject.transform.position = cell.position;
             cellObject.GetComponent<Renderer>().material.color = cell.color;
         }
     }
@@ -218,7 +210,7 @@ public class RoomGenerator : MonoBehaviour
 
     public class Room
     {
-     
+
         public GameObject RoomObject { get; set; }
         public List<WallReference> RoomWalls { get; set; }
         public Cell[,] Grid { get; set; }
