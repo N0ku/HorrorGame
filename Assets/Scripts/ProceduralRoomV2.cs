@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using Unity.AI.Navigation;
 
 using static RoomGenerator;
 
@@ -16,11 +18,10 @@ public class RoomGenerator : MonoBehaviour
     [SerializeField] private List<GameObject> objectPrefabs = new List<GameObject>();
     [SerializeField] private int numberOfObjects = 5;
     [SerializeField] private int numberOfRooms = 5;
+    [SerializeField] private NavMeshSurface navMeshSurface;
     [SerializeField] private GameObject wallsParent;
     [SerializeField] private GameObject objectsParent;
     [SerializeField] private GameObject gridParent;
-
-
 
     // Pour les debilos, les prefab qu'on met sont en 2x3. Donc obliger de faire un spacing de 2 sinon ils se superposent.
     public static float wallSpacing = 2f;
@@ -41,6 +42,8 @@ public class RoomGenerator : MonoBehaviour
             doorGenerated = false;
             GenerateRoom(i);
         }
+
+        navMeshSurface.BuildNavMesh();
 
     }
 
