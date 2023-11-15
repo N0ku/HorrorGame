@@ -31,7 +31,6 @@ public class FlashlightManager : MonoBehaviour
     public static bool flashlightIsOn;
 
     private bool didItBug = false;
-    
     public static bool isUsable = true;
 
     [SerializeField]
@@ -106,7 +105,8 @@ public class FlashlightManager : MonoBehaviour
 
     private void GainBattery()
     {
-        if (currentBattery > 50f) {
+        if (currentBattery > 50f)
+        {
             didItBug = false;
         }
         // Debug.Log("Gaining battery " + currentBattery);
@@ -178,7 +178,8 @@ public class FlashlightManager : MonoBehaviour
 
     public void bugFlashlight(GameObject FlashlightLight)
     {
-        if(didItBug == false) {
+        if (didItBug == false)
+        {
             float timing = Random.Range(0.2f, 1.5f);
             disableFlashlight();
             Invoke(nameof(enableFlashlight), timing);
@@ -187,6 +188,7 @@ public class FlashlightManager : MonoBehaviour
 
             CancelInvoke(nameof(bugFlashlight));
         }
+
     }
 
     public void disableFlashlight()
