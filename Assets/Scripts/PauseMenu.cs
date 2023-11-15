@@ -12,42 +12,51 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            if (pauseMenu.activeSelf) {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (pauseMenu.activeSelf)
+            {
                 ResumeGame();
                 Cursor.lockState = CursorLockMode.Locked;
-            } else {
+            }
+            else
+            {
                 PauseGame();
                 Cursor.lockState = CursorLockMode.None;
             }
         }
-        
+
     }
 
-    public void PauseGame() {
+    public void PauseGame()
+    {
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
     }
 
-    public void ResumeGame() {
+    public void ResumeGame()
+    {
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         isPaused = false;
     }
 
-    public void ExitGame() {
+    public void ExitGame()
+    {
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
 
-    public void SaveGame() {
+    public void SaveGame()
+    {
         Debug.Log("Saving game...");
     }
 }
