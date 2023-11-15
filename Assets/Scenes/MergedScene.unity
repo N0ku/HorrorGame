@@ -1513,7 +1513,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7060042994243054937, guid: c80633c5cf2e44a3595b412975d263c9, type: 3}
       propertyPath: angle
-      value: 244
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 7060042994243054937, guid: c80633c5cf2e44a3595b412975d263c9, type: 3}
       propertyPath: camera
