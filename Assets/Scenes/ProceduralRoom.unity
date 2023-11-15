@@ -211,6 +211,7 @@ MonoBehaviour:
   - {fileID: 195414, guid: 399a03b303dbd2448a0f74c9833ca51e, type: 3}
   numberOfObjects: 20
   numberOfRooms: 5
+  navMeshSurface: {fileID: 548556382}
   wallsParent: {fileID: 2067796205}
   objectsParent: {fileID: 2011474378}
   gridParent: {fileID: 893044574}
@@ -392,6 +393,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1815345801761848, guid: facd491e05e8e91488c3077d03b941b7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1181585572}
+    - targetCorrespondingSourceObject: {fileID: 1815345801761848, guid: facd491e05e8e91488c3077d03b941b7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1181585573}
   m_SourcePrefab: {fileID: 100100000, guid: facd491e05e8e91488c3077d03b941b7, type: 3}
 --- !u!1 &362963894
 GameObject:
@@ -1080,6 +1084,22 @@ MonoBehaviour:
   myDoor: {fileID: 1181585567}
   openTrigger: 0
   closeTrigger: 1
+--- !u!208 &1181585573
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181585566}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.513, y: 1.1120001, z: 0.142}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.513, y: 1.1120001, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1208105619
 GameObject:
   m_ObjectHideFlags: 0
