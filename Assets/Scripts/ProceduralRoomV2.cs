@@ -18,7 +18,7 @@ public class RoomGenerator : MonoBehaviour
     [SerializeField] private List<GameObject> objectPrefabs = new List<GameObject>();
     [SerializeField] private int numberOfObjects = 5;
     [SerializeField] private int numberOfRooms = 5;
-    [SerializeField] private NavMeshSurface navMeshSurface;
+    private NavMeshSurface[] navMeshSurface;
     [SerializeField] private GameObject wallsParent;
     [SerializeField] private GameObject objectsParent;
     [SerializeField] private GameObject gridParent;
@@ -43,7 +43,12 @@ public class RoomGenerator : MonoBehaviour
             GenerateRoom(i);
         }
 
-        navMeshSurface.BuildNavMesh();
+        navMeshSurface = FindObjectsOfType<NavMeshSurface>();
+
+        foreach (var surface in navMeshSurface)
+        {
+            surface.BuildNavMesh();
+        }
 
     }
 
