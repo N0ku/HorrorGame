@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - openElevator
   - manageElevator
+  - ProceduralObject
   layers:
   - Default
   - TransparentFX

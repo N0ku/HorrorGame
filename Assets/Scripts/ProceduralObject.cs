@@ -2,10 +2,21 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ProceduralObject : MonoBehaviour
+public class ProceduralObject : MonoBehaviour, IInteractable
 {
     [SerializeField] private List<GameObject> objectPrefabs = new List<GameObject>();
     [SerializeField] private int numberOfObjects = 5;
+
+    public void Interact()
+    {
+        // Dev système de fouille
+    }
+
+    public string GetDescription()
+    {
+        // Mettre description procédural
+        return "A Definir";
+    }
 
     public void GenerateObjectsOnFloor(Transform floorParent)
     {
@@ -17,7 +28,9 @@ public class ProceduralObject : MonoBehaviour
 
             GameObject selectedPrefab = objectPrefabs[Random.Range(0, objectPrefabs.Count)];
             Vector3 objectPosition = GetRandomPositionOnFloor(selectedFloor);
+            selectedPrefab.AddComponent<OnGlobalObjectAction>();
             Instantiate(selectedPrefab, objectPosition, Quaternion.identity, selectedFloor);
+            selectedPrefab.AddComponent<OnGlobalObjectAction>();
         }
     }
 

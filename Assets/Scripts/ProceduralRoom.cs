@@ -1,11 +1,6 @@
 using UnityEngine;
 
-public enum RoomType
-{
-    Standard,
-    Trapped,
-    CardRoom
-}
+
 
 public class ProceduralRoomGenerator : MonoBehaviour
 {
@@ -18,6 +13,9 @@ public class ProceduralRoomGenerator : MonoBehaviour
     [SerializeField] private int numberOfCardRooms = 1;
     [SerializeField] private float gridSize = 13f;
     [SerializeField] public ProceduralObject roomObject;
+    [SerializeField] public RoomType roomInteractable;
+
+   
 
     void Start()
     {
@@ -85,4 +83,6 @@ public class ProceduralRoomGenerator : MonoBehaviour
             Destroy(selectedWall.gameObject);
         }
     }
+
+   
 }
