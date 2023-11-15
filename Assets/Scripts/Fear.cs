@@ -68,7 +68,7 @@ public class Fear : MonoBehaviour
     {
         if (FlashlightManager.flashlightIsOn == false || FlashlightManager.isUsable == false)
         {
-            fear += 10.15f * Time.deltaTime;
+            fear += 0.15f * Time.deltaTime;
             // Debug.Log("increased : " + fear);
         }
     }
