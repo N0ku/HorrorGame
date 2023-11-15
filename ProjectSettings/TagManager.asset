@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Room
   - Ground
+  - openElevator
+  - manageElevator
   layers:
   - Default
   - TransparentFX
