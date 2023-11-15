@@ -329,7 +329,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3496075192617248875}
   m_Layer: 9
-  m_Name: Normal-ThomasRoom
+  m_Name: ThomasRoom-10x10-Normal-1
   m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
