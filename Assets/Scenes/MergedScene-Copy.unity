@@ -1459,6 +1459,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 808158508}
   m_CullTransparentMesh: 1
+--- !u!1 &839055838 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8325148103288173178, guid: 29e0b2d9f80b547e9b57f07ee199852e, type: 3}
+  m_PrefabInstance: {fileID: 7491913186423517292}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &893044574
 GameObject:
   m_ObjectHideFlags: 0
@@ -1494,6 +1499,11 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8348605613535444048, guid: 8fa4e7aaf3b424a7692da853838311c9, type: 3}
   m_PrefabInstance: {fileID: 7382049044243986700}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &917444906 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4606265478014461645, guid: 97026741325d542b480ca622dd2db781, type: 3}
+  m_PrefabInstance: {fileID: 1464100556962229387}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &985464315
 GameObject:
@@ -2915,6 +2925,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1557199661 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2715743408823475517, guid: ad10be2f3745143d5bd036de0a54c1f6, type: 3}
+  m_PrefabInstance: {fileID: 684007960241607745}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1684267893 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9181895755386581758, guid: fdfda38ede08540ef95f6a0b2fd8d2f0, type: 3}
+  m_PrefabInstance: {fileID: 5116833962221627811}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1699470552
 GameObject:
   m_ObjectHideFlags: 0
@@ -3675,6 +3695,10 @@ PrefabInstance:
       propertyPath: playerRef
       value: 
       objectReference: {fileID: 802766822}
+    - target: {fileID: 1539874734253369883, guid: ad10be2f3745143d5bd036de0a54c1f6, type: 3}
+      propertyPath: monsterTarget
+      value: 
+      objectReference: {fileID: 1557199661}
     - target: {fileID: 2715743408823475517, guid: ad10be2f3745143d5bd036de0a54c1f6, type: 3}
       propertyPath: m_Name
       value: low2
@@ -3792,6 +3816,10 @@ PrefabInstance:
       propertyPath: playerRef
       value: 
       objectReference: {fileID: 802766822}
+    - target: {fileID: 5734576136796356776, guid: 97026741325d542b480ca622dd2db781, type: 3}
+      propertyPath: monsterTarget
+      value: 
+      objectReference: {fileID: 917444906}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3821,6 +3849,10 @@ PrefabInstance:
       propertyPath: playerRef
       value: 
       objectReference: {fileID: 802766822}
+    - target: {fileID: 4870756878536609032, guid: fdfda38ede08540ef95f6a0b2fd8d2f0, type: 3}
+      propertyPath: monsterTarget
+      value: 
+      objectReference: {fileID: 1684267893}
     - target: {fileID: 8369787239278553156, guid: fdfda38ede08540ef95f6a0b2fd8d2f0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3865,6 +3897,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: worm
       objectReference: {fileID: 0}
+    - target: {fileID: 9181895755386581758, guid: fdfda38ede08540ef95f6a0b2fd8d2f0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3894,9 +3930,21 @@ PrefabInstance:
       propertyPath: playerRef
       value: 
       objectReference: {fileID: 802766822}
+    - target: {fileID: 4803981032831791299, guid: 8fa4e7aaf3b424a7692da853838311c9, type: 3}
+      propertyPath: monsterTarget
+      value: 
+      objectReference: {fileID: 912735048}
+    - target: {fileID: 5163862137832869184, guid: 8fa4e7aaf3b424a7692da853838311c9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8348605613535444048, guid: 8fa4e7aaf3b424a7692da853838311c9, type: 3}
       propertyPath: m_Name
       value: Zombie_Idle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8348605613535444048, guid: 8fa4e7aaf3b424a7692da853838311c9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8689664961077372650, guid: 8fa4e7aaf3b424a7692da853838311c9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3960,6 +4008,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 802766823}
     - target: {fileID: 1415912728326431878, guid: 29e0b2d9f80b547e9b57f07ee199852e, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 802766822}
+    - target: {fileID: 1415912728326431878, guid: 29e0b2d9f80b547e9b57f07ee199852e, type: 3}
       propertyPath: playerObj
       value: 
       objectReference: {fileID: 802766822}
@@ -3967,6 +4019,10 @@ PrefabInstance:
       propertyPath: playerRef
       value: 
       objectReference: {fileID: 802766822}
+    - target: {fileID: 1415912728326431878, guid: 29e0b2d9f80b547e9b57f07ee199852e, type: 3}
+      propertyPath: monsterTarget
+      value: 
+      objectReference: {fileID: 839055838}
     - target: {fileID: 8325148103288173178, guid: 29e0b2d9f80b547e9b57f07ee199852e, type: 3}
       propertyPath: m_Name
       value: Anorexy
