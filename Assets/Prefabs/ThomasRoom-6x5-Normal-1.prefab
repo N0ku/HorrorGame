@@ -3462,6 +3462,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: CardSearch
       objectReference: {fileID: 0}
+    - target: {fileID: 5144805770458320431, guid: 29d2ff71ee4088643b56e70ff038b92f, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
