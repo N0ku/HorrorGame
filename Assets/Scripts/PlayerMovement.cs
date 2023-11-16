@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveDirection;
 
     Rigidbody rb;
-
+    private Transform flashlightItem;
     Slider slider;
 
     private MovementState state;
@@ -71,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        flashlightItem = GetComponentInChildren<FlashlightManager>().gameObject.transform;
         rb.freezeRotation = true;
         slider = FindObjectOfType<Slider>();
 
@@ -112,6 +113,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(crouchKey))
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
+            flashlightItem.localScale = new Vector3(flashlightItem.localScale.x, flashlightItem.localScale.y, 4f);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
         }
 
@@ -119,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyUp(crouchKey))
         {
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
+            flashlightItem.localScale = new Vector3(flashlightItem.localScale.x, flashlightItem.localScale.y, 2f);
         }
 
         // check if player can stand up
@@ -178,10 +181,12 @@ public class PlayerMovement : MonoBehaviour
         if ((verticalInput != 0f || horizontalInput != 0f) && state == MovementState.Walking)
         {
             playSound("walk");
-        } else if (state == MovementState.Sprinting)
+        }
+        else if (state == MovementState.Sprinting)
         {
             playSound("run");
-        } else if (state == MovementState.Crouching && (verticalInput != 0f || horizontalInput != 0f))
+        }
+        else if (state == MovementState.Crouching && (verticalInput != 0f || horizontalInput != 0f))
         {
             playSound("crouch");
         }
@@ -218,27 +223,39 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void playSound(string type) {
-        if (type == "walk") {
-            if (!GetComponent<AudioSource>().isPlaying) {
+    private void playSound(string type)
+    {
+        if (type == "walk")
+        {
+            if (!GetComponent<AudioSource>().isPlaying)
+            {
                 footstepSound.pitch = Random.Range(2.3f, 2.8f);
                 footstepSound.volume = Random.Range(0.4f, 0.8f);
                 footstepSound.Play();
             }
-        } else if (type == "run") {
-            if (!GetComponent<AudioSource>().isPlaying) {
+        }
+        else if (type == "run")
+        {
+            if (!GetComponent<AudioSource>().isPlaying)
+            {
                 footstepSound.pitch = Random.Range(3.7f, 4.2f);
                 footstepSound.volume = Random.Range(1.2f, 1.4f);
                 footstepSound.Play();
             }
-        } else if (type == "crouch") {
-            if (!GetComponent<AudioSource>().isPlaying) {
+        }
+        else if (type == "crouch")
+        {
+            if (!GetComponent<AudioSource>().isPlaying)
+            {
                 footstepSound.pitch = Random.Range(1.1f, 1.4f);
                 footstepSound.volume = Random.Range(0.2f, 0.4f);
                 footstepSound.Play();
             }
-        } else if (type == "exhausted") {
-            if (!GetComponent<AudioSource>().isPlaying) {
+        }
+        else if (type == "exhausted")
+        {
+            if (!GetComponent<AudioSource>().isPlaying)
+            {
                 exhaustedSound.pitch = Random.Range(0.6f, 1.4f);
                 exhaustedSound.volume = Random.Range(0.7f, 1.3f);
                 exhaustedSound.Play();
