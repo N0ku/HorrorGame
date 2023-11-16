@@ -15,7 +15,7 @@ public class MonsterScript : MonoBehaviour
 
     public AudioSource footsteps;
 
-    private int timePlayerLookMonster = 0;
+    private int MonsterSeenPlayerTime = 0;
 
     public float radius;
 
@@ -52,14 +52,14 @@ public class MonsterScript : MonoBehaviour
          FlashlightManager.flashlightIsOn &&
           FlashlightManager.isUsable)
         {
-            timePlayerLookMonster++;
-            monster.destination = player.position.normalized * -timePlayerLookMonster;
+            MonsterSeenPlayerTime++;
+            monster.destination = player.position.normalized * -MonsterSeenPlayerTime;
             monster.speed = 0.2f;
 
         }
         else if (hasSeenPlayer && canSeePlayer)
         {
-            timePlayerLookMonster = 0;
+            MonsterSeenPlayerTime = 0;
             monster.destination = player.position;
             lastPlayerPosition = player.position;
             monster.speed = calculateSpeed(playerStress);
@@ -67,11 +67,22 @@ public class MonsterScript : MonoBehaviour
         else if (hasSeenPlayer && !canSeePlayer)
         {
             monster.destination = lastPlayerPosition;
+            MonsterSeenPlayerTime++;
+
+            if (MonsterSeenPlayerTime > 500)
+            {
+                hasSeenPlayer = false;
+                MonsterSeenPlayerTime = 0;
+            }
         }
+        /*  else
+         {
+             footsteps.enabled = false;
+             monster.destination = transform.position;
+         } */
         else
         {
-            footsteps.enabled = false;
-            monster.destination = transform.position;
+            // create a routine that makes the monster walk around the room
         }
     }
     private bool isLooking(Camera c, GameObject target)
