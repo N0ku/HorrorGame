@@ -210,7 +210,7 @@ public class RoomGenerator : MonoBehaviour
         {
             this.x = x;
             this.y = y;
-            Debug.Log(this.position = new Vector3(x * wallSpacing + roomPosition.x, roomPosition.y, y * wallSpacing + roomPosition.z));
+            //Debug.Log(this.position = new Vector3(x * wallSpacing + roomPosition.x, roomPosition.y, y * wallSpacing + roomPosition.z));
             this.position = new Vector3(x * wallSpacing + roomPosition.x, roomPosition.y, y * wallSpacing + roomPosition.z);
         }
     }
