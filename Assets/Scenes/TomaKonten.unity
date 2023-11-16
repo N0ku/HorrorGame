@@ -232,21 +232,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6de812ae7dd62cb4e8c4b111f13ca478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapSizeX: 50
-  mapSizeY: 50
+  mapSizeX: 35
+  mapSizeY: 35
   mapTemplate: {fileID: 1386159162653574, guid: 79ec3a9b8067ee6479fd265a4f9829d5, type: 3}
   mapMaterial: {fileID: 2100000, guid: 63c46b4edfe043e438db851546036952, type: 2}
   displayGridInGame: 1
   RoomPrefabs:
   - {fileID: 6953067132859500624, guid: e1ea51b561763e24185ae04efb6d2759, type: 3}
-  numberOfRoom: 10
+  numberOfRoom: 11
   gridParent: {fileID: 893044574}
-  maxPlacementAttempts: 15000
+  maxPlacementAttempts: 2000
   northColor: {r: 1, g: 0, b: 0, a: 1}
   southColor: {r: 0, g: 0, b: 1, a: 1}
   eastColor: {r: 0, g: 1, b: 0, a: 1}
   westColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   elevator: {r: 1, g: 0, b: 1, a: 1}
+  roomInteractable: 0
 --- !u!1 &83914342
 GameObject:
   m_ObjectHideFlags: 0
