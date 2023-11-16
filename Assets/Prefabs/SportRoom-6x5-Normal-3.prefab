@@ -32370,7 +32370,7 @@ GameObject:
   - component: {fileID: -6772957101327986192}
   m_Layer: 9
   m_Name: SportRoom-6x5-Normal-3
-  m_TagString: Room
+  m_TagString: NormalRoom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
