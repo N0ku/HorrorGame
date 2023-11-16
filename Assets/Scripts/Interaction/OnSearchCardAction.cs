@@ -8,7 +8,7 @@ public class OnSearchCardAction : MonoBehaviour, IInteractable
     {
         if (gameObject.tag == "CardSearch")
             return "Fouiller";
-        else if (gameObject.tag == "CardSearch")
+        else if (gameObject.tag == "CardSearched")
             return "Vous avez déjà fouillé cet objet";
         else
             return "La carte a été trouvée";
@@ -39,9 +39,11 @@ public class OnSearchCardAction : MonoBehaviour, IInteractable
         Debug.Log("Stopped searching...");
         GameObject player = GameObject.Find("Player");
 
-        GameObject[] historySearchObjects = GameObject.FindGameObjectsWithTag("CardSearch");
+        GameObject[] cardSearchObjects = GameObject.FindGameObjectsWithTag("CardSearch");
 
-        int probsToFind = historySearchObjects.Length;
+        int probsToFind = cardSearchObjects.Length;
+
+        Debug.Log(probsToFind);
 
         DidHeFind(probsToFind);
 
@@ -49,25 +51,25 @@ public class OnSearchCardAction : MonoBehaviour, IInteractable
     }
 
     private void DidHeFind(int probs) {
-        int random = Random.Range(0, probs);
+        int random = Random.Range(1, probs);
 
-        if (random == 0) {
+        if (random == 1) {
             GameObject player = GameObject.Find("Player");
             Debug.Log("You found the card !");
 
             
         // Add HistorySearched tag to all historySearchObjects
-        GameObject[] historySearchedObjects = GameObject.FindGameObjectsWithTag("CardSearched");
+        GameObject[] cardSearchedObjects = GameObject.FindGameObjectsWithTag("CardSearched");
 
-        foreach (GameObject historySearchedObject in historySearchedObjects) {
-            historySearchedObject.tag = "NothingToSearch";
+        foreach (GameObject cardSearchedObject in cardSearchedObjects) {
+            cardSearchedObject.tag = "NothingToSearch";
         }
 
 
-        GameObject[] historySearchObjects = GameObject.FindGameObjectsWithTag("CardSearch");
+        GameObject[] cardSearchObjects = GameObject.FindGameObjectsWithTag("CardSearch");
         
-        foreach (GameObject historySearchObject in historySearchObjects) {
-            historySearchObject.tag = "NothingToSearch";
+        foreach (GameObject cardSearchObject in cardSearchObjects) {
+            cardSearchObject.tag = "NothingToSearch";
         }
 
         } else {

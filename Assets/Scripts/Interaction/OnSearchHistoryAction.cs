@@ -49,9 +49,9 @@ public class OnSearchHistoryAction : MonoBehaviour, IInteractable
     }
 
     private void DidHeFind(int probs) {
-        int random = Random.Range(0, probs);
+        int random = Random.Range(1, probs);
 
-        if (random == 0) {
+        if (random == 1) {
             GameObject player = GameObject.Find("Player");
             Debug.Log("You found something!");
 
@@ -65,7 +65,7 @@ public class OnSearchHistoryAction : MonoBehaviour, IInteractable
 
 
         GameObject[] historySearchObjects = GameObject.FindGameObjectsWithTag("HistorySearch");
-        
+
         foreach (GameObject historySearchObject in historySearchObjects) {
             historySearchObject.tag = "NothingToSearch";
         }
