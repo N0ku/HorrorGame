@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8189827848760407120}
+  - component: {fileID: 254737250156671895}
   m_Layer: 9
   m_Name: SportRoom-6x5-Normal-1
   m_TagString: Room
@@ -34,6 +35,27 @@ Transform:
   - {fileID: 9175321500692240403}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &254737250156671895
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944954867168506339}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 12.5, y: 3.5, z: 11}
+  m_Center: {x: 4.25, y: 2, z: 5}
 --- !u!1 &1456267488563404060
 GameObject:
   m_ObjectHideFlags: 0
