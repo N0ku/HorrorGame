@@ -15,7 +15,7 @@ public class CameraShake : MonoBehaviour
     public float shakeAmount = 0.7f;
     public float decreaseFactor = 1.0f;
 
-    public bool shaketrue = false;
+    public static bool shaketrue = false;
 
     Vector3 originalPos;
 
