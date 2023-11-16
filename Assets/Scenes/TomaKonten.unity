@@ -249,26 +249,40 @@ MonoBehaviour:
   - {fileID: 6953067132859500624, guid: c09ffa685b843482b97f1f23f94b3151, type: 3}
   - {fileID: 6953067132859500624, guid: edd9ad9951f9c4bae9690a2feb6a79a2, type: 3}
   - {fileID: 6953067132859500624, guid: 85611f12cdaa84f7eae4354007c451fd, type: 3}
+  - {fileID: 6953067132859500624, guid: e1ea51b561763e24185ae04efb6d2759, type: 3}
   numberOfRoom: 14
   etageType: 1
   staticmapSizeX_Etage1: 30
   staticmapSizeY_Etage1: 30
   mapMaterial_Etage1: {fileID: 4827246720322285996, guid: c6c95138ec9234f3c96781da0e5871a6, type: 3}
   RoomPrefabs_Etage1:
-  - {fileID: 6953067132859500624, guid: 740807ee8ffbf4572a20fb8ac6acf2c6, type: 3}
+  - {fileID: 6953067132859500624, guid: d05ad83e42e954a5eb6dccd85e1dc91f, type: 3}
   - {fileID: 944954867168506339, guid: 15bf246e4b5ff4f06b3267494f7cb2a1, type: 3}
   - {fileID: 6953067132859500624, guid: c09ffa685b843482b97f1f23f94b3151, type: 3}
-  - {fileID: 6953067132859500624, guid: d05ad83e42e954a5eb6dccd85e1dc91f, type: 3}
-  - {fileID: 6953067132859500624, guid: bf1c2d35acdab4013a841628e28d38d1, type: 3}
+  - {fileID: 6953067132859500624, guid: e1ea51b561763e24185ae04efb6d2759, type: 3}
+  HistoryRoom_Etage1: {fileID: 6953067132859500624, guid: c65e8032362fd402ab262fa1b8596c5c, type: 3}
+  ThomasRoom_Etage1: {fileID: 6953067132859500624, guid: bf1c2d35acdab4013a841628e28d38d1, type: 3}
+  ElevatorExit_Etage1: {fileID: 6922621680172606366, guid: 29770b27e334e4604b600f2249ff5e3f, type: 3}
   staticmapSizeX_Etage2: 40
   staticmapSizeY_Etage2: 40
   mapMaterial_Etage2: {fileID: 2100000, guid: 2b1d50fbc808a294b9864b393c9de656, type: 2}
   RoomPrefabs_Etage2:
-  - {fileID: 6922621680172606366, guid: 29770b27e334e4604b600f2249ff5e3f, type: 3}
+  - {fileID: 6953067132859500624, guid: bf1c2d35acdab4013a841628e28d38d1, type: 3}
+  - {fileID: 6953067132859500624, guid: fb9b73eb7af24480b9a9f982789ece3f, type: 3}
+  - {fileID: 6953067132859500624, guid: 4e7aed40436bb487a9072d04c91cea1b, type: 3}
+  HistoryRoom_Etage2: {fileID: 0}
+  ThomasRoom_Etage2: {fileID: 0}
+  ElevatorExit_Etage2: {fileID: 0}
   staticmapSizeX_Etage3: 50
   staticmapSizeY_Etage3: 50
   mapMaterial_Etage3: {fileID: 2100000, guid: 84f3a21d510a57b4fab04043a2e5f977, type: 2}
   RoomPrefabs_Etage3: []
+  HistoryRoom_Etage3: {fileID: 0}
+  ThomasRoom_Etage3: {fileID: 0}
+  ElevatorExit_Etage3: {fileID: 0}
+  historyRoom: {fileID: 0}
+  thomasRoom: {fileID: 0}
+  elevatorExitRoom: {fileID: 0}
 --- !u!1 &83914342
 GameObject:
   m_ObjectHideFlags: 0

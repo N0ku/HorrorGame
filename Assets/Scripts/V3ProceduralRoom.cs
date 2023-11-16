@@ -90,9 +90,9 @@ public class ProceduralGenerator : MonoBehaviour
     [SerializeField] private int staticmapSizeY_Etage1;
     [SerializeField] private Material mapMaterial_Etage1;
     [SerializeField] private List<GameObject> RoomPrefabs_Etage1 = new List<GameObject>();
-    [SerializeField] private GameObject HistoryRoom_Etage1 = new GameObject();
-    [SerializeField] private GameObject ThomasRoom_Etage1 = new GameObject();
-    [SerializeField] private GameObject ElevatorExit_Etage1 = new GameObject();
+    [SerializeField] private GameObject HistoryRoom_Etage1;
+    [SerializeField] private GameObject ThomasRoom_Etage1 ;
+    [SerializeField] private GameObject ElevatorExit_Etage1; 
     [Space(15)]
 
 
@@ -102,9 +102,9 @@ public class ProceduralGenerator : MonoBehaviour
     [SerializeField] private int staticmapSizeY_Etage2;
     [SerializeField] private Material mapMaterial_Etage2;
     [SerializeField] private List<GameObject> RoomPrefabs_Etage2 = new List<GameObject>();
-    [SerializeField] private GameObject HistoryRoom_Etage2 = new GameObject();
-    [SerializeField] private GameObject ThomasRoom_Etage2 = new GameObject();
-    [SerializeField] private GameObject ElevatorExit_Etage2 = new GameObject();
+    [SerializeField] private GameObject HistoryRoom_Etage2 ;
+    [SerializeField] private GameObject ThomasRoom_Etage2  ;
+    [SerializeField] private GameObject ElevatorExit_Etage2;
 
     [Space(15)]
 
@@ -113,16 +113,16 @@ public class ProceduralGenerator : MonoBehaviour
     [SerializeField] private int staticmapSizeY_Etage3;
     [SerializeField] private Material mapMaterial_Etage3;
     [SerializeField] private List<GameObject> RoomPrefabs_Etage3 = new List<GameObject>();
-    [SerializeField] private GameObject HistoryRoom_Etage3 = new GameObject();
-    [SerializeField] private GameObject ThomasRoom_Etage3 = new GameObject();
-    [SerializeField] private GameObject ElevatorExit_Etage3 = new GameObject();
+    [SerializeField] private GameObject HistoryRoom_Etage3  ;
+    [SerializeField] private GameObject ThomasRoom_Etage3   ;
+    [SerializeField] private GameObject ElevatorExit_Etage3 ;
 
     static public int staticmapSizeX { get; set; }
     static public int staticmapSizeY { get; set; }
 
-    static public GameObject historyRoom { get; set; }
-    static public GameObject thomasRoom { get; set; }
-    static public GameObject elevatorExitRoom { get; set; }
+    public GameObject historyRoom;
+    public GameObject thomasRoom;
+    public GameObject elevatorExitRoom;
 
 
 
@@ -180,7 +180,7 @@ public class ProceduralGenerator : MonoBehaviour
                 Debug.LogError("Type d'étage non géré : " + etageType);
                 break;
         }
-        GenerateRoom(1);
+        GenerateRoom();
 
         navMeshSurface = FindObjectsOfType<NavMeshSurface>();
 
@@ -193,10 +193,10 @@ public class ProceduralGenerator : MonoBehaviour
 
     #region Map Generation
 
-    void GenerateRoom(int count)
+    void GenerateRoom()
     {
 
-        GameObject hiearchiNameMap = new GameObject("Room" + count);
+        GameObject hiearchiNameMap = new GameObject("Room");
         specificRoomWalls.Clear();
         MapSize generatedMap = new MapSize(hiearchiNameMap);
         generatedMap.SetPosition(new Vector3(0, 0, 0));
@@ -204,26 +204,46 @@ public class ProceduralGenerator : MonoBehaviour
         // Génération de la MapSize.
         for (int x = 0; x < staticmapSizeX; x++)
         {
-            InstantiateWall(x, 0, 0, generatedMap.MapObjectsParent.transform);
-            InstantiateWall(x, staticmapSizeY - 1, 0, generatedMap.MapObjectsParent.transform);
+            InstantiateWall(x, 0, 0,0,0, generatedMap.MapObjectsParent.transform);
+            InstantiateWall(x, staticmapSizeY - 1, 0, 0, 0, generatedMap.MapObjectsParent.transform);
         }
 
         for (int y = 1; y < staticmapSizeY; y++)
         {
-            InstantiateWall(0, y, 90, generatedMap.MapObjectsParent.transform);
-            InstantiateWall(staticmapSizeX, y, 90, generatedMap.MapObjectsParent.transform);
+            InstantiateWall(0, y,0, 90, 0, generatedMap.MapObjectsParent.transform);
+            InstantiateWall(staticmapSizeX, y, 0, 90,0, generatedMap.MapObjectsParent.transform);
         }
+        
 
         GenerateGrid(generatedMap);
         AssignTagsAndColors(generatedMap);
         PlaceRandomObjects(generatedMap);
+        GenerateCeil(generatedMap);
 
     }
 
-
-    void InstantiateWall(int x, int y, int rotation, Transform parent)
+    void GenerateCeil(MapSize map)
     {
-        GameObject wall = Instantiate(mapTemplate, new Vector3(x * wallSpacing, 0, y * wallSpacing), Quaternion.identity, parent);
+        map.SetPosition(new Vector3(0, 0, 0));
+        for (int x = 0; x < staticmapSizeX; x++)
+        {
+            InstantiateWall(x, x, 1.5f, 0, 90, map.MapObjectsParent.transform);
+            for (int y = 0; y < staticmapSizeY; y++)
+            {
+                InstantiateWall(x, y - 1,1.5f, 0, 90, map.MapObjectsParent.transform);
+            }
+        }
+        //for (int y = 1; y < staticmapSizeY; y++)
+        //{
+        //    InstantiateWall(0, y, 90, 90, map.MapObjectsParent.transform);
+        //    InstantiateWall(staticmapSizeX, y, 90, 90, map.MapObjectsParent.transform);
+        //}
+    }
+
+
+    void InstantiateWall(int x, int y,float z, int rotation,int rotationX, Transform parent)
+    {
+        GameObject wall = Instantiate(mapTemplate, new Vector3(x * wallSpacing, z * wallSpacing, y * wallSpacing), Quaternion.identity, parent);
 
         if (mapMaterial != null)
         {
@@ -233,7 +253,7 @@ public class ProceduralGenerator : MonoBehaviour
                 meshRenderer.material = mapMaterial;
             }
         }
-        wall.transform.rotation = Quaternion.Euler(0, rotation, 0);
+        wall.transform.rotation = Quaternion.Euler(rotationX, rotation, 0);
 
 
         WallReference wallReference = wall.AddComponent<WallReference>();
@@ -310,7 +330,7 @@ public class ProceduralGenerator : MonoBehaviour
     void PlaceRandomObjects(MapSize room)
     {
         room.MapObjectsParent = new GameObject("ObjectsParent");
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
             int randomIndex = UnityEngine.Random.Range(0, room.MapObjectPlacementCells.Count);
             Cell randomCell = room.MapObjectPlacementCells[randomIndex];
@@ -363,6 +383,8 @@ public class ProceduralGenerator : MonoBehaviour
                     }
                     else
                     {
+                        Debug.Log("PAS LA 2 !");
+
                         i--;
                         placementAttempts++;
                         if (placementAttempts >= maxPlacementAttempts)
@@ -371,6 +393,7 @@ public class ProceduralGenerator : MonoBehaviour
                             break;
                         }
                     }
+
                     break;
                 case 3:
                     randomPrefab = elevatorExitRoom;
@@ -395,10 +418,14 @@ public class ProceduralGenerator : MonoBehaviour
                         placementAttempts++;
                         if (placementAttempts >= maxPlacementAttempts)
                         {
+                            Debug.Log("PAS LA 3 !");
+
                             Debug.Log("Arrêt de la génération en raison du nombre maximum d'essais atteint.");
                             break;
                         }
                     }
+                    Debug.Log("PAS LA !!!");
+
                     break;
                 default:
                     Debug.LogError("Soucis dans le placement des salles necessaires");
