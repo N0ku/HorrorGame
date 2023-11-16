@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1896355496927365338}
   m_Layer: 0
   m_Name: manageElevatorHitbox
-  m_TagString: manageElevator
+  m_TagString: manageExitElevator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,8 +147,8 @@ GameObject:
   - component: {fileID: 7857197109860945092}
   - component: {fileID: 1351007507112798775}
   m_Layer: 0
-  m_Name: openHitbox
-  m_TagString: openElevator
+  m_Name: freezeHitbox
+  m_TagString: freezeExitElevator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
