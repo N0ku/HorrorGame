@@ -232,22 +232,25 @@ public class ProceduralGenerator : MonoBehaviour
 
             Vector3 prefabSize = GetPrefabSize(randomPrefab);
 
-            if (CanPlacePrefab(randomCell, prefabSize, room.MapGrid, room.MapObjectPlacementCells))
+            if (CanPlacePrefab(randomCell, prefabSize, room.MapGrid, room.MapObjectPlacementCells, randomPrefab.transform.rotation))
             {
                 Vector3 objectPosition = new Vector3(randomCell.x * wallSpacing + room.MapObject.transform.position.x, 0, randomCell.y * wallSpacing + room.MapObject.transform.position.z);
-                Instantiate(randomPrefab, objectPosition, Quaternion.identity, room.MapObjectsParent.transform);
-                RemoveOccupiedCells(randomCell, prefabSize, room.MapGrid, room.MapObjectPlacementCells);
+
+                // Applique la rotation avant de placer l'objet
+                GameObject instantiatedPrefab = Instantiate(randomPrefab, objectPosition, Quaternion.identity, room.MapObjectsParent.transform);
+                instantiatedPrefab.transform.rotation = randomPrefab.transform.rotation;
+
+                RemoveOccupiedCells(randomCell, prefabSize, room.MapGrid, room.MapObjectPlacementCells, instantiatedPrefab.transform.rotation);
                 placementAttempts = 0;
             }
             else
             {
-              
                 i--;
                 placementAttempts++;
                 if (placementAttempts >= maxPlacementAttempts)
                 {
                     Debug.Log("Arrêt de la génération en raison du nombre maximum d'essais atteint.");
-                    break; 
+                    break;
                 }
             }
         }
@@ -268,20 +271,20 @@ public class ProceduralGenerator : MonoBehaviour
         }
     }
 
-    bool CanPlacePrefab(Cell startCell, Vector3 prefabSize, Cell[,] grid, List<Cell> availableCells)
+    bool CanPlacePrefab(Cell startCell, Vector3 prefabSize, Cell[,] grid, List<Cell> availableCells, Quaternion rotation)
     {
-        Debug.Log("Je suis rentrer");
-
         // Ajoutez la logique pour vérifier si le placement du prefab est possible dans la cellule de départ
         for (int x = startCell.x; x < startCell.x + prefabSize.x / wallSpacing; x++)
         {
-            for (int y = startCell.y; y < startCell.y + prefabSize.z / wallSpacing ; y++)
+            for (int y = startCell.y; y < startCell.y + prefabSize.z / wallSpacing; y++)
             {
-                Debug.Log($"Checking grid[{x},{y}]");
+                Vector3 rotatedPosition = rotation * new Vector3(x - startCell.x, 0, y - startCell.y);
+                int rotatedX = Mathf.RoundToInt(rotatedPosition.x) + startCell.x;
+                int rotatedY = Mathf.RoundToInt(rotatedPosition.z) + startCell.y;
 
-                if (x < 0 || x >= grid.GetLength(0)|| y<0 || y>=grid.GetLength(1)|| grid[x, y].Occupied)
+                if (rotatedX < 0 || rotatedX >= grid.GetLength(0) || rotatedY < 0 || rotatedY >= grid.GetLength(1) || grid[rotatedX, rotatedY].Occupied)
                 {
-                    Debug.Log("En Dehors de la grille ou déjà occuper");
+                    Debug.Log("En Dehors de la grille ou déjà occupé");
                     return false;
                 }
             }
@@ -289,40 +292,29 @@ public class ProceduralGenerator : MonoBehaviour
         return true;
     }
 
-  
-    void RemoveOccupiedCells(Cell startCell, Vector3 prefabSize, Cell[,] grid, List<Cell> availableCells)
+    void RemoveOccupiedCells(Cell startCell, Vector3 prefabSize, Cell[,] grid, List<Cell> availableCells, Quaternion rotation)
     {
         // Retire les cellules occupées par le prefab de la liste des cellules disponibles
-        for (int x = startCell.x; x < startCell.x + prefabSize.x ; x++)
+        for (int x = startCell.x; x < startCell.x + prefabSize.x; x++)
         {
-            for (int y = startCell.y; y < startCell.y + prefabSize.z ; y++)
+            for (int y = startCell.y; y < startCell.y + prefabSize.z; y++)
             {
-                if (x >= 0 && x < grid.GetLength(0) && y >= 0 && y < grid.GetLength(1) && grid[x, y] != null)
+                Vector3 rotatedPosition = rotation * new Vector3(x - startCell.x, 0, y - startCell.y);
+                int rotatedX = Mathf.RoundToInt(rotatedPosition.x) + startCell.x;
+                int rotatedY = Mathf.RoundToInt(rotatedPosition.z) + startCell.y;
+
+                if (rotatedX >= 0 && rotatedX < grid.GetLength(0) && rotatedY >= 0 && rotatedY < grid.GetLength(1) && grid[rotatedX, rotatedY] != null)
                 {
-                    availableCells.Remove(grid[x, y]);
-                    grid[x, y].Occupied = true;
-                    Debug.Log(grid[x, y] + "C'est occupé");
+                    availableCells.Remove(grid[rotatedX, rotatedY]);
+                    grid[rotatedX, rotatedY].Occupied = true;
+                    Debug.Log(grid[rotatedX, rotatedY] + "C'est occupé");
                 }
             }
         }
     }
     #endregion
 
-    
+
 
 }
 
-//bool IsCellEmpty(Cell cell, Vector3 prefabSize, Cell[,] grid)
-//{
-//    for (int x = cell.x; x < cell.x + prefabSize.x / wallSpacing; x++)
-//    {
-//        for (int y = cell.y; y < cell.y + prefabSize.z / wallSpacing; y++)
-//        {
-//            if (x < 0 || x >= grid.GetLength(0) || y < 0 || y >= grid.GetLength(1) || grid[x, y].Occupied)
-//            {
-//                return false; 
-//            }
-//        }
-//    }
-//    return true;
-//}
