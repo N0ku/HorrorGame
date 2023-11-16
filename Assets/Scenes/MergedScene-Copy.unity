@@ -210,6 +210,7 @@ MonoBehaviour:
   - {fileID: 105484, guid: ebe0acde2b4fa0844a30b8f5f01cbb1a, type: 3}
   - {fileID: 195414, guid: 399a03b303dbd2448a0f74c9833ca51e, type: 3}
   numberOfObjects: 20
+  roomPrefab: {fileID: 0}
   numberOfRooms: 15
   wallsParent: {fileID: 2067796205}
   objectsParent: {fileID: 2011474378}
@@ -3956,7 +3957,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8689664961077372650, guid: 8fa4e7aaf3b424a7692da853838311c9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.0867
+      value: 28.2
       objectReference: {fileID: 0}
     - target: {fileID: 8689664961077372650, guid: 8fa4e7aaf3b424a7692da853838311c9, type: 3}
       propertyPath: m_LocalRotation.w

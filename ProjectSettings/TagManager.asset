@@ -14,6 +14,7 @@ TagManager:
   - virusHitbox
   - historyAdviceHitbox
   - warningAdviceHitbox
+  - Door
   layers:
   - Default
   - TransparentFX

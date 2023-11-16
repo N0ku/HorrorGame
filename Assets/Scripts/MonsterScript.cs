@@ -19,6 +19,8 @@ public class MonsterScript : MonoBehaviour
 
     public float radius;
 
+    public GameObject[] doors;
+
     [Range(0, 360)]
     public float angle;
 
@@ -32,6 +34,8 @@ public class MonsterScript : MonoBehaviour
     private Vector3 lastPlayerPosition;
 
     public GameObject monsterTarget;
+
+    private GameObject currentDoor;
 
     // Start is called before the first frame update
     void Start()
@@ -54,7 +58,6 @@ public class MonsterScript : MonoBehaviour
         {
             MonsterSeenPlayerTime++;
             monster.destination = player.position.normalized * -MonsterSeenPlayerTime;
-            monster.speed = 0.2f;
 
         }
         else if (hasSeenPlayer && canSeePlayer)
@@ -62,7 +65,6 @@ public class MonsterScript : MonoBehaviour
             MonsterSeenPlayerTime = 0;
             monster.destination = player.position;
             lastPlayerPosition = player.position;
-            monster.speed = calculateSpeed(playerStress);
         }
         else if (hasSeenPlayer && !canSeePlayer)
         {
@@ -75,15 +77,39 @@ public class MonsterScript : MonoBehaviour
                 MonsterSeenPlayerTime = 0;
             }
         }
-        /*  else
-         {
-             footsteps.enabled = false;
-             monster.destination = transform.position;
-         } */
         else
         {
-            // create a routine that makes the monster walk around the room
+            doors = GameObject.FindGameObjectsWithTag("Door");
+
+
+            // verify if the monster is close to the door
+            if (!currentDoor || Vector3.Distance(transform.position, currentDoor.transform.position) < 4)
+            {
+                // if it is, get another random door
+                int index = getRandomDoor();
+
+                Debug.Log("CHANGE");
+
+
+                while (currentDoor == doors[index])
+                {
+                    index = getRandomDoor();
+                }
+
+                currentDoor = doors[index];
+            }
+            else
+            {
+                monster.destination = currentDoor.transform.position;
+            }
+
         }
+    }
+
+    private int getRandomDoor()
+    {
+        int randomDoor = Random.Range(0, doors.Length);
+        return randomDoor;
     }
     private bool isLooking(Camera c, GameObject target)
     {
