@@ -381,7 +381,7 @@ GameObject:
   - component: {fileID: 4313656928189362227}
   m_Layer: 9
   m_Name: EmptyRoom-6x5-Trap-1
-  m_TagString: Room
+  m_TagString: TrapRoom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
