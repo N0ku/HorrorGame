@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: 4a57863da37924ddbb7ddd8f814559cd
   - enabled: 1
+    path: Assets/Scenes/MergedScene.unity
+    guid: a18013ea5e659463abcb021fc3eb740a
+  - enabled: 0
     path: Assets/Scenes/NightScene.unity
     guid: 6bdf16dbe25064b8eb7ee835dc41f067
   - enabled: 0
