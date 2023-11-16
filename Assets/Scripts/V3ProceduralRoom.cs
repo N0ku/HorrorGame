@@ -227,6 +227,8 @@ public class ProceduralGenerator : MonoBehaviour
 
             // Récupère la taille du prefab et les cellules occupées par le prefab
             GameObject randomPrefab = RoomPrefabs[UnityEngine.Random.Range(0, RoomPrefabs.Count)];
+            int randomRotations = UnityEngine.Random.Range(0, 4);
+            randomPrefab.transform.rotation = Quaternion.Euler(0, randomRotations * 90, 0);
             Vector3 prefabSize = GetPrefabSize(randomPrefab);
 
             if (CanPlacePrefab(randomCell, prefabSize, room.MapGrid, room.MapObjectPlacementCells))

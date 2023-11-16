@@ -239,6 +239,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myDoor: {fileID: 3520262425353293932}
+  openTrigger: 1
+  closeTrigger: 0
 --- !u!114 &3624574031153457974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,8 +260,6 @@ MonoBehaviour:
   m_IgnoreFromBuild: 1
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
-  openTrigger: 1
-  closeTrigger: 0
 --- !u!4 &4209632836467267861 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4135569096795916, guid: facd491e05e8e91488c3077d03b941b7, type: 3}
