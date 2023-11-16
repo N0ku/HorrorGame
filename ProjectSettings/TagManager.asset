@@ -15,6 +15,12 @@ TagManager:
   - historyAdviceHitbox
   - warningAdviceHitbox
   - Door
+  - respawnElevator
+  - HistoryRoom
+  - TrapRoom
+  - NormalRoom
+  - Elevator
+  - ThomasElevator
   layers:
   - Default
   - TransparentFX
