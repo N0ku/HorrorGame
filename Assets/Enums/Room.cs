@@ -7,6 +7,7 @@ public enum RoomType
 {
     Standard,
     Trapped,
-    CardRoom
+    HistoryRoom,
+    Elevator,
 }
 
