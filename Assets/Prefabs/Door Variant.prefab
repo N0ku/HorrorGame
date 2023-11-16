@@ -98,9 +98,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1962685672368708, guid: ae8ce1c258125ac4db2163e712c99949, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5396713670682711294}
-    - targetCorrespondingSourceObject: {fileID: 1962685672368708, guid: ae8ce1c258125ac4db2163e712c99949, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7204685521830052922}
   m_SourcePrefab: {fileID: 100100000, guid: ae8ce1c258125ac4db2163e712c99949, type: 3}
 --- !u!1 &2450835442633942025 stripped
 GameObject:
@@ -128,21 +125,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7204685521830052922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2450835442633942025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b83bc87b82f39e45b821ef9d10e802c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myDoor: {fileID: 5396713670682711294}
-  openTrigger: 0
-  closeTrigger: 1
 --- !u!4 &2453161113127454379 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4087830480357606, guid: ae8ce1c258125ac4db2163e712c99949, type: 3}
@@ -257,8 +239,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myDoor: {fileID: 3520262425353293932}
-  openTrigger: 0
-  closeTrigger: 1
 --- !u!114 &3624574031153457974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,6 +258,8 @@ MonoBehaviour:
   m_IgnoreFromBuild: 1
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
+  openTrigger: 1
+  closeTrigger: 0
 --- !u!4 &4209632836467267861 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4135569096795916, guid: facd491e05e8e91488c3077d03b941b7, type: 3}
