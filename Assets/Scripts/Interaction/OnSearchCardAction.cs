@@ -30,6 +30,10 @@ public class OnSearchCardAction : MonoBehaviour, IInteractable
             }
 
             player.GetComponent<PlayerMovement>().enabled = false;
+
+            // unfreeze player after 3 seconds
+            Invoke(nameof(UnfreezePlayer), 3f);
+
             OnTriggerEnter();
         } else {
             return;
@@ -41,12 +45,9 @@ public class OnSearchCardAction : MonoBehaviour, IInteractable
         AudioSource audio = gameObject.transform.parent.GetComponent<AudioSource>();
         audio.volume = 0.5f;
         audio.Play();
-
-        Invoke(nameof(UnfreezePlayer), 5f);
     }
 
     private void UnfreezePlayer() {
-        // Debug.Log("Stopped searching...");
         GameObject player = GameObject.Find("Player");
 
         gameObject.tag = "CardSearched";
@@ -60,10 +61,25 @@ public class OnSearchCardAction : MonoBehaviour, IInteractable
         player.GetComponent<PlayerMovement>().enabled = true;
     }
 
+    private void OnTriggerExit()
+    {
+        Invoke(nameof(UnfreezePlayer), 3f);
+    }
+
     private void DidHeFind(int probs) {
         int random = Random.Range(1, probs);
 
-        if (random == 1) {
+        float probToFind = 0;
+
+        if (probs > 10) {
+            probToFind = probs / 1.5f;
+        } else if (probs > 5) {
+            probToFind = probs / 1.2f;
+        } else {
+            probToFind = probs;
+        }
+        // Get 40% of the time the card
+        if (random < probToFind) {
             GameObject player = GameObject.Find("Player");
             player.GetComponent<Inventory>().AddItem("Card");
 

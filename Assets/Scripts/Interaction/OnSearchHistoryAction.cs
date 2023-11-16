@@ -30,6 +30,10 @@ public class OnSearchHistoryAction : MonoBehaviour, IInteractable
             }
 
             player.GetComponent<PlayerMovement>().enabled = false;
+
+            // unfreeze player after 3 seconds
+            Invoke(nameof(UnfreezePlayer), 3f);
+
             OnTriggerEnter();
         } else {
             return;
@@ -41,8 +45,11 @@ public class OnSearchHistoryAction : MonoBehaviour, IInteractable
         AudioSource audio = gameObject.transform.parent.GetComponent<AudioSource>();
         audio.volume = 0.5f;
         audio.Play();
+    }
 
-        Invoke(nameof(UnfreezePlayer), 5f);
+    private void OnTriggerExit()
+    {
+        Invoke(nameof(UnfreezePlayer), 3f);
     }
 
     private void UnfreezePlayer() {
@@ -62,7 +69,17 @@ public class OnSearchHistoryAction : MonoBehaviour, IInteractable
     private void DidHeFind(int probs) {
         int random = Random.Range(1, probs);
 
-        if (random == 1) {
+        float probToFind = 0;
+
+        if (probs > 10) {
+            probToFind = probs / 2f;
+        } else if (probs > 5) {
+            probToFind = probs / 1.5f;
+        } else {
+            probToFind = probs;
+        }
+
+        if (random < probToFind) {
             GameObject player = GameObject.Find("Player");
             player.GetComponent<Inventory>().AddItem("Souvenir");
 
