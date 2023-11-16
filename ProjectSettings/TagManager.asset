@@ -23,6 +23,8 @@ TagManager:
   - HistorySearch
   - HistorySearched
   - NothingToSearch
+  - CardSearch
+  - CardSearched
   layers:
   - Default
   - TransparentFX

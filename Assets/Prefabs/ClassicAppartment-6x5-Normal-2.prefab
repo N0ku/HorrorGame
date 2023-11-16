@@ -95,9 +95,10 @@ GameObject:
   - component: {fileID: 9093559961810909507}
   - component: {fileID: 2565769591913072118}
   - component: {fileID: 8633773190891524624}
+  - component: {fileID: 2111558182500816674}
   m_Layer: 0
   m_Name: bathtub
-  m_TagString: Untagged
+  m_TagString: CardSearch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -188,6 +189,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.4464018, y: 2.4813914, z: 1.1109585}
   m_Center: {x: 0.00000011920929, y: 0, z: 0}
+--- !u!114 &2111558182500816674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4538427232952370627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c393dafd7447f4b33c0b119d82526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5683588520024060513
 GameObject:
   m_ObjectHideFlags: 0
@@ -6179,11 +6192,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: dresser_001
       objectReference: {fileID: 0}
+    - target: {fileID: 6701537745073358240, guid: 2ba5ac2de7ff0764e8874d18fcb4484c, type: 3}
+      propertyPath: m_TagString
+      value: CardSearch
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6701537745073358240, guid: 2ba5ac2de7ff0764e8874d18fcb4484c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6660527750595720214}
   m_SourcePrefab: {fileID: 100100000, guid: 2ba5ac2de7ff0764e8874d18fcb4484c, type: 3}
+--- !u!1 &7036073333900763588 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6701537745073358240, guid: 2ba5ac2de7ff0764e8874d18fcb4484c, type: 3}
+  m_PrefabInstance: {fileID: 4370042471904224356}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6660527750595720214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7036073333900763588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c393dafd7447f4b33c0b119d82526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7705368449676000126 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6218193170447474458, guid: 2ba5ac2de7ff0764e8874d18fcb4484c, type: 3}
@@ -6673,11 +6710,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: microwave_oven_001
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5124ac1f4f4e17247b2f3a45584b21d1, type: 3}
+      propertyPath: m_TagString
+      value: CardSearch
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5124ac1f4f4e17247b2f3a45584b21d1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1442513188317815322}
   m_SourcePrefab: {fileID: 100100000, guid: 5124ac1f4f4e17247b2f3a45584b21d1, type: 3}
+--- !u!1 &3710137978424968322 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5124ac1f4f4e17247b2f3a45584b21d1, type: 3}
+  m_PrefabInstance: {fileID: 4592658988695943635}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1442513188317815322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3710137978424968322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c393dafd7447f4b33c0b119d82526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4050669526491373112 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5124ac1f4f4e17247b2f3a45584b21d1, type: 3}
@@ -7375,6 +7436,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TreasureChest
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f0ba207fffea77846a8a979cf75f36e6, type: 3}
+      propertyPath: m_TagString
+      value: CardSearch
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f0ba207fffea77846a8a979cf75f36e6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.475659
@@ -7426,8 +7491,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: f0ba207fffea77846a8a979cf75f36e6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7288071963619834957}
   m_SourcePrefab: {fileID: 100100000, guid: f0ba207fffea77846a8a979cf75f36e6, type: 3}
+--- !u!1 &4994516120777206871 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: f0ba207fffea77846a8a979cf75f36e6, type: 3}
+  m_PrefabInstance: {fileID: 4994516120777173751}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7288071963619834957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4994516120777206871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c393dafd7447f4b33c0b119d82526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4994516120777306231 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: f0ba207fffea77846a8a979cf75f36e6, type: 3}
@@ -7753,16 +7838,40 @@ PrefabInstance:
       propertyPath: m_Name
       value: clothes_001
       objectReference: {fileID: 0}
+    - target: {fileID: 4119154550041791677, guid: de5541a6f611e194dad2bc6ba668ed75, type: 3}
+      propertyPath: m_TagString
+      value: CardSearch
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4119154550041791677, guid: de5541a6f611e194dad2bc6ba668ed75, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7986757207937535330}
   m_SourcePrefab: {fileID: 100100000, guid: de5541a6f611e194dad2bc6ba668ed75, type: 3}
 --- !u!4 &8476839494690058132 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3630461576678249991, guid: de5541a6f611e194dad2bc6ba668ed75, type: 3}
   m_PrefabInstance: {fileID: 5170753639703918995}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &9144585668577522990 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4119154550041791677, guid: de5541a6f611e194dad2bc6ba668ed75, type: 3}
+  m_PrefabInstance: {fileID: 5170753639703918995}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7986757207937535330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9144585668577522990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c393dafd7447f4b33c0b119d82526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5197848431548316167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12575,6 +12684,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: sofa_001
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b2bfb3f987d345b4388c7173f6f9649c, type: 3}
+      propertyPath: m_TagString
+      value: CardSearch
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12582,6 +12695,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b2bfb3f987d345b4388c7173f6f9649c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2850795588318984579}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b2bfb3f987d345b4388c7173f6f9649c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7087439539135578092}
   m_SourcePrefab: {fileID: 100100000, guid: b2bfb3f987d345b4388c7173f6f9649c, type: 3}
 --- !u!4 &8460397932793338447 stripped
 Transform:
@@ -12614,6 +12730,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.9684842, y: 0.7789514, z: 0.94911903}
   m_Center: {x: 0, y: 0.38947564, z: -0.043402713}
+--- !u!114 &7087439539135578092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9088985004870516981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c393dafd7447f4b33c0b119d82526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8279538768506820277
 PrefabInstance:
   m_ObjectHideFlags: 0

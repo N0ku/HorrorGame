@@ -2256,9 +2256,10 @@ GameObject:
   - component: {fileID: 5145762682588555324}
   - component: {fileID: 3903411047945313515}
   - component: {fileID: 7154369113922852712}
+  - component: {fileID: 3952419352399379547}
   m_Layer: 0
   m_Name: Weight Stand 2
-  m_TagString: Untagged
+  m_TagString: CardSearch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2362,6 +2363,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3718674323286548738, guid: d35c64cc6c9731542902ebc97cbd7533, type: 3}
+--- !u!114 &3952419352399379547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488708058631721685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c393dafd7447f4b33c0b119d82526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &513933502829120984
 GameObject:
   m_ObjectHideFlags: 0
@@ -13151,9 +13164,10 @@ GameObject:
   - component: {fileID: 7050694635177780340}
   - component: {fileID: 4142859452877671377}
   - component: {fileID: 1533307164351268983}
+  - component: {fileID: 3244115366073044579}
   m_Layer: 0
   m_Name: Machine 7
-  m_TagString: Untagged
+  m_TagString: CardSearch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13248,6 +13262,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2619988850517474627, guid: d35c64cc6c9731542902ebc97cbd7533, type: 3}
+--- !u!114 &3244115366073044579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4046753961252607259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c393dafd7447f4b33c0b119d82526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4063854784307366595
 GameObject:
   m_ObjectHideFlags: 0
@@ -13555,9 +13581,10 @@ GameObject:
   - component: {fileID: 4565526570303280449}
   - component: {fileID: 3141129269644490951}
   - component: {fileID: 6549898430017686231}
+  - component: {fileID: 7158645266508500333}
   m_Layer: 0
   m_Name: Exercise Bike (1)
-  m_TagString: Untagged
+  m_TagString: CardSearch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13652,6 +13679,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4784024385097973440, guid: d35c64cc6c9731542902ebc97cbd7533, type: 3}
+--- !u!114 &7158645266508500333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4127281299709503414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c393dafd7447f4b33c0b119d82526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4163123601490358457
 GameObject:
   m_ObjectHideFlags: 0
@@ -13663,9 +13702,10 @@ GameObject:
   - component: {fileID: 683270599816248014}
   - component: {fileID: 4733391424013754544}
   - component: {fileID: 2435302063791839692}
+  - component: {fileID: 8947441701571720923}
   m_Layer: 0
   m_Name: Ac
-  m_TagString: Untagged
+  m_TagString: CardSearch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13735,6 +13775,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8947441701571720923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4163123601490358457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c393dafd7447f4b33c0b119d82526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4163520236790191902
 GameObject:
   m_ObjectHideFlags: 0
@@ -28189,7 +28241,7 @@ Transform:
   m_GameObject: {fileID: 7429426843618309554}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.468, z: 0.141}
+  m_LocalPosition: {x: -0.002, y: 0.465, z: 0.154}
   m_LocalScale: {x: 1.5000001, y: 1.25, z: 1.2499999}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -31994,9 +32046,10 @@ GameObject:
   - component: {fileID: 3532471163123248831}
   - component: {fileID: 3526879558893678506}
   - component: {fileID: 2484198124341742833}
+  - component: {fileID: 7544733735504531717}
   m_Layer: 0
   m_Name: Sm Machine (full)
-  m_TagString: Untagged
+  m_TagString: CardSearch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32090,6 +32143,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -790763940367746533, guid: d35c64cc6c9731542902ebc97cbd7533, type: 3}
+--- !u!114 &7544733735504531717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8431598705355944137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c393dafd7447f4b33c0b119d82526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8433553629088891774
 GameObject:
   m_ObjectHideFlags: 0
