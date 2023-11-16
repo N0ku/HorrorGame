@@ -40,6 +40,8 @@ public class CollisionManager : MonoBehaviour
 
         if (other.gameObject.tag == "freezeExitElevator") {
             Invoke(nameof(freezePlayer), 0.3f);
+
+            // EMPTY THE SCENE TO REGENERATE A NEW ONE
         }
 
         if ((other.gameObject.tag == "manageThomasElevator" && canOpenElevator)) {
@@ -59,15 +61,18 @@ public class CollisionManager : MonoBehaviour
     // Update is called once per frame
     void OnTriggerStay(Collider other)
     {        
+        player = GameObject.Find("Player");
         if ((other.gameObject.tag == "freezeExitElevator" && canOpenElevator && isPlayerFreeze)) {
-            player = GameObject.Find("Player");
             GameObject manageThomasElevator = GameObject.FindWithTag("manageThomasElevator");
             if (manageThomasElevator != null) {
                 player.transform.position = manageThomasElevator.transform.position;
             }
         }
         if ((other.gameObject.tag == "manageThomasElevator" && isPlayerFreeze)) {
-            Invoke(nameof(unfreezePlayer), 5f);
+            Invoke(nameof(unfreezePlayer), 1f);
+            player.GetComponent<Inventory>().EmptyInventory();
+            Inventory.isCardCollected = false;
+            Inventory.isSouvenirCollected = false;
         }
     }
 

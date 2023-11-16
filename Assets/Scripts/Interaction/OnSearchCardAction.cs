@@ -8,6 +8,8 @@ public class OnSearchCardAction : MonoBehaviour, IInteractable
     {
         if (gameObject.tag == "CardSearch")
             return "Fouiller";
+        else if (gameObject.tag == "CardSearched")
+            return "Cet objet est vide";
         else if (Inventory.isCardCollected)
             return "La carte a été trouvée";
         else
