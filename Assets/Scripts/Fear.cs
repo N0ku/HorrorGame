@@ -5,18 +5,24 @@ using UnityEngine;
 
 public class Fear : MonoBehaviour
 {
-   
+
     private MadnessState madnessState;
+    private FlashlightManager FlashlightScript;
+    private CameraShake CameraShakeScript;
     private FearMalus fearMalus;
 
     public static ArrayList fearMalusList = new ArrayList();
     public static ArrayList fearPermamentMalusList = new ArrayList();
 
     public static float fear;
+
+    [SerializeField]
+    private GameObject FlashlightLight;
     void Start()
     {
         Debug.Log("Fear script is running");
         madnessState = MadnessState.Calm;
+        FlashlightScript = FindObjectOfType<FlashlightManager>();
     }
 
     void FixedUpdate()
@@ -36,6 +42,7 @@ public class Fear : MonoBehaviour
     {
         AddFear();
         CheckFear();
+        CheckMalus();
 
         // Debug.Log("fear : " + fear);
         // Debug.Log("madnessState : " + madnessState);
@@ -102,5 +109,38 @@ public class Fear : MonoBehaviour
         }
         fearMalusList.Clear();
     }
-}
+    void FlashlightMalus()
+    {
+        if (FlashlightManager.flashlightIsOn == true && FlashlightManager.isUsable == true)
+        {
+            FlashlightScript.bugFlashlight(FlashlightLight);
+            Debug.Log("QuickFlashlight");
+        }
+    }
 
+    void ScreanShakeMalus()
+    {
+        CameraShake.shaketrue = true;
+        Debug.Log("ScreenShake");
+    }
+
+    void CheckMalus()
+    {
+        if (fearMalusList.Contains(FearMalus.QuickFlashlight) || fearPermamentMalusList.Contains(FearMalus.QuickFlashlight))
+        {
+            int random = UnityEngine.Random.Range(5, 30);
+            if (IsInvoking(nameof(FlashlightMalus)) == false)
+                InvokeRepeating(nameof(FlashlightMalus), 3, random);
+        }
+        if (fearMalusList.Contains(FearMalus.ScreanShake) || fearPermamentMalusList.Contains(FearMalus.ScreanShake))
+        {
+            int random = UnityEngine.Random.Range(10, 20);
+            if (IsInvoking(nameof(ScreanShakeMalus)) == false)
+                InvokeRepeating(nameof(ScreanShakeMalus), 1, random);
+        }
+        if (fearMalusList.Contains(FearMalus.HorrorSounds) || fearPermamentMalusList.Contains(FearMalus.HorrorSounds))
+        {
+            // TODO
+        }
+    }
+}
