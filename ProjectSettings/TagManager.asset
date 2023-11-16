@@ -25,6 +25,10 @@ TagManager:
   - NothingToSearch
   - CardSearch
   - CardSearched
+  - CurrentlySearching
+  - manageExitElevator
+  - freezeExitElevator
+  - manageThomasElevator
   layers:
   - Default
   - TransparentFX

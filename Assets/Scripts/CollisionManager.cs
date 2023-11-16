@@ -32,17 +32,19 @@ public class CollisionManager : MonoBehaviour
         //     isElevatorOpen = true;
         // }
 
-        if ((other.gameObject.tag == "manageElevator") && !isElevatorOpen) {
+        if ((other.gameObject.tag == "manageExitElevator") && !isElevatorOpen && Inventory.isCardCollected && Inventory.isSouvenirCollected) {
             openElevator(other.transform.parent.gameObject.name);
             isElevatorOpen = true;
             canOpenElevator = false;
         }
 
-        if (other.gameObject.tag == "openElevator") {
-            Invoke(nameof(freezePlayer), 1f);
+        if (other.gameObject.tag == "freezeExitElevator") {
+            Invoke(nameof(freezePlayer), 0.3f);
+
+            // EMPTY THE SCENE TO REGENERATE A NEW ONE
         }
 
-        if ((other.gameObject.tag == "openElevator" && canOpenElevator)) {
+        if ((other.gameObject.tag == "manageThomasElevator" && canOpenElevator)) {
             openElevator(other.transform.parent.gameObject.name);
             isElevatorOpen = true;
             canOpenElevator = false;
@@ -58,15 +60,25 @@ public class CollisionManager : MonoBehaviour
 
     // Update is called once per frame
     void OnTriggerStay(Collider other)
-    {
-        if ((other.gameObject.tag == "openElevator" && canOpenElevator && isPlayerFreeze)) {
-            Invoke(nameof(unfreezePlayer), 5f);
+    {        
+        player = GameObject.Find("Player");
+        if ((other.gameObject.tag == "freezeExitElevator" && canOpenElevator && isPlayerFreeze)) {
+            GameObject manageThomasElevator = GameObject.FindWithTag("manageThomasElevator");
+            if (manageThomasElevator != null) {
+                player.transform.position = manageThomasElevator.transform.position;
+            }
+        }
+        if ((other.gameObject.tag == "manageThomasElevator" && isPlayerFreeze)) {
+            Invoke(nameof(unfreezePlayer), 1f);
+            player.GetComponent<Inventory>().EmptyInventory();
+            Inventory.isCardCollected = false;
+            Inventory.isSouvenirCollected = false;
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "manageElevator" && isElevatorOpen) {
+        if (other.gameObject.tag == "manageExitElevator" && isElevatorOpen || other.gameObject.tag == "manageThomasElevator" && isElevatorOpen) {
             closeDoor(other.transform.parent.gameObject.name);
             isElevatorOpen = false;
         }
@@ -77,8 +89,6 @@ public class CollisionManager : MonoBehaviour
         Animator animator = GameObject.Find(elevator).GetComponent<Animator>();
         animator.speed = 0.5f;
         animator.Play("CloseDoors");
-
-        Invoke("changeCanOpenElevator", 10f);
     }
 
     private void changeCanOpenElevator() {
@@ -94,6 +104,8 @@ public class CollisionManager : MonoBehaviour
         GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
 
         isPlayerFreeze = true;
+
+        Invoke(nameof(changeCanOpenElevator), 3.5f);
     }
 
     private void unfreezePlayer() {
