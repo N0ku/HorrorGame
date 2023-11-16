@@ -20,6 +20,15 @@ TagManager:
   - ThomasElevator
   - TrapRoom
   - Elevator
+  - HistorySearch
+  - HistorySearched
+  - NothingToSearch
+  - CardSearch
+  - CardSearched
+  - CurrentlySearching
+  - manageExitElevator
+  - freezeExitElevator
+  - manageThomasElevator
   layers:
   - Default
   - TransparentFX

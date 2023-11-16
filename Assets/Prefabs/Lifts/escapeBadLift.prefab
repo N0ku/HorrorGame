@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8808987477895660201}
   m_Layer: 0
   m_Name: manageElevatorHitbox
-  m_TagString: manageElevator
+  m_TagString: manageExitElevator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 2983536792763073449}
   m_Layer: 0
   m_Name: openHitbox
-  m_TagString: openElevator
+  m_TagString: freezeExitElevator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -467,6 +467,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -6263350643120396561, guid: 674183c9db4364c9bbbe33b09b23c14c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8390457145976426476}
+    - targetCorrespondingSourceObject: {fileID: -6263350643120396561, guid: 674183c9db4364c9bbbe33b09b23c14c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2115853731532691447}
     - targetCorrespondingSourceObject: {fileID: 8144394004440419581, guid: 674183c9db4364c9bbbe33b09b23c14c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8571435193692354060}
@@ -622,3 +625,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.902927, y: 0.11889508, z: 8.491289}
   m_Center: {x: 0.0000009536743, y: -0.0000038146973, z: -0.00000047683716}
+--- !u!114 &2115853731532691447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7351215935708668706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 339c4c451f4fa4185b449f707424ede1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

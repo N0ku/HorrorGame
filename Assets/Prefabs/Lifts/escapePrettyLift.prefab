@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1896355496927365338}
   m_Layer: 0
   m_Name: manageElevatorHitbox
-  m_TagString: manageElevator
+  m_TagString: manageExitElevator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,8 +147,8 @@ GameObject:
   - component: {fileID: 7857197109860945092}
   - component: {fileID: 1351007507112798775}
   m_Layer: 0
-  m_Name: openHitbox
-  m_TagString: openElevator
+  m_Name: freezeHitbox
+  m_TagString: freezeExitElevator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -443,9 +443,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8764538764486746170, guid: 674183c9db4364c9bbbe33b09b23c14c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8287388284607953775}
+    - targetCorrespondingSourceObject: {fileID: -8764538764486746170, guid: 674183c9db4364c9bbbe33b09b23c14c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7815672889423624556}
     - targetCorrespondingSourceObject: {fileID: -2422315340263230684, guid: 674183c9db4364c9bbbe33b09b23c14c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6754182270018147817}
+    - targetCorrespondingSourceObject: {fileID: -2422315340263230684, guid: 674183c9db4364c9bbbe33b09b23c14c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 812835512130260349}
   m_SourcePrefab: {fileID: 100100000, guid: 674183c9db4364c9bbbe33b09b23c14c, type: 3}
 --- !u!1 &549611102364527939 stripped
 GameObject:
@@ -541,6 +547,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.9029272, y: 0.11889508, z: 8.491289}
   m_Center: {x: -0.0000005066395, y: -0.0000038146973, z: -0.00000047683716}
+--- !u!114 &812835512130260349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3652783666795867627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 339c4c451f4fa4185b449f707424ede1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6922621680172606366 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 674183c9db4364c9bbbe33b09b23c14c, type: 3}
@@ -593,6 +611,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.902927, y: 0.11889508, z: 8.491289}
   m_Center: {x: -0.00000047683716, y: -0.0000038146973, z: -0.00000047683716}
+--- !u!114 &7815672889423624556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7677902900960837897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 339c4c451f4fa4185b449f707424ede1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7735432711009696036 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 674183c9db4364c9bbbe33b09b23c14c, type: 3}

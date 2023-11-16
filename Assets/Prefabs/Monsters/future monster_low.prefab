@@ -2894,7 +2894,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3794122846914100343
 Transform:
   m_ObjectHideFlags: 0
@@ -2953,7 +2953,6 @@ MonoBehaviour:
   player: {fileID: 0}
   playerObj: {fileID: 0}
   camera: {fileID: 0}
-  target: {fileID: 4606265478014461645}
   footsteps: {fileID: 3236717640629066855}
   radius: 15
   angle: 360
@@ -2963,8 +2962,8 @@ MonoBehaviour:
   obtructionMask:
     serializedVersion: 2
     m_Bits: 512
-  playerRef: {fileID: 0}
   canSeePlayer: 0
+  monsterTarget: {fileID: 0}
 --- !u!82 &3236717640629066855
 AudioSource:
   m_ObjectHideFlags: 0
