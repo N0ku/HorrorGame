@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Unity.AI.Navigation;
 using System;
+using static RoomGenerator;
 
 public class ProceduralGenerator : MonoBehaviour
 {
@@ -56,40 +57,131 @@ public class ProceduralGenerator : MonoBehaviour
         }
     }
     #endregion
+    [Header("DevTool Configuration")]
 
-
-    [SerializeField] private int mapSizeX;
-    [SerializeField] private int mapSizeY;
-    [SerializeField] private GameObject mapTemplate;
-    [SerializeField] private Material mapMaterial;
     [SerializeField] private bool displayGridInGame = true;
-    [SerializeField] private List<GameObject> RoomPrefabs = new List<GameObject>();
-    [SerializeField] private int numberOfRoom = 5;
+    [SerializeField] public RoomType roomInteractable;
     [SerializeField] private GameObject gridParent;
     [SerializeField] private int maxPlacementAttempts = 10;
-    static public int staticmapSizeX { get; set; }
-    static public int staticmapSizeY { get; set; }
-
-
-    // Pour les debilos, les prefab qu'on met sont en 2x3. Donc obliger de faire un spacing de 2 sinon ils se superposent.
-    public static float wallSpacing = 2f;
     public Color northColor = Color.red;
     public Color southColor = Color.blue;
     public Color eastColor = Color.green;
     public Color westColor = Color.yellow;
-    public Color elevator = Color.magenta;
+    [Space(15)]
+
+
+
+    [Header("Creator Configuration")]
+    [SerializeField] private int mapSizeX;
+    [SerializeField] private int mapSizeY;
+    [SerializeField] private GameObject mapTemplate;
+    [SerializeField] private Material mapMaterial;
+    [SerializeField] private List<GameObject> RoomPrefabs = new List<GameObject>();
+    [SerializeField] private int numberOfRoom = 5;
+    [Space(15)]
+
+    [Header("Configuration de l'Étage (Selectionner l'étage)")]
+    [SerializeField] private EtageType etageType = EtageType.Creator;
+    [Space(15)]
+
+
+    [Header("Configuration Étage 1")]
+    [SerializeField] private int staticmapSizeX_Etage1;
+    [SerializeField] private int staticmapSizeY_Etage1;
+    [SerializeField] private Material mapMaterial_Etage1;
+    [SerializeField] private List<GameObject> RoomPrefabs_Etage1 = new List<GameObject>();
+    [SerializeField] private GameObject HistoryRoom_Etage1 = new GameObject();
+    [SerializeField] private GameObject ThomasRoom_Etage1 = new GameObject();
+    [SerializeField] private GameObject ElevatorExit_Etage1 = new GameObject();
+    [Space(15)]
+
+
+
+    [Header("Configuration Étage 2")]
+    [SerializeField] private int staticmapSizeX_Etage2;
+    [SerializeField] private int staticmapSizeY_Etage2;
+    [SerializeField] private Material mapMaterial_Etage2;
+    [SerializeField] private List<GameObject> RoomPrefabs_Etage2 = new List<GameObject>();
+    [SerializeField] private GameObject HistoryRoom_Etage2 = new GameObject();
+    [SerializeField] private GameObject ThomasRoom_Etage2 = new GameObject();
+    [SerializeField] private GameObject ElevatorExit_Etage2 = new GameObject();
+
+    [Space(15)]
+
+    [Header("Configuration Étage 3")]
+    [SerializeField] private int staticmapSizeX_Etage3;
+    [SerializeField] private int staticmapSizeY_Etage3;
+    [SerializeField] private Material mapMaterial_Etage3;
+    [SerializeField] private List<GameObject> RoomPrefabs_Etage3 = new List<GameObject>();
+    [SerializeField] private GameObject HistoryRoom_Etage3 = new GameObject();
+    [SerializeField] private GameObject ThomasRoom_Etage3 = new GameObject();
+    [SerializeField] private GameObject ElevatorExit_Etage3 = new GameObject();
+
+    static public int staticmapSizeX { get; set; }
+    static public int staticmapSizeY { get; set; }
+
+    static public GameObject historyRoom { get; set; }
+    static public GameObject thomasRoom { get; set; }
+    static public GameObject elevatorExitRoom { get; set; }
+
+
+
+
+    // Pour les debilos, les prefab qu'on met sont en 2x3. Donc obliger de faire un spacing de 2 sinon ils se superposent.
+    public static float wallSpacing = 2f;
+
+    //public Color elevator = Color.magenta;
     private NavMeshSurface[] navMeshSurface;
     private List<WallReference> specificRoomWalls = new List<WallReference>();
     private int placementAttempts = 0;
 
-    [SerializeField] public RoomType roomInteractable;
 
 
     void Start()
     {
 
+        switch (etageType)
+        {
+            case EtageType.Etage1:
+                staticmapSizeX = staticmapSizeX_Etage1;
+                staticmapSizeY = staticmapSizeY_Etage1;
+                mapMaterial = mapMaterial_Etage1;
+                RoomPrefabs = RoomPrefabs_Etage1;
+                historyRoom = HistoryRoom_Etage1;
+                thomasRoom = ThomasRoom_Etage1;
+                elevatorExitRoom = ElevatorExit_Etage1;
+                numberOfRoom = 9;
+                break;
+            case EtageType.Etage2:
+                staticmapSizeX = staticmapSizeX_Etage2;
+                staticmapSizeY = staticmapSizeY_Etage2;
+                mapMaterial = mapMaterial_Etage2;
+                RoomPrefabs = RoomPrefabs_Etage2;
+                historyRoom = HistoryRoom_Etage2;
+                thomasRoom = ThomasRoom_Etage2;
+                elevatorExitRoom = ElevatorExit_Etage2;
+                numberOfRoom = 12;
+                break;
+            case EtageType.Etage3:
+                staticmapSizeX = staticmapSizeX_Etage3;
+                staticmapSizeY = staticmapSizeY_Etage3;
+                mapMaterial = mapMaterial_Etage3;
+                RoomPrefabs = RoomPrefabs_Etage3;
+                historyRoom = HistoryRoom_Etage3;
+                thomasRoom = ThomasRoom_Etage3;
+                elevatorExitRoom = ElevatorExit_Etage3;
+                numberOfRoom = 15;
+                break;
+            case EtageType.Creator:
+                staticmapSizeX = mapSizeX;
+                staticmapSizeY = mapSizeY;
+                break;
+            default:
+                Debug.LogError("Type d'étage non géré : " + etageType);
+                break;
+        }
         GenerateRoom(1);
-      
+
         navMeshSurface = FindObjectsOfType<NavMeshSurface>();
 
         foreach (var surface in navMeshSurface)
@@ -103,26 +195,23 @@ public class ProceduralGenerator : MonoBehaviour
 
     void GenerateRoom(int count)
     {
-        staticmapSizeX = mapSizeX;
-        staticmapSizeY = mapSizeY;
+
         GameObject hiearchiNameMap = new GameObject("Room" + count);
         specificRoomWalls.Clear();
         MapSize generatedMap = new MapSize(hiearchiNameMap);
-        int randomOffsetX = Mathf.RoundToInt(UnityEngine.Random.Range(-50f, 50f));
-        int randomOffsetY = Mathf.RoundToInt(UnityEngine.Random.Range(-50f, 50f));
-        generatedMap.SetPosition(new Vector3(randomOffsetX * 2 + 1, 0, randomOffsetY * 2));
+        generatedMap.SetPosition(new Vector3(0, 0, 0));
 
         // Génération de la MapSize.
-        for (int x = 0; x < mapSizeX; x++)
+        for (int x = 0; x < staticmapSizeX; x++)
         {
-            InstantiateWall(x + randomOffsetX, 0 + randomOffsetY, 0, generatedMap.MapObjectsParent.transform);
-            InstantiateWall(x + randomOffsetX, mapSizeY - 1 + randomOffsetY, 0, generatedMap.MapObjectsParent.transform);
+            InstantiateWall(x, 0, 0, generatedMap.MapObjectsParent.transform);
+            InstantiateWall(x, staticmapSizeY - 1, 0, generatedMap.MapObjectsParent.transform);
         }
 
-        for (int y = 1; y < mapSizeY; y++)
+        for (int y = 1; y < staticmapSizeY; y++)
         {
-            InstantiateWall(0 + randomOffsetX, y + randomOffsetY, 90, generatedMap.MapObjectsParent.transform);
-            InstantiateWall(mapSizeX + randomOffsetX, y + randomOffsetY, 90, generatedMap.MapObjectsParent.transform);
+            InstantiateWall(0, y, 90, generatedMap.MapObjectsParent.transform);
+            InstantiateWall(staticmapSizeX, y, 90, generatedMap.MapObjectsParent.transform);
         }
 
         GenerateGrid(generatedMap);
@@ -152,20 +241,21 @@ public class ProceduralGenerator : MonoBehaviour
         specificRoomWalls.Add(wallReference);
     }
 
-    
+
 
     void GenerateGrid(MapSize room)
     {
-        room.MapGrid = new Cell[mapSizeX, mapSizeY];
+        room.MapGrid = new Cell[staticmapSizeX, staticmapSizeY];
 
-        for (int x = 0; x < mapSizeX; x++)
+        for (int x = 0; x < staticmapSizeX; x++)
         {
-            for (int y = 0; y < mapSizeY; y++)
+            for (int y = 0; y < staticmapSizeY; y++)
             {
                 room.MapGrid[x, y] = new Cell(x, y, room.MapObject.transform.position);
             }
         }
     }
+
     void AssignTagsAndColors(MapSize map)
     {
         foreach (var cell in map.MapGrid)
@@ -175,7 +265,7 @@ public class ProceduralGenerator : MonoBehaviour
                 cell.tag = "North";
                 cell.color = northColor;
             }
-            else if (cell.y == mapSizeY - 1)
+            else if (cell.y == staticmapSizeY - 1)
             {
                 cell.tag = "South";
                 cell.color = southColor;
@@ -186,14 +276,14 @@ public class ProceduralGenerator : MonoBehaviour
                 cell.tag = "West";
                 cell.color = westColor;
             }
-            else if (cell.x == mapSizeX - 1)
+            else if (cell.x == staticmapSizeX - 1)
             {
                 cell.tag = "East";
                 cell.color = eastColor;
             }
             //TODO Faire des case + tag pour Elevator
 
-            if (cell.x != 0 && cell.x != mapSizeX - 1 && cell.y != 0 && cell.y != mapSizeY - 1)
+            if (cell.x != 0 && cell.x != staticmapSizeX && cell.y != 0 && cell.y != staticmapSizeY)
             {
                 map.MapObjectPlacementCells.Add(cell);
             }
@@ -201,6 +291,7 @@ public class ProceduralGenerator : MonoBehaviour
             DrawCell(cell);
         }
     }
+
 
     void DrawCell(Cell cell)
     {
@@ -219,11 +310,108 @@ public class ProceduralGenerator : MonoBehaviour
     void PlaceRandomObjects(MapSize room)
     {
         room.MapObjectsParent = new GameObject("ObjectsParent");
-
-        for (int i = 0; i < numberOfRoom; i++)
+        for (int i = 0; i < 3; i++)
         {
             int randomIndex = UnityEngine.Random.Range(0, room.MapObjectPlacementCells.Count);
             Cell randomCell = room.MapObjectPlacementCells[randomIndex];
+            switch (i)
+            {
+                case 1:
+                    GameObject randomPrefab = historyRoom;
+                    int randomRotations = UnityEngine.Random.Range(0, 4);
+                    randomPrefab.transform.rotation = Quaternion.Euler(0, randomRotations * 90, 0);
+                    Vector3 prefabSize = GetPrefabSize(randomPrefab);
+
+                    if (CanPlacePrefab(randomCell, prefabSize, room.MapGrid, room.MapObjectPlacementCells, randomPrefab.transform.rotation))
+                    {
+                        Vector3 objectPosition = new Vector3(randomCell.x * wallSpacing + room.MapObject.transform.position.x, 0, randomCell.y * wallSpacing + room.MapObject.transform.position.z);
+
+                        // Applique la rotation avant de placer l'objet
+                        GameObject instantiatedPrefab = Instantiate(randomPrefab, objectPosition, Quaternion.identity, room.MapObjectsParent.transform);
+                        instantiatedPrefab.transform.rotation = randomPrefab.transform.rotation;
+
+                        RemoveOccupiedCells(randomCell, prefabSize, room.MapGrid, room.MapObjectPlacementCells, instantiatedPrefab.transform.rotation);
+                        placementAttempts = 0;
+                    }
+                    else
+                    {
+                        i--;
+                        placementAttempts++;
+                        if (placementAttempts >= maxPlacementAttempts)
+                        {
+                            Debug.Log("Arrêt de la génération en raison du nombre maximum d'essais atteint.");
+                            break;
+                        }
+                    }
+                    break;
+                case 2:
+                    randomPrefab = thomasRoom;
+                    randomRotations = UnityEngine.Random.Range(0, 4);
+                    randomPrefab.transform.rotation = Quaternion.Euler(0, randomRotations * 90, 0);
+                    prefabSize = GetPrefabSize(randomPrefab);
+
+                    if (CanPlacePrefab(randomCell, prefabSize, room.MapGrid, room.MapObjectPlacementCells, randomPrefab.transform.rotation))
+                    {
+                        Vector3 objectPosition = new Vector3(randomCell.x * wallSpacing + room.MapObject.transform.position.x, 0, randomCell.y * wallSpacing + room.MapObject.transform.position.z);
+
+                        // Applique la rotation avant de placer l'objet
+                        GameObject instantiatedPrefab = Instantiate(randomPrefab, objectPosition, Quaternion.identity, room.MapObjectsParent.transform);
+                        instantiatedPrefab.transform.rotation = randomPrefab.transform.rotation;
+
+                        RemoveOccupiedCells(randomCell, prefabSize, room.MapGrid, room.MapObjectPlacementCells, instantiatedPrefab.transform.rotation);
+                        placementAttempts = 0;
+                    }
+                    else
+                    {
+                        i--;
+                        placementAttempts++;
+                        if (placementAttempts >= maxPlacementAttempts)
+                        {
+                            Debug.Log("Arrêt de la génération en raison du nombre maximum d'essais atteint.");
+                            break;
+                        }
+                    }
+                    break;
+                case 3:
+                    randomPrefab = elevatorExitRoom;
+                    randomRotations = UnityEngine.Random.Range(0, 4);
+                    randomPrefab.transform.rotation = Quaternion.Euler(0, randomRotations * 90, 0);
+                    prefabSize = GetPrefabSize(randomPrefab);
+
+                    if (CanPlacePrefab(randomCell, prefabSize, room.MapGrid, room.MapObjectPlacementCells, randomPrefab.transform.rotation))
+                    {
+                        Vector3 objectPosition = new Vector3(randomCell.x * wallSpacing + room.MapObject.transform.position.x, 0, randomCell.y * wallSpacing + room.MapObject.transform.position.z);
+
+                        // Applique la rotation avant de placer l'objet
+                        GameObject instantiatedPrefab = Instantiate(randomPrefab, objectPosition, Quaternion.identity, room.MapObjectsParent.transform);
+                        instantiatedPrefab.transform.rotation = randomPrefab.transform.rotation;
+
+                        RemoveOccupiedCells(randomCell, prefabSize, room.MapGrid, room.MapObjectPlacementCells, instantiatedPrefab.transform.rotation);
+                        placementAttempts = 0;
+                    }
+                    else
+                    {
+                        i--;
+                        placementAttempts++;
+                        if (placementAttempts >= maxPlacementAttempts)
+                        {
+                            Debug.Log("Arrêt de la génération en raison du nombre maximum d'essais atteint.");
+                            break;
+                        }
+                    }
+                    break;
+                default:
+                    Debug.LogError("Soucis dans le placement des salles necessaires");
+                    break;
+            }
+
+        }
+
+        for (int i = 3; i < numberOfRoom; i++)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, room.MapObjectPlacementCells.Count);
+            Cell randomCell = room.MapObjectPlacementCells[randomIndex];
+
 
             // Récupère la taille du prefab et les cellules occupées par le prefab
             GameObject randomPrefab = RoomPrefabs[UnityEngine.Random.Range(0, RoomPrefabs.Count)];
@@ -292,12 +480,13 @@ public class ProceduralGenerator : MonoBehaviour
         return true;
     }
 
+
     void RemoveOccupiedCells(Cell startCell, Vector3 prefabSize, Cell[,] grid, List<Cell> availableCells, Quaternion rotation)
     {
         // Retire les cellules occupées par le prefab de la liste des cellules disponibles
-        for (int x = startCell.x; x < startCell.x + prefabSize.x; x++)
+        for (int x = startCell.x; x < startCell.x + prefabSize.x / wallSpacing; x++)
         {
-            for (int y = startCell.y; y < startCell.y + prefabSize.z; y++)
+            for (int y = startCell.y; y < startCell.y + prefabSize.z / wallSpacing; y++)
             {
                 Vector3 rotatedPosition = rotation * new Vector3(x - startCell.x, 0, y - startCell.y);
                 int rotatedX = Mathf.RoundToInt(rotatedPosition.x) + startCell.x;

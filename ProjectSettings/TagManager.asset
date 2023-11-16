@@ -14,12 +14,12 @@ TagManager:
   - virusHitbox
   - historyAdviceHitbox
   - warningAdviceHitbox
-  - respawnElevator
   - HistoryRoom
-  - TrapRoom
   - NormalRoom
-  - Elevator
+  - Door
   - ThomasElevator
+  - TrapRoom
+  - Elevator
   layers:
   - Default
   - TransparentFX

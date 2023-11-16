@@ -411,7 +411,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6953067132859500624}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12223,6 +12223,10 @@ PrefabInstance:
     - target: {fileID: 2450835442633942025, guid: a10fd8b04a4b01746a55ae0233e2d31c, type: 3}
       propertyPath: m_Name
       value: Door Variant (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2450835442633942025, guid: a10fd8b04a4b01746a55ae0233e2d31c, type: 3}
+      propertyPath: m_TagString
+      value: Door
       objectReference: {fileID: 0}
     - target: {fileID: 2453161113127454379, guid: a10fd8b04a4b01746a55ae0233e2d31c, type: 3}
       propertyPath: m_LocalPosition.x
