@@ -9,6 +9,11 @@ TagManager:
   - openElevator
   - manageElevator
   - ProceduralObject
+  - adviceHitbox
+  - yetiHitbox
+  - virusHitbox
+  - historyAdviceHitbox
+  - warningAdviceHitbox
   layers:
   - Default
   - TransparentFX

@@ -7,7 +7,7 @@ public class OnGlobalObjectAction : MonoBehaviour, IInteractable
 {
     public string GetDescription()
     {
-        return "Porte";
+        return "Objet";
     }
 
     public void Interact()

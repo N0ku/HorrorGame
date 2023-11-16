@@ -11,12 +11,11 @@ public class MonsterScript : MonoBehaviour
 
     public GameObject playerObj;
     public Camera camera;
-    public GameObject target;
     private float playerStress = 0;
 
     public AudioSource footsteps;
 
-    private int timePlayerLookMonster = 0;
+    private int MonsterSeenPlayerTime = 0;
 
     public float radius;
 
@@ -28,11 +27,11 @@ public class MonsterScript : MonoBehaviour
 
     private bool hasSeenPlayer;
 
-    public GameObject playerRef;
-
     public bool canSeePlayer = false;
 
     private Vector3 lastPlayerPosition;
+
+    public GameObject monsterTarget;
 
     // Start is called before the first frame update
     void Start()
@@ -45,62 +44,77 @@ public class MonsterScript : MonoBehaviour
     void FixedUpdate()
     {
 
-        var targetRender = target.GetComponent<Renderer>();
-        footsteps.volume = monster.speed / 10;
+        footsteps.enabled = true;
 
-        // FEATURE FOR FLASHLIGHT DON'T DELETE COMMENTED CODE
-
-        /*  if (isLooking(camera, target))
-         {
-             targetRender.material.color = Color.red;
-             timePlayerLookMonster++;
-             monster.destination = player.position.normalized * -timePlayerLookMonster;
-             monster.speed = 0.5f;
-         }
-         else
-         {
-             timePlayerLookMonster = 0;
-             targetRender.material.color = Color.white;
-             monster.destination = player.position;
-             monster.speed = calculateSpeed(playerStress);
-         } */
-
-        if (hasSeenPlayer && canSeePlayer)
+        if (isLooking(camera, monsterTarget) &&
+         hasSeenPlayer &&
+         canSeePlayer &&
+         FlashlightManager.flashlightIsOn &&
+          FlashlightManager.isUsable)
         {
-            monster.destination = player.position;
-            footsteps.enabled = true;
-            lastPlayerPosition = player.position;
+            MonsterSeenPlayerTime++;
+            monster.destination = player.position.normalized * -MonsterSeenPlayerTime;
+            monster.speed = 0.2f;
+
         }
-        // To go on the last position of the player
+        else if (hasSeenPlayer && canSeePlayer)
+        {
+            MonsterSeenPlayerTime = 0;
+            monster.destination = player.position;
+            lastPlayerPosition = player.position;
+            monster.speed = calculateSpeed(playerStress);
+        }
         else if (hasSeenPlayer && !canSeePlayer)
         {
             monster.destination = lastPlayerPosition;
-            footsteps.enabled = true;
+            MonsterSeenPlayerTime++;
+
+            if (MonsterSeenPlayerTime > 500)
+            {
+                hasSeenPlayer = false;
+                MonsterSeenPlayerTime = 0;
+            }
         }
+        /*  else
+         {
+             footsteps.enabled = false;
+             monster.destination = transform.position;
+         } */
         else
         {
-            footsteps.enabled = false;
-            monster.destination = transform.position;
+            // create a routine that makes the monster walk around the room
         }
     }
     private bool isLooking(Camera c, GameObject target)
     {
         Vector3 targetViewportPosition = c.WorldToViewportPoint(target.transform.position);
 
-        if (targetViewportPosition.x >= 0 && targetViewportPosition.x <= 1 &&
-            targetViewportPosition.y >= 0 && targetViewportPosition.y <= 1 &&
+        if (targetViewportPosition.x > 0 && targetViewportPosition.x < 1 &&
+            targetViewportPosition.y > 0 && targetViewportPosition.y < 1 &&
             targetViewportPosition.z > 0)
         {
             RaycastHit hit;
             if (Physics.Linecast(c.transform.position, target.transform.position, out hit))
             {
-                if (hit.transform.gameObject == target)
+                if (hit.transform.gameObject.tag == "Monster")
                 {
                     return true;
                 }
+                else
+                {
+                    return false;
+                }
             }
+            else
+            {
+                return true;
+            }
+
         }
-        return false;
+        else
+        {
+            return false;
+        }
     }
 
     private float calculateSpeed(float playerStress)
@@ -129,7 +143,7 @@ public class MonsterScript : MonoBehaviour
             Transform target = rangeChecks[0].transform;
             Vector3 directionToTarget = (target.position - transform.position).normalized;
 
-            if (Vector3.Angle(transform.position, directionToTarget) < angle / 2)
+            if (Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
             {
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
