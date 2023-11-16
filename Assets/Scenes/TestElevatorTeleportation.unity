@@ -3209,6 +3209,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 441983636}
     - target: {fileID: 1415912728326431878, guid: 29e0b2d9f80b547e9b57f07ee199852e, type: 3}
+      propertyPath: killSound
+      value: 
+      objectReference: {fileID: 1828921347}
+    - target: {fileID: 1415912728326431878, guid: 29e0b2d9f80b547e9b57f07ee199852e, type: 3}
       propertyPath: playerObj
       value: 
       objectReference: {fileID: 441983635}
@@ -3216,13 +3220,21 @@ PrefabInstance:
       propertyPath: monsterTarget
       value: 
       objectReference: {fileID: 1828921346}
+    - target: {fileID: 7108139140674884700, guid: 29e0b2d9f80b547e9b57f07ee199852e, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a756dfb37dfe349ca9d0afdcc7f653a7, type: 3}
+    - target: {fileID: 7108139140674884700, guid: 29e0b2d9f80b547e9b57f07ee199852e, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8325148103288173178, guid: 29e0b2d9f80b547e9b57f07ee199852e, type: 3}
       propertyPath: m_Name
       value: Anorexy
       objectReference: {fileID: 0}
     - target: {fileID: 8325148103288173178, guid: 29e0b2d9f80b547e9b57f07ee199852e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8701815105587931328, guid: 29e0b2d9f80b547e9b57f07ee199852e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3272,6 +3284,11 @@ PrefabInstance:
 --- !u!1 &1828921346 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8325148103288173178, guid: 29e0b2d9f80b547e9b57f07ee199852e, type: 3}
+  m_PrefabInstance: {fileID: 1828921345}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1828921347 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7108139140674884700, guid: 29e0b2d9f80b547e9b57f07ee199852e, type: 3}
   m_PrefabInstance: {fileID: 1828921345}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1853850259

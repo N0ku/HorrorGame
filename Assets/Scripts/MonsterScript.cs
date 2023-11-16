@@ -15,6 +15,8 @@ public class MonsterScript : MonoBehaviour
 
     public AudioSource footsteps;
 
+    public AudioSource killSound;
+
     private int MonsterSeenPlayerTime = 0;
 
     public float radius;
@@ -63,6 +65,11 @@ public class MonsterScript : MonoBehaviour
             monster.destination = player.position;
             lastPlayerPosition = player.position;
             monster.speed = calculateSpeed(playerStress);
+
+            if (Vector3.Distance(transform.position, player.position) < 1.5f)
+            {
+                KillPlayer();
+            }
         }
         else if (hasSeenPlayer && !canSeePlayer)
         {
@@ -168,4 +175,32 @@ public class MonsterScript : MonoBehaviour
         }
     }
 
+    private void KillPlayer() {
+        killSound.enabled = true;
+        GameObject playerEverything = GameObject.Find("Player");
+        playerEverything.GetComponent<PlayerMovement>().enabled = false;
+
+        killSound.volume = 5f;
+        killSound.Play();
+
+        TeleportPlayer();
+    }
+
+    private void TeleportPlayer() {
+        GameObject playerEverything = GameObject.Find("Player");
+        GameObject elevator = GameObject.FindWithTag("manageThomasElevator");
+        
+        if (elevator != null) {
+            playerEverything.transform.position = elevator.transform.position;
+            playerEverything.GetComponent<PlayerMovement>().enabled = true;
+            elevator.transform.parent.GetComponent<Animator>().Play("OpenDoors");
+            int nbOfDeaths = int.Parse(playerEverything.GetComponent<Inventory>().GetInventory()[2]);
+            player.GetComponent<Inventory>().AddItem((nbOfDeaths + 1).ToString());
+        }
+
+        // When he left the elevator, he can't go back in
+        if (Vector3.Distance(playerEverything.transform.position, elevator.transform.position) > 2f) {
+            elevator.transform.parent.GetComponent<Animator>().Play("CloseDoors");
+        }
+    }
 }
