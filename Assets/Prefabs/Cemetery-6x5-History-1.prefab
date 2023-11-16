@@ -1080,6 +1080,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3496075192617248875}
+  - component: {fileID: -874588413623945061}
   m_Layer: 9
   m_Name: Cemetery-6x5-History-1
   m_TagString: Room
@@ -1135,6 +1136,27 @@ Transform:
   - {fileID: 7833573752691714289}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &-874588413623945061
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6953067132859500624}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 12.5, y: 3.5, z: 11}
+  m_Center: {x: 4.25, y: 2, z: 5}
 --- !u!1 &8026007732510323777
 GameObject:
   m_ObjectHideFlags: 0
