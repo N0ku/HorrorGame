@@ -17,9 +17,9 @@ public class FlashlightManager : MonoBehaviour
 
     [Header("Options")]
     [SerializeField]
-    float batteryLostTick = 0.1f;
+    float batteryLostTick = 0.02f;
 
-    float batteryWinTick = 0.1f;
+    float batteryWinTick = 0.05f;
 
     [SerializeField]
     int startBattery = 100;
@@ -41,7 +41,9 @@ public class FlashlightManager : MonoBehaviour
     [SerializeField]
     private GameObject FlashlightLight;
 
-    AudioClip FlashlightOn_FX, FlashlightOff_FX;
+    public AudioSource Flashlight_FX;
+
+    public AudioSource Flashlight_Bug_FX;
 
     public void Start()
     {
@@ -91,15 +93,12 @@ public class FlashlightManager : MonoBehaviour
     {
         if (state == FlashlightState.Off)
         {
-            // Debug.Log("Reloading Off " + currentBattery);
             InvokeRepeating(nameof(GainBattery), 0, batteryWinTick);
         }
 
         if (state == FlashlightState.OutOfBattery)
         {
-            // Debug.Log("Reloading OutOfBattery " + currentBattery);
             InvokeRepeating(nameof(GainBattery), 0, batteryWinTick);
-
         }
     }
 
@@ -137,7 +136,8 @@ public class FlashlightManager : MonoBehaviour
 
             if (currentBattery <= 0)
             {
-                // Debug.Log("OUT OF BATTERY " + currentBattery);
+                Flashlight_Bug_FX.pitch = Random.Range(0.4f, 1f);
+                Flashlight_Bug_FX.Play();
                 currentBattery = 0;
                 state = FlashlightState.OutOfBattery;
                 isUsable = false;
@@ -162,7 +162,8 @@ public class FlashlightManager : MonoBehaviour
 
         if (flashlightIsOn && isUsable)
         {
-            // GetComponent<AudioSource>().PlayOneShot(FlashlightOn_FX);
+            Flashlight_FX.pitch = 1f;
+            Flashlight_FX.Play();
             state = FlashlightState.On;
             if (!IsInvoking(nameof(LoseBattery)))
             {
@@ -171,7 +172,8 @@ public class FlashlightManager : MonoBehaviour
         }
         else if (isUsable)
         {
-            // GetComponent<AudioSource>().PlayOneShot(FlashlightOff_FX);
+            Flashlight_FX.pitch = 0.5f;
+            Flashlight_FX.Play();
             state = FlashlightState.Off;
         }
     }
@@ -180,6 +182,8 @@ public class FlashlightManager : MonoBehaviour
     {
         if (didItBug == false)
         {
+            Flashlight_Bug_FX.pitch = Random.Range(0.8f, 1.3f);
+            Flashlight_Bug_FX.Play();
             float timing = Random.Range(0.2f, 1.5f);
             disableFlashlight();
             Invoke(nameof(enableFlashlight), timing);
