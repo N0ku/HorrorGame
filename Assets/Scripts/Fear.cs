@@ -5,20 +5,7 @@ using UnityEngine;
 
 public class Fear : MonoBehaviour
 {
-    private enum MadnessState
-    {
-        Calm,
-        Scared,
-        Terrified,
-    }
-
-    private enum FearMalus
-    {
-        QuickFlashlight,
-        ScreanShake,
-        HorrorSounds,
-    }
-
+   
     private MadnessState madnessState;
     private FearMalus fearMalus;
 
