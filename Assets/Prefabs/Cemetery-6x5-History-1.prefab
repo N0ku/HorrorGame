@@ -1083,7 +1083,7 @@ GameObject:
   - component: {fileID: -874588413623945061}
   m_Layer: 9
   m_Name: Cemetery-6x5-History-1
-  m_TagString: Room
+  m_TagString: HistoryRoom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
