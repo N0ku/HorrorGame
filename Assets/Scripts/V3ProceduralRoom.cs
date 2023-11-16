@@ -220,7 +220,7 @@ public class ProceduralGenerator : MonoBehaviour
     {
         room.MapObjectsParent = new GameObject("ObjectsParent");
 
-        for (int i = 0; i < numberOfRoom ; i++)
+        for (int i = 0; i < numberOfRoom; i++)
         {
             int randomIndex = UnityEngine.Random.Range(0, room.MapObjectPlacementCells.Count);
             Cell randomCell = room.MapObjectPlacementCells[randomIndex];
@@ -229,6 +229,7 @@ public class ProceduralGenerator : MonoBehaviour
             GameObject randomPrefab = RoomPrefabs[UnityEngine.Random.Range(0, RoomPrefabs.Count)];
             int randomRotations = UnityEngine.Random.Range(0, 4);
             randomPrefab.transform.rotation = Quaternion.Euler(0, randomRotations * 90, 0);
+
             Vector3 prefabSize = GetPrefabSize(randomPrefab);
 
             if (CanPlacePrefab(randomCell, prefabSize, room.MapGrid, room.MapObjectPlacementCells))
