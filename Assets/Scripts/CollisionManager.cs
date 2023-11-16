@@ -47,6 +47,13 @@ public class CollisionManager : MonoBehaviour
             isElevatorOpen = true;
             canOpenElevator = false;
         }
+
+        if ((other.gameObject.tag == "virusHitbox" || other.gameObject.tag == "yetiHitbox")) {
+            AudioSource source = other.transform.parent.gameObject.GetComponent<AudioSource>();
+            source.volume = Random.Range(1f, 3.5f);
+            source.pitch = Random.Range(0.8f, 1.2f);
+            source.Play();
+        }
     }
 
     // Update is called once per frame
