@@ -8,23 +8,25 @@ public class OnSearchCardAction : MonoBehaviour, IInteractable
     {
         if (gameObject.tag == "CardSearch")
             return "Fouiller";
-        else if (gameObject.tag == "CardSearched")
-            return "Vous avez déjà fouillé cet objet";
-        else
+        else if (Inventory.isCardCollected)
             return "La carte a été trouvée";
+        else
+            return "En train de fouiller...";
     }
 
     public void Interact()
     {
         GameObject player = GameObject.Find("Player");
 
-        // Add sound Search.mp3
-        AudioSource audio = gameObject.transform.parent.GetComponent<AudioSource>()
-        adio.volume = 0.5f;
-        audio.Play();
+        GameObject[] cardSearchObjects = GameObject.FindGameObjectsWithTag("CardSearch");
         
     
         if (gameObject.tag == "CardSearch") {
+
+            foreach (GameObject cardSearchObject in cardSearchObjects) {
+                cardSearchObject.tag = "CurrentlySearching";
+            }
+
             player.GetComponent<PlayerMovement>().enabled = false;
             OnTriggerEnter();
         } else {
@@ -34,21 +36,22 @@ public class OnSearchCardAction : MonoBehaviour, IInteractable
 
     private void OnTriggerEnter()
     {
-        Debug.Log("Searching...");
-        gameObject.tag = "CardSearched";
+        AudioSource audio = gameObject.transform.parent.GetComponent<AudioSource>();
+        audio.volume = 0.5f;
+        audio.Play();
 
         Invoke(nameof(UnfreezePlayer), 5f);
     }
 
     private void UnfreezePlayer() {
-        Debug.Log("Stopped searching...");
+        // Debug.Log("Stopped searching...");
         GameObject player = GameObject.Find("Player");
 
-        GameObject[] cardSearchObjects = GameObject.FindGameObjectsWithTag("CardSearch");
+        gameObject.tag = "CardSearched";
+
+        GameObject[] cardSearchObjects = GameObject.FindGameObjectsWithTag("CurrentlySearching");
 
         int probsToFind = cardSearchObjects.Length;
-
-        Debug.Log(probsToFind);
 
         DidHeFind(probsToFind);
 
@@ -60,25 +63,28 @@ public class OnSearchCardAction : MonoBehaviour, IInteractable
 
         if (random == 1) {
             GameObject player = GameObject.Find("Player");
-            Debug.Log("You found the card !");
+            player.GetComponent<Inventory>().AddItem("Card");
 
+            GameObject[] cardSearchedObjects = GameObject.FindGameObjectsWithTag("CardSearched");
+
+            foreach (GameObject cardSearchedObject in cardSearchedObjects) {
+                cardSearchedObject.tag = "NothingToSearch";
+            }
+
+
+            GameObject[] cardSearchObjects = GameObject.FindGameObjectsWithTag("CurrentlySearching");
             
-        // Add HistorySearched tag to all historySearchObjects
-        GameObject[] cardSearchedObjects = GameObject.FindGameObjectsWithTag("CardSearched");
-
-        foreach (GameObject cardSearchedObject in cardSearchedObjects) {
-            cardSearchedObject.tag = "NothingToSearch";
-        }
-
-
-        GameObject[] cardSearchObjects = GameObject.FindGameObjectsWithTag("CardSearch");
-        
-        foreach (GameObject cardSearchObject in cardSearchObjects) {
-            cardSearchObject.tag = "NothingToSearch";
-        }
+            foreach (GameObject cardSearchObject in cardSearchObjects) {
+                cardSearchObject.tag = "NothingToSearch";
+            }
 
         } else {
-            Debug.Log("You found nothing...");
+            // Debug.Log("You found nothing...");
+            GameObject[] cardSearchObjects = GameObject.FindGameObjectsWithTag("CurrentlySearching");
+
+            foreach (GameObject cardSearchObject in cardSearchObjects) {
+                cardSearchObject.tag = "CardSearch";
+            }
         }
     }
 }
