@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311924, g: 0.38073963, b: 0.3587269, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -210,6 +210,7 @@ MonoBehaviour:
   - {fileID: 105484, guid: ebe0acde2b4fa0844a30b8f5f01cbb1a, type: 3}
   - {fileID: 195414, guid: 399a03b303dbd2448a0f74c9833ca51e, type: 3}
   numberOfObjects: 20
+  roomPrefab: {fileID: 0}
   numberOfRooms: 5
   wallsParent: {fileID: 2067796205}
   objectsParent: {fileID: 2011474378}
@@ -2297,6 +2298,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a2254473d9504bafb684ff7029160a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  footstepSound: {fileID: 0}
+  exhaustedSound: {fileID: 0}
   walkSpeed: 4
   sprintSpeed: 6
   groundDrag: 6
@@ -4553,6 +4556,8 @@ MonoBehaviour:
   state: 0
   toggleFlashlightKey: 102
   FlashlightLight: {fileID: 457048575}
+  Flashlight_FX: {fileID: 0}
+  Flashlight_Bug_FX: {fileID: 0}
 --- !u!82 &2056038470
 AudioSource:
   m_ObjectHideFlags: 0
