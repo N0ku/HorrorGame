@@ -27,7 +27,7 @@ public class ProceduralRoomGenerator : MonoBehaviour
     {
         GenerateRoomsOfType(RoomType.Standard, numberOfRooms - numberOfTrappedRooms - numberOfCardRooms);
         GenerateRoomsOfType(RoomType.Trapped, numberOfTrappedRooms);
-        GenerateRoomsOfType(RoomType.CardRoom, numberOfCardRooms);
+        //GenerateRoomsOfType(RoomType.CardRoom, numberOfCardRooms);
     }
 
     void GenerateRoomsOfType(RoomType roomType,int count)
@@ -54,8 +54,7 @@ public class ProceduralRoomGenerator : MonoBehaviour
                 break;
             case RoomType.Trapped:
                 break;
-            case RoomType.CardRoom:
-                break;
+            
         }
 
         return room;
