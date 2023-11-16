@@ -6673,11 +6673,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: microwave_oven_001
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5124ac1f4f4e17247b2f3a45584b21d1, type: 3}
+      propertyPath: m_TagString
+      value: CardSearch
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5124ac1f4f4e17247b2f3a45584b21d1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 431265884359052177}
   m_SourcePrefab: {fileID: 100100000, guid: 5124ac1f4f4e17247b2f3a45584b21d1, type: 3}
+--- !u!1 &3710137978424968322 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5124ac1f4f4e17247b2f3a45584b21d1, type: 3}
+  m_PrefabInstance: {fileID: 4592658988695943635}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &431265884359052177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3710137978424968322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c393dafd7447f4b33c0b119d82526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4050669526491373112 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5124ac1f4f4e17247b2f3a45584b21d1, type: 3}
@@ -7375,6 +7399,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TreasureChest
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f0ba207fffea77846a8a979cf75f36e6, type: 3}
+      propertyPath: m_TagString
+      value: CardSearch
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f0ba207fffea77846a8a979cf75f36e6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.475659
@@ -7426,8 +7454,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: f0ba207fffea77846a8a979cf75f36e6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6819735648464138998}
   m_SourcePrefab: {fileID: 100100000, guid: f0ba207fffea77846a8a979cf75f36e6, type: 3}
+--- !u!1 &4994516120777206871 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: f0ba207fffea77846a8a979cf75f36e6, type: 3}
+  m_PrefabInstance: {fileID: 4994516120777173751}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6819735648464138998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4994516120777206871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c393dafd7447f4b33c0b119d82526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4994516120777306231 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: f0ba207fffea77846a8a979cf75f36e6, type: 3}
@@ -11265,6 +11313,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bed_001
       objectReference: {fileID: 0}
+    - target: {fileID: 3800496436466665405, guid: 82f624b1964c7ba4fb21eae95f185a9c, type: 3}
+      propertyPath: m_TagString
+      value: CardSearch
+      objectReference: {fileID: 0}
     - target: {fileID: 4608805242581785863, guid: 82f624b1964c7ba4fb21eae95f185a9c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.8
@@ -11308,8 +11360,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3800496436466665405, guid: 82f624b1964c7ba4fb21eae95f185a9c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4334938234026743894}
   m_SourcePrefab: {fileID: 100100000, guid: 82f624b1964c7ba4fb21eae95f185a9c, type: 3}
+--- !u!1 &5927015774303456334 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3800496436466665405, guid: 82f624b1964c7ba4fb21eae95f185a9c, type: 3}
+  m_PrefabInstance: {fileID: 7421631118040189939}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4334938234026743894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5927015774303456334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c393dafd7447f4b33c0b119d82526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6416272522266728180 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4608805242581785863, guid: 82f624b1964c7ba4fb21eae95f185a9c, type: 3}
@@ -12241,6 +12313,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: lounge_chair_001 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c6c4229ba17e2e44a8c650fa2627f71c, type: 3}
+      propertyPath: m_TagString
+      value: CardSearch
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12248,6 +12324,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c6c4229ba17e2e44a8c650fa2627f71c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8354116715968183055}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c6c4229ba17e2e44a8c650fa2627f71c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7948150918505810513}
   m_SourcePrefab: {fileID: 100100000, guid: c6c4229ba17e2e44a8c650fa2627f71c, type: 3}
 --- !u!1 &7129795553880984813 stripped
 GameObject:
@@ -12275,6 +12354,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.6576953, y: 0.9399943, z: 0.69950277}
   m_Center: {x: -0.00046184642, y: 0.46638146, z: 0.007545054}
+--- !u!114 &7948150918505810513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7129795553880984813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c393dafd7447f4b33c0b119d82526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7618348854853506647 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c6c4229ba17e2e44a8c650fa2627f71c, type: 3}
@@ -12410,6 +12501,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: washing_machine_001
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b253decc65a576b4eb2f9744a89128ef, type: 3}
+      propertyPath: m_TagString
+      value: CardSearch
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12417,6 +12512,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b253decc65a576b4eb2f9744a89128ef, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6365226749397280808}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b253decc65a576b4eb2f9744a89128ef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5543635269435517902}
   m_SourcePrefab: {fileID: 100100000, guid: b253decc65a576b4eb2f9744a89128ef, type: 3}
 --- !u!4 &8539114141889247585 stripped
 Transform:
@@ -12449,6 +12547,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.59851336, y: 0.8566773, z: 0.5288832}
   m_Center: {x: -0.0000018626451, y: 0.42833853, z: 0.011400297}
+--- !u!114 &5543635269435517902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9064294408821859291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c393dafd7447f4b33c0b119d82526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8203458286713974232
 PrefabInstance:
   m_ObjectHideFlags: 0

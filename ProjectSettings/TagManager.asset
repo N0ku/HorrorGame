@@ -20,6 +20,11 @@ TagManager:
   - NormalRoom
   - Elevator
   - ThomasElevator
+  - HistorySearch
+  - HistorySearched
+  - NothingToSearch
+  - CardSearch
+  - CardSearched
   layers:
   - Default
   - TransparentFX
