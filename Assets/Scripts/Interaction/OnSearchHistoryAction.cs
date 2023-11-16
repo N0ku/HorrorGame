@@ -32,8 +32,8 @@ public class OnSearchHistoryAction : MonoBehaviour, IInteractable
         Debug.Log("Searching...");
         gameObject.tag = "HistorySearched";
 
-        AudioSource audio = gameObject.transform.parent.GetComponent<AudioSource>()
-        adio.volume = 0.5f;
+        AudioSource audio = gameObject.transform.parent.GetComponent<AudioSource>();
+        audio.volume = 0.5f;
         audio.Play();
 
         Invoke(nameof(UnfreezePlayer), 5f);
@@ -58,21 +58,23 @@ public class OnSearchHistoryAction : MonoBehaviour, IInteractable
         if (random == 1) {
             GameObject player = GameObject.Find("Player");
             Debug.Log("You found something!");
+            player.GetComponent<Inventory>().AddItem("Souvenir");
+            // Debug.Log(Inventory.isSouvenirCollected);
 
             
         // Add HistorySearched tag to all historySearchObjects
-        GameObject[] historySearchedObjects = GameObject.FindGameObjectsWithTag("HistorySearched");
+            GameObject[] historySearchedObjects = GameObject.FindGameObjectsWithTag("HistorySearched");
 
-        foreach (GameObject historySearchedObject in historySearchedObjects) {
-            historySearchedObject.tag = "NothingToSearch";
-        }
+            foreach (GameObject historySearchedObject in historySearchedObjects) {
+                historySearchedObject.tag = "NothingToSearch";
+            }
 
 
-        GameObject[] historySearchObjects = GameObject.FindGameObjectsWithTag("HistorySearch");
+            GameObject[] historySearchObjects = GameObject.FindGameObjectsWithTag("HistorySearch");
 
-        foreach (GameObject historySearchObject in historySearchObjects) {
-            historySearchObject.tag = "NothingToSearch";
-        }
+            foreach (GameObject historySearchObject in historySearchObjects) {
+                historySearchObject.tag = "NothingToSearch";
+            }
 
         } else {
             Debug.Log("You found nothing...");

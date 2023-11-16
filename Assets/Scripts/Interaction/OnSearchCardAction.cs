@@ -19,8 +19,8 @@ public class OnSearchCardAction : MonoBehaviour, IInteractable
         GameObject player = GameObject.Find("Player");
 
         // Add sound Search.mp3
-        AudioSource audio = gameObject.transform.parent.GetComponent<AudioSource>()
-        adio.volume = 0.5f;
+        AudioSource audio = gameObject.transform.parent.GetComponent<AudioSource>();
+        audio.volume = 0.5f;
         audio.Play();
         
     
@@ -34,14 +34,14 @@ public class OnSearchCardAction : MonoBehaviour, IInteractable
 
     private void OnTriggerEnter()
     {
-        Debug.Log("Searching...");
+        // Debug.Log("Searching...");
         gameObject.tag = "CardSearched";
 
         Invoke(nameof(UnfreezePlayer), 5f);
     }
 
     private void UnfreezePlayer() {
-        Debug.Log("Stopped searching...");
+        // Debug.Log("Stopped searching...");
         GameObject player = GameObject.Find("Player");
 
         GameObject[] cardSearchObjects = GameObject.FindGameObjectsWithTag("CardSearch");
@@ -61,24 +61,26 @@ public class OnSearchCardAction : MonoBehaviour, IInteractable
         if (random == 1) {
             GameObject player = GameObject.Find("Player");
             Debug.Log("You found the card !");
+            player.GetComponent<Inventory>().AddItem("Card");
+            Debug.Log(Inventory.isCardCollected);
 
             
-        // Add HistorySearched tag to all historySearchObjects
-        GameObject[] cardSearchedObjects = GameObject.FindGameObjectsWithTag("CardSearched");
+            // Add HistorySearched tag to all historySearchObjects
+            GameObject[] cardSearchedObjects = GameObject.FindGameObjectsWithTag("CardSearched");
 
-        foreach (GameObject cardSearchedObject in cardSearchedObjects) {
-            cardSearchedObject.tag = "NothingToSearch";
-        }
+            foreach (GameObject cardSearchedObject in cardSearchedObjects) {
+                cardSearchedObject.tag = "NothingToSearch";
+            }
 
 
-        GameObject[] cardSearchObjects = GameObject.FindGameObjectsWithTag("CardSearch");
-        
-        foreach (GameObject cardSearchObject in cardSearchObjects) {
-            cardSearchObject.tag = "NothingToSearch";
-        }
+            GameObject[] cardSearchObjects = GameObject.FindGameObjectsWithTag("CardSearch");
+            
+            foreach (GameObject cardSearchObject in cardSearchObjects) {
+                cardSearchObject.tag = "NothingToSearch";
+            }
 
         } else {
-            Debug.Log("You found nothing...");
+            // Debug.Log("You found nothing...");
         }
     }
 }
