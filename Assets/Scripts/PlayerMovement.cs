@@ -7,6 +7,11 @@ using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    [Header("Audio")]
+    public AudioSource footstepSound;
+    public AudioSource exhaustedSound;
+
     [Header("Movement")]
     private float moveSpeed;
 
@@ -160,6 +165,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (stamina <= 0f)
             {
+                playSound("exhausted");
                 Invoke(nameof(StartToRecover), 2.5f);
             }
             else if (stamina <= 100f)
@@ -167,6 +173,17 @@ public class PlayerMovement : MonoBehaviour
                 Invoke(nameof(StartToRecover), 0.6f);
             }
 
+        }
+
+        if ((verticalInput != 0f || horizontalInput != 0f) && state == MovementState.Walking)
+        {
+            playSound("walk");
+        } else if (state == MovementState.Sprinting)
+        {
+            playSound("run");
+        } else if (state == MovementState.Crouching && (verticalInput != 0f || horizontalInput != 0f))
+        {
+            playSound("crouch");
         }
     }
 
@@ -198,6 +215,34 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 limitedVelocity = flatVelocity.normalized * moveSpeed;
             rb.velocity = new Vector3(limitedVelocity.x, rb.velocity.y, limitedVelocity.z);
+        }
+    }
+
+    private void playSound(string type) {
+        if (type == "walk") {
+            if (!GetComponent<AudioSource>().isPlaying) {
+                footstepSound.pitch = Random.Range(2.3f, 2.8f);
+                footstepSound.volume = Random.Range(0.4f, 0.8f);
+                footstepSound.Play();
+            }
+        } else if (type == "run") {
+            if (!GetComponent<AudioSource>().isPlaying) {
+                footstepSound.pitch = Random.Range(3.7f, 4.2f);
+                footstepSound.volume = Random.Range(1.2f, 1.4f);
+                footstepSound.Play();
+            }
+        } else if (type == "crouch") {
+            if (!GetComponent<AudioSource>().isPlaying) {
+                footstepSound.pitch = Random.Range(1.1f, 1.4f);
+                footstepSound.volume = Random.Range(0.2f, 0.4f);
+                footstepSound.Play();
+            }
+        } else if (type == "exhausted") {
+            if (!GetComponent<AudioSource>().isPlaying) {
+                exhaustedSound.pitch = Random.Range(0.6f, 1.4f);
+                exhaustedSound.volume = Random.Range(0.7f, 1.3f);
+                exhaustedSound.Play();
+            }
         }
     }
 }
