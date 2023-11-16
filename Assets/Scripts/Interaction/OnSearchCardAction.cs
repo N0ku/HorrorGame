@@ -17,6 +17,11 @@ public class OnSearchCardAction : MonoBehaviour, IInteractable
     public void Interact()
     {
         GameObject player = GameObject.Find("Player");
+
+        // Add sound Search.mp3
+        AudioSource audio = gameObject.transform.parent.GetComponent<AudioSource>()
+        adio.volume = 0.5f;
+        audio.Play();
         
     
         if (gameObject.tag == "CardSearch") {

@@ -32,6 +32,10 @@ public class OnSearchHistoryAction : MonoBehaviour, IInteractable
         Debug.Log("Searching...");
         gameObject.tag = "HistorySearched";
 
+        AudioSource audio = gameObject.transform.parent.GetComponent<AudioSource>()
+        adio.volume = 0.5f;
+        audio.Play();
+
         Invoke(nameof(UnfreezePlayer), 5f);
     }
 
