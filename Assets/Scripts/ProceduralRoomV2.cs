@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.AI;
 using Unity.AI.Navigation;
 
-using static RoomGenerator;
 
 public class RoomGenerator : MonoBehaviour
 {
@@ -17,6 +16,7 @@ public class RoomGenerator : MonoBehaviour
     [SerializeField] private bool displayGridInGame = true;
     [SerializeField] private List<GameObject> objectPrefabs = new List<GameObject>();
     [SerializeField] private int numberOfObjects = 5;
+    [SerializeField] private GameObject roomPrefab;
     [SerializeField] private int numberOfRooms = 5;
     private NavMeshSurface[] navMeshSurface;
     [SerializeField] private GameObject wallsParent;
