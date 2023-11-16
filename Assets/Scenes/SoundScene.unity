@@ -1826,6 +1826,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 802766822}
     - target: {fileID: 7060042994243054937, guid: c80633c5cf2e44a3595b412975d263c9, type: 3}
+      propertyPath: monsterTarget
+      value: 
+      objectReference: {fileID: 802766822}
+    - target: {fileID: 7060042994243054937, guid: c80633c5cf2e44a3595b412975d263c9, type: 3}
       propertyPath: navMeshSurface
       value: 
       objectReference: {fileID: 548556382}
@@ -3764,7 +3768,6 @@ MonoBehaviour:
   FlashlightLight: {fileID: 457048575}
   Flashlight_FX: {fileID: 2056038470}
   Flashlight_Bug_FX: {fileID: 2056038474}
-  Flashlight_Ready_FX: {fileID: 2056038475}
 --- !u!82 &2056038470
 AudioSource:
   m_ObjectHideFlags: 0
