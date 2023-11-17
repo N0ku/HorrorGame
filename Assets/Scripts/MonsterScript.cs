@@ -56,7 +56,7 @@ public class MonsterScript : MonoBehaviour
         {
             MonsterSeenPlayerTime++;
             monster.destination = player.position.normalized * -MonsterSeenPlayerTime;
-            monster.speed = 0.2f;
+            monster.speed = 0.3f;
 
         }
         else if (hasSeenPlayer && canSeePlayer)
@@ -126,7 +126,7 @@ public class MonsterScript : MonoBehaviour
 
     private float calculateSpeed(float playerStress)
     {
-        return 0.5f + (playerStress / 100);
+        return 1.2f + (playerStress / 100);
     }
 
     private IEnumerator FOVRoutine()
