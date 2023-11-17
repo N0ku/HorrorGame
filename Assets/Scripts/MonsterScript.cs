@@ -52,6 +52,7 @@ public class MonsterScript : MonoBehaviour
     void FixedUpdate()
     {
         footsteps.enabled = true;
+        footsteps.pitch = 5f;
 
         if (isLooking(camera, monsterTarget) &&
          hasSeenPlayer &&
@@ -68,6 +69,7 @@ public class MonsterScript : MonoBehaviour
             MonsterSeenPlayerTime = 0;
             monster.destination = player.position;
             lastPlayerPosition = player.position;
+            footsteps.pitch = 8f;
 
             if (Vector3.Distance(transform.position, player.position) < 1.5f)
             {
