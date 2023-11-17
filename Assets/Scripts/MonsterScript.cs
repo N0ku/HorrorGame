@@ -7,11 +7,11 @@ using static ProceduralGenerator;
 
 public class MonsterScript : MonoBehaviour
 {
-    public Transform player;
+    private Transform player;
     private NavMeshAgent monster;
 
-    public GameObject playerObj;
-    public Camera camera;
+    private GameObject playerObj;
+    private Camera camera;
     private float playerStress = 0;
 
     public AudioSource footsteps;
@@ -36,19 +36,21 @@ public class MonsterScript : MonoBehaviour
 
     public GameObject monsterTarget;
 
-    public static bool isPlayerKilled=false;
+    public static bool isPlayerKilled = false;
 
     // Start is called before the first frame update
     void Start()
     {
         monster = GetComponent<NavMeshAgent>();
+        playerObj = GameObject.Find("Player");
+        player = playerObj.transform;
+        camera = playerObj.GetComponentInChildren<Camera>();
         StartCoroutine(FOVRoutine());
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-
         footsteps.enabled = true;
 
         if (isLooking(camera, monsterTarget) &&
@@ -178,7 +180,8 @@ public class MonsterScript : MonoBehaviour
         }
     }
 
-    private void KillPlayer() {
+    private void KillPlayer()
+    {
         isPlayerKilled = true;
         killSound.enabled = true;
         GameObject playerEverything = GameObject.Find("Player");
@@ -191,11 +194,13 @@ public class MonsterScript : MonoBehaviour
         else playerEverything.GetComponent<PlayerMovement>().enabled = true;
     }
 
-    private void TeleportPlayer() {
+    private void TeleportPlayer()
+    {
         GameObject playerEverything = GameObject.Find("Player");
         GameObject elevator = GameObject.FindWithTag("manageThomasElevator");
-        
-        if (elevator != null) {
+
+        if (elevator != null)
+        {
             playerEverything.transform.position = elevator.transform.position;
             playerEverything.GetComponent<PlayerMovement>().enabled = true;
             elevator.transform.parent.GetComponent<Animator>().Play("OpenDoors");
@@ -204,7 +209,8 @@ public class MonsterScript : MonoBehaviour
         }
 
         // When he left the elevator, he can't go back in
-        if (Vector3.Distance(playerEverything.transform.position, elevator.transform.position) > 2f) {
+        if (Vector3.Distance(playerEverything.transform.position, elevator.transform.position) > 2f)
+        {
             elevator.transform.parent.GetComponent<Animator>().Play("CloseDoors");
         }
     }
