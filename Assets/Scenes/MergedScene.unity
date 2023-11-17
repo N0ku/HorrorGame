@@ -318,6 +318,7 @@ MonoBehaviour:
   roomInteractable: 0
   gridParent: {fileID: 893044574}
   maxPlacementAttempts: 10000
+  isGeneratedCeil: 1
   northColor: {r: 1, g: 0, b: 0, a: 1}
   southColor: {r: 0, g: 0, b: 1, a: 1}
   eastColor: {r: 0, g: 1, b: 0, a: 1}
@@ -1181,8 +1182,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 653113107767957592, guid: a28cbfebccd224c13b7bf0ba03360f96, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 610117273}
   m_SourcePrefab: {fileID: 100100000, guid: a28cbfebccd224c13b7bf0ba03360f96, type: 3}
+--- !u!1 &610117271 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 653113107767957592, guid: a28cbfebccd224c13b7bf0ba03360f96, type: 3}
+  m_PrefabInstance: {fileID: 610117270}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &610117272 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3986449241261121551, guid: a28cbfebccd224c13b7bf0ba03360f96, type: 3}
+  m_PrefabInstance: {fileID: 610117270}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &610117273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610117271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d654d621b6f40c2ada41208f82fbd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camTransform: {fileID: 610117272}
+  shakeDuration: 2
+  shakeAmount: 0.7
+  decreaseFactor: 1
 --- !u!1 &686404437
 GameObject:
   m_ObjectHideFlags: 0
