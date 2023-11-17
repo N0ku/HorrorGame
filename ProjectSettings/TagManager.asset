@@ -29,6 +29,7 @@ TagManager:
   - manageExitElevator
   - freezeExitElevator
   - manageThomasElevator
+  - Monster
   layers:
   - Default
   - TransparentFX

@@ -80,42 +80,42 @@ public class ProceduralGenerator : MonoBehaviour
     [SerializeField] private int numberOfRoom = 5;
     [Space(15)]
 
-    [Header("Configuration de l'Étage (Selectionner l'étage)")]
+    [Header("Configuration de l'ï¿½tage (Selectionner l'ï¿½tage)")]
     [SerializeField] private EtageType etageType = EtageType.Creator;
     [Space(15)]
 
 
-    [Header("Configuration Étage 1")]
+    [Header("Configuration ï¿½tage 1")]
     [SerializeField] private int staticmapSizeX_Etage1;
     [SerializeField] private int staticmapSizeY_Etage1;
     [SerializeField] private Material mapMaterial_Etage1;
     [SerializeField] private List<GameObject> RoomPrefabs_Etage1 = new List<GameObject>();
     [SerializeField] private GameObject HistoryRoom_Etage1;
-    [SerializeField] private GameObject ThomasRoom_Etage1 ;
-    [SerializeField] private GameObject ElevatorExit_Etage1; 
+    [SerializeField] private GameObject ThomasRoom_Etage1;
+    [SerializeField] private GameObject ElevatorExit_Etage1;
     [Space(15)]
 
 
 
-    [Header("Configuration Étage 2")]
+    [Header("Configuration ï¿½tage 2")]
     [SerializeField] private int staticmapSizeX_Etage2;
     [SerializeField] private int staticmapSizeY_Etage2;
     [SerializeField] private Material mapMaterial_Etage2;
     [SerializeField] private List<GameObject> RoomPrefabs_Etage2 = new List<GameObject>();
-    [SerializeField] private GameObject HistoryRoom_Etage2 ;
-    [SerializeField] private GameObject ThomasRoom_Etage2  ;
+    [SerializeField] private GameObject HistoryRoom_Etage2;
+    [SerializeField] private GameObject ThomasRoom_Etage2;
     [SerializeField] private GameObject ElevatorExit_Etage2;
 
     [Space(15)]
 
-    [Header("Configuration Étage 3")]
+    [Header("Configuration ï¿½tage 3")]
     [SerializeField] private int staticmapSizeX_Etage3;
     [SerializeField] private int staticmapSizeY_Etage3;
     [SerializeField] private Material mapMaterial_Etage3;
     [SerializeField] private List<GameObject> RoomPrefabs_Etage3 = new List<GameObject>();
-    [SerializeField] private GameObject HistoryRoom_Etage3  ;
-    [SerializeField] private GameObject ThomasRoom_Etage3   ;
-    [SerializeField] private GameObject ElevatorExit_Etage3 ;
+    [SerializeField] private GameObject HistoryRoom_Etage3;
+    [SerializeField] private GameObject ThomasRoom_Etage3;
+    [SerializeField] private GameObject ElevatorExit_Etage3;
 
     static public int staticmapSizeX { get; set; }
     static public int staticmapSizeY { get; set; }
@@ -177,17 +177,17 @@ public class ProceduralGenerator : MonoBehaviour
                 staticmapSizeY = mapSizeY;
                 break;
             default:
-                Debug.LogError("Type d'étage non géré : " + etageType);
+                Debug.LogError("Type d'ï¿½tage non gï¿½rï¿½ : " + etageType);
                 break;
         }
         GenerateRoom();
 
-        navMeshSurface = FindObjectsOfType<NavMeshSurface>();
+        // navMeshSurface = FindObjectsOfType<NavMeshSurface>();
 
-        foreach (var surface in navMeshSurface)
-        {
-            surface.BuildNavMesh();
-        }
+        // foreach (var surface in navMeshSurface)
+        // {
+        //     surface.BuildNavMesh();
+        // }
 
     }
 
@@ -201,19 +201,19 @@ public class ProceduralGenerator : MonoBehaviour
         MapSize generatedMap = new MapSize(hiearchiNameMap);
         generatedMap.SetPosition(new Vector3(0, 0, 0));
 
-        // Génération de la MapSize.
+        // Gï¿½nï¿½ration de la MapSize.
         for (int x = 0; x < staticmapSizeX; x++)
         {
-            InstantiateWall(x, 0, 0,0,0, generatedMap.MapObjectsParent.transform);
+            InstantiateWall(x, 0, 0, 0, 0, generatedMap.MapObjectsParent.transform);
             InstantiateWall(x, staticmapSizeY - 1, 0, 0, 0, generatedMap.MapObjectsParent.transform);
         }
 
         for (int y = 1; y < staticmapSizeY; y++)
         {
-            InstantiateWall(0, y,0, 90, 0, generatedMap.MapObjectsParent.transform);
-            InstantiateWall(staticmapSizeX, y, 0, 90,0, generatedMap.MapObjectsParent.transform);
+            InstantiateWall(0, y, 0, 90, 0, generatedMap.MapObjectsParent.transform);
+            InstantiateWall(staticmapSizeX, y, 0, 90, 0, generatedMap.MapObjectsParent.transform);
         }
-        
+
 
         GenerateGrid(generatedMap);
         AssignTagsAndColors(generatedMap);
@@ -230,7 +230,7 @@ public class ProceduralGenerator : MonoBehaviour
             InstantiateWall(x, x, 1.5f, 0, 90, map.MapObjectsParent.transform);
             for (int y = 0; y < staticmapSizeY; y++)
             {
-                InstantiateWall(x, y - 1,1.5f, 0, 90, map.MapObjectsParent.transform);
+                InstantiateWall(x, y - 1, 1.5f, 0, 90, map.MapObjectsParent.transform);
             }
         }
         //for (int y = 1; y < staticmapSizeY; y++)
@@ -241,7 +241,7 @@ public class ProceduralGenerator : MonoBehaviour
     }
 
 
-    void InstantiateWall(int x, int y,float z, int rotation,int rotationX, Transform parent)
+    void InstantiateWall(int x, int y, float z, int rotation, int rotationX, Transform parent)
     {
         GameObject wall = Instantiate(mapTemplate, new Vector3(x * wallSpacing, z * wallSpacing, y * wallSpacing), Quaternion.identity, parent);
 
@@ -330,7 +330,7 @@ public class ProceduralGenerator : MonoBehaviour
     void PlaceRandomObjects(MapSize room)
     {
         room.MapObjectsParent = new GameObject("ObjectsParent");
-        for (int i = 0; i < 4; i++)
+        for (int i = 1; i != 4; i++)
         {
             int randomIndex = UnityEngine.Random.Range(0, room.MapObjectPlacementCells.Count);
             Cell randomCell = room.MapObjectPlacementCells[randomIndex];
@@ -359,7 +359,7 @@ public class ProceduralGenerator : MonoBehaviour
                         placementAttempts++;
                         if (placementAttempts >= maxPlacementAttempts)
                         {
-                            Debug.Log("Arrêt de la génération en raison du nombre maximum d'essais atteint.");
+                            Debug.Log("Arrï¿½t de la gï¿½nï¿½ration en raison du nombre maximum d'essais atteint.");
                             break;
                         }
                     }
@@ -389,7 +389,7 @@ public class ProceduralGenerator : MonoBehaviour
                         placementAttempts++;
                         if (placementAttempts >= maxPlacementAttempts)
                         {
-                            Debug.Log("Arrêt de la génération en raison du nombre maximum d'essais atteint.");
+                            Debug.Log("Arrï¿½t de la gï¿½nï¿½ration en raison du nombre maximum d'essais atteint.");
                             break;
                         }
                     }
@@ -420,7 +420,7 @@ public class ProceduralGenerator : MonoBehaviour
                         {
                             Debug.Log("PAS LA 3 !");
 
-                            Debug.Log("Arrêt de la génération en raison du nombre maximum d'essais atteint.");
+                            Debug.Log("Arrï¿½t de la gï¿½nï¿½ration en raison du nombre maximum d'essais atteint.");
                             break;
                         }
                     }
@@ -440,7 +440,7 @@ public class ProceduralGenerator : MonoBehaviour
             Cell randomCell = room.MapObjectPlacementCells[randomIndex];
 
 
-            // Récupère la taille du prefab et les cellules occupées par le prefab
+            // Rï¿½cupï¿½re la taille du prefab et les cellules occupï¿½es par le prefab
             GameObject randomPrefab = RoomPrefabs[UnityEngine.Random.Range(0, RoomPrefabs.Count)];
             int randomRotations = UnityEngine.Random.Range(0, 4);
             randomPrefab.transform.rotation = Quaternion.Euler(0, randomRotations * 90, 0);
@@ -464,7 +464,7 @@ public class ProceduralGenerator : MonoBehaviour
                 placementAttempts++;
                 if (placementAttempts >= maxPlacementAttempts)
                 {
-                    Debug.Log("Arrêt de la génération en raison du nombre maximum d'essais atteint.");
+                    Debug.Log("Arrï¿½t de la gï¿½nï¿½ration en raison du nombre maximum d'essais atteint.");
                     break;
                 }
             }
@@ -488,7 +488,7 @@ public class ProceduralGenerator : MonoBehaviour
 
     bool CanPlacePrefab(Cell startCell, Vector3 prefabSize, Cell[,] grid, List<Cell> availableCells, Quaternion rotation)
     {
-        // Ajoutez la logique pour vérifier si le placement du prefab est possible dans la cellule de départ
+        // Ajoutez la logique pour vï¿½rifier si le placement du prefab est possible dans la cellule de dï¿½part
         for (int x = startCell.x; x < startCell.x + prefabSize.x / wallSpacing; x++)
         {
             for (int y = startCell.y; y < startCell.y + prefabSize.z / wallSpacing; y++)
@@ -499,7 +499,7 @@ public class ProceduralGenerator : MonoBehaviour
 
                 if (rotatedX < 0 || rotatedX >= grid.GetLength(0) || rotatedY < 0 || rotatedY >= grid.GetLength(1) || grid[rotatedX, rotatedY].Occupied)
                 {
-                    Debug.Log("En Dehors de la grille ou déjà occupé");
+                    Debug.Log("En Dehors de la grille ou dï¿½jï¿½ occupï¿½");
                     return false;
                 }
             }
@@ -510,7 +510,7 @@ public class ProceduralGenerator : MonoBehaviour
 
     void RemoveOccupiedCells(Cell startCell, Vector3 prefabSize, Cell[,] grid, List<Cell> availableCells, Quaternion rotation)
     {
-        // Retire les cellules occupées par le prefab de la liste des cellules disponibles
+        // Retire les cellules occupï¿½es par le prefab de la liste des cellules disponibles
         for (int x = startCell.x; x < startCell.x + prefabSize.x / wallSpacing; x++)
         {
             for (int y = startCell.y; y < startCell.y + prefabSize.z / wallSpacing; y++)
@@ -523,7 +523,7 @@ public class ProceduralGenerator : MonoBehaviour
                 {
                     availableCells.Remove(grid[rotatedX, rotatedY]);
                     grid[rotatedX, rotatedY].Occupied = true;
-                    Debug.Log(grid[rotatedX, rotatedY] + "C'est occupé");
+                    Debug.Log(grid[rotatedX, rotatedY] + "C'est occupï¿½");
                 }
             }
         }
