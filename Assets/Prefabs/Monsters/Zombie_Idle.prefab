@@ -1000,7 +1000,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: -1372625422
   m_Radius: 3
-  m_Speed: 4
+  m_Speed: 7
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1024,9 +1024,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab2c9c0676489ce4d8bfc6c74bd6e610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  playerObj: {fileID: 0}
-  camera: {fileID: 0}
   footsteps: {fileID: 5163862137832869184}
   killSound: {fileID: 3946465071580404551}
   radius: 15

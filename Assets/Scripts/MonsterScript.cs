@@ -61,7 +61,6 @@ public class MonsterScript : MonoBehaviour
         {
             MonsterSeenPlayerTime++;
             monster.destination = player.position.normalized * -MonsterSeenPlayerTime;
-            monster.speed = 0.3f;
 
         }
         else if (hasSeenPlayer && canSeePlayer)
@@ -69,7 +68,6 @@ public class MonsterScript : MonoBehaviour
             MonsterSeenPlayerTime = 0;
             monster.destination = player.position;
             lastPlayerPosition = player.position;
-            monster.speed = calculateSpeed(playerStress);
 
             if (Vector3.Distance(transform.position, player.position) < 1.5f)
             {
