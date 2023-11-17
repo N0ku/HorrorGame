@@ -192,12 +192,12 @@ public class ProceduralGenerator : MonoBehaviour
         }
         GenerateRoom();
 
-        // navMeshSurface = FindObjectsOfType<NavMeshSurface>();
+        navMeshSurface = FindObjectsOfType<NavMeshSurface>();
 
-        // foreach (var surface in navMeshSurface)
-        // {
-        //     surface.BuildNavMesh();
-        // }
+        foreach (var surface in navMeshSurface)
+        {
+            surface.BuildNavMesh();
+        }
 
     }
 
