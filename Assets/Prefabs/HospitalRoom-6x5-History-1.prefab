@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 602768471982416594}
   m_Layer: 0
   m_Name: Cube.010 (1)
-  m_TagString: Untagged
+  m_TagString: HistorySearch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -558,7 +558,7 @@ GameObject:
   - component: {fileID: 5235943525185399810}
   m_Layer: 0
   m_Name: Cube.010 (2)
-  m_TagString: Untagged
+  m_TagString: HistorySearch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1101,7 +1101,7 @@ GameObject:
   - component: {fileID: 7959662437086300866}
   m_Layer: 0
   m_Name: Vert.001 (1)
-  m_TagString: Untagged
+  m_TagString: HistorySearch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1538,7 +1538,7 @@ GameObject:
   - component: {fileID: 643657961401147051}
   m_Layer: 0
   m_Name: Plane.002 (1)
-  m_TagString: Untagged
+  m_TagString: HistorySearch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2061,7 +2061,7 @@ GameObject:
   - component: {fileID: 8683086376834875964}
   m_Layer: 0
   m_Name: Circle.003
-  m_TagString: Untagged
+  m_TagString: HistorySearch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2392,7 +2392,7 @@ GameObject:
   - component: {fileID: 3905908218405543529}
   m_Layer: 0
   m_Name: Plane.002
-  m_TagString: Untagged
+  m_TagString: HistorySearch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2511,7 +2511,7 @@ GameObject:
   - component: {fileID: 6924917783655345780}
   m_Layer: 0
   m_Name: Plane.002 (2)
-  m_TagString: Untagged
+  m_TagString: HistorySearch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3099,7 +3099,7 @@ GameObject:
   - component: {fileID: 3109079576247488092}
   m_Layer: 0
   m_Name: Cube.010
-  m_TagString: Untagged
+  m_TagString: HistorySearch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3274,7 +3274,7 @@ GameObject:
   - component: {fileID: 7800042004797652766}
   m_Layer: 0
   m_Name: Circle.003 (1)
-  m_TagString: Untagged
+  m_TagString: HistorySearch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3657,7 +3657,7 @@ GameObject:
   - component: {fileID: 9062001971458136161}
   m_Layer: 0
   m_Name: Circle.003 (2)
-  m_TagString: Untagged
+  m_TagString: HistorySearch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3776,7 +3776,7 @@ GameObject:
   - component: {fileID: 483427553882754064}
   m_Layer: 0
   m_Name: Vert.001
-  m_TagString: Untagged
+  m_TagString: HistorySearch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
