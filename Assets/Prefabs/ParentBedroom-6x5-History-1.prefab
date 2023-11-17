@@ -1411,6 +1411,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: lamp_002
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2e77c6e655b38ef4192709540b5bf630, type: 3}
+      propertyPath: m_TagString
+      value: HistorySearch
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3431,6 +3435,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ced7d5d843f03774e8c82dc8a229be4c, type: 3}
       propertyPath: m_Name
       value: kitchen_chair_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ced7d5d843f03774e8c82dc8a229be4c, type: 3}
+      propertyPath: m_TagString
+      value: HistorySearch
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5931,7 +5939,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dd07248fa5962df43854a0f731b6b845, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.3474998
+      value: 1.084
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dd07248fa5962df43854a0f731b6b845, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9097,6 +9105,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_TrashCan_01
       objectReference: {fileID: 0}
+    - target: {fileID: 188538, guid: f738f6acdbb1d5844bd657732cb05e13, type: 3}
+      propertyPath: m_TagString
+      value: HistorySearch
+      objectReference: {fileID: 0}
     - target: {fileID: 405696, guid: f738f6acdbb1d5844bd657732cb05e13, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9
@@ -10379,6 +10391,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bed-02
       objectReference: {fileID: 0}
+    - target: {fileID: 4599113267152661776, guid: 895bae6fa6a8b8842a87d93029136aad, type: 3}
+      propertyPath: m_TagString
+      value: HistorySearch
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10907,6 +10923,10 @@ PrefabInstance:
     - target: {fileID: 2393037383710748879, guid: 67387296e2d2e9f449d2c19078c5b42f, type: 3}
       propertyPath: m_Name
       value: Desk 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2393037383710748879, guid: 67387296e2d2e9f449d2c19078c5b42f, type: 3}
+      propertyPath: m_TagString
+      value: HistorySearch
       objectReference: {fileID: 0}
     - target: {fileID: 2566429396407504316, guid: 67387296e2d2e9f449d2c19078c5b42f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11640,6 +11660,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: musical_instrument_001
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1d07df417cf9ab04bbc8f6071741f043, type: 3}
+      propertyPath: m_TagString
+      value: HistorySearch
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11838,6 +11862,10 @@ PrefabInstance:
     - target: {fileID: 8583991744008562130, guid: 7923e591387379f4781712fada94b33b, type: 3}
       propertyPath: m_Name
       value: Bedroom_Table_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8583991744008562130, guid: 7923e591387379f4781712fada94b33b, type: 3}
+      propertyPath: m_TagString
+      value: HistorySearch
       objectReference: {fileID: 0}
     - target: {fileID: 8965443851027513192, guid: 7923e591387379f4781712fada94b33b, type: 3}
       propertyPath: m_LocalPosition.x
