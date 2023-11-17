@@ -30,6 +30,9 @@ TagManager:
   - freezeExitElevator
   - manageThomasElevator
   - Monster
+  - Floor
+  - Wall
+  - ThomasFirstSpawn
   layers:
   - Default
   - TransparentFX

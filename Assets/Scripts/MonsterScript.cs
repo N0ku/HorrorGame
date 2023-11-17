@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Unity.AI.Navigation;
+using static ProceduralGenerator;
 
 public class MonsterScript : MonoBehaviour
 {
@@ -34,6 +35,8 @@ public class MonsterScript : MonoBehaviour
     private Vector3 lastPlayerPosition;
 
     public GameObject monsterTarget;
+
+    public static bool isPlayerKilled=false;
 
     // Start is called before the first frame update
     void Start()
@@ -176,6 +179,7 @@ public class MonsterScript : MonoBehaviour
     }
 
     private void KillPlayer() {
+        isPlayerKilled = true;
         killSound.enabled = true;
         GameObject playerEverything = GameObject.Find("Player");
         playerEverything.GetComponent<PlayerMovement>().enabled = false;
@@ -183,7 +187,8 @@ public class MonsterScript : MonoBehaviour
         killSound.volume = 5f;
         killSound.Play();
 
-        TeleportPlayer();
+        if (actualEtage != EtageType.Etage1) TeleportPlayer();
+        else playerEverything.GetComponent<PlayerMovement>().enabled = true;
     }
 
     private void TeleportPlayer() {

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ProceduralGenerator;
+using static MonsterScript;
 
 public class CollisionManager : MonoBehaviour
 {
@@ -19,9 +21,16 @@ public class CollisionManager : MonoBehaviour
     
     void Start()
     {
+        PlayerSpawn();
+        freezePlayer();
         isElevatorOpen = false;
         canOpenElevator = false;
-        isPlayerFreeze = false;
+     
+    }
+
+    private void Update()
+    {
+        PlayerSpawn();
     }
 
     // Start is called before the first frame update
@@ -55,6 +64,49 @@ public class CollisionManager : MonoBehaviour
             source.volume = Random.Range(1f, 3.5f);
             source.pitch = Random.Range(0.8f, 1.2f);
             source.Play();
+        }
+    }
+
+    public void PlayerSpawn()
+    {
+        player = GameObject.Find("Player");
+         if (actualEtage != null)
+         {
+            if (actualEtage == EtageType.Etage1 && player.transform.position== new Vector3(-20, 0.999f, -20))
+            {
+                player = GameObject.Find("Player");
+                GameObject manageThomasElevator = GameObject.FindWithTag("ThomasFirstSpawn");
+
+                if (manageThomasElevator != null)
+                {
+                    Vector3 newPosition = manageThomasElevator.transform.position;
+                    newPosition.z += 1;
+                    newPosition.y += 1;
+                    player.transform.position = newPosition;
+                    unfreezePlayer();
+                }
+                else
+                {
+                    Debug.LogError("Le GameObject avec le tag 'ThomasFirstSpawn' n'a pas été trouvé.");
+                }
+            }
+            else if (actualEtage == EtageType.Etage1 && isPlayerKilled)
+            {
+                player = GameObject.Find("Player");
+                GameObject manageThomasElevator = GameObject.FindWithTag("ThomasFirstSpawn");
+
+                if (manageThomasElevator != null)
+                {
+                    Vector3 newPosition = manageThomasElevator.transform.position;
+                    newPosition.z += 1;
+                    newPosition.y += 1;
+                    player.transform.position = newPosition;
+                }
+                else
+                {
+                    Debug.LogError("Le GameObject avec le tag 'ThomasFirstSpawn' n'a pas été trouvé.");
+                }
+            }
         }
     }
 

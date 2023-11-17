@@ -63,6 +63,8 @@ public class ProceduralGenerator : MonoBehaviour
     [SerializeField] public RoomType roomInteractable;
     [SerializeField] private GameObject gridParent;
     [SerializeField] private int maxPlacementAttempts = 10;
+    [SerializeField] private bool isGeneratedCeil = true;
+
     public Color northColor = Color.red;
     public Color southColor = Color.blue;
     public Color eastColor = Color.green;
@@ -120,6 +122,8 @@ public class ProceduralGenerator : MonoBehaviour
     static public int staticmapSizeX { get; set; }
     static public int staticmapSizeY { get; set; }
 
+    static public EtageType actualEtage { get; set; }
+
     public GameObject historyRoom;
     public GameObject thomasRoom;
     public GameObject elevatorExitRoom;
@@ -151,6 +155,7 @@ public class ProceduralGenerator : MonoBehaviour
                 thomasRoom = ThomasRoom_Etage1;
                 elevatorExitRoom = ElevatorExit_Etage1;
                 numberOfRoom = 9;
+                actualEtage = EtageType.Etage1;
                 break;
             case EtageType.Etage2:
                 staticmapSizeX = staticmapSizeX_Etage2;
@@ -161,6 +166,7 @@ public class ProceduralGenerator : MonoBehaviour
                 thomasRoom = ThomasRoom_Etage2;
                 elevatorExitRoom = ElevatorExit_Etage2;
                 numberOfRoom = 12;
+                actualEtage = EtageType.Etage2;
                 break;
             case EtageType.Etage3:
                 staticmapSizeX = staticmapSizeX_Etage3;
@@ -171,10 +177,14 @@ public class ProceduralGenerator : MonoBehaviour
                 thomasRoom = ThomasRoom_Etage3;
                 elevatorExitRoom = ElevatorExit_Etage3;
                 numberOfRoom = 15;
+                actualEtage = EtageType.Etage3;
+
                 break;
             case EtageType.Creator:
                 staticmapSizeX = mapSizeX;
                 staticmapSizeY = mapSizeY;
+                actualEtage = EtageType.Creator;
+
                 break;
             default:
                 Debug.LogError("Type d'�tage non g�r� : " + etageType);
@@ -214,11 +224,10 @@ public class ProceduralGenerator : MonoBehaviour
             InstantiateWall(staticmapSizeX, y, 0, 90, 0, generatedMap.MapObjectsParent.transform);
         }
 
-
-        GenerateGrid(generatedMap);
+        if (isGeneratedCeil) GenerateGrid(generatedMap);
         AssignTagsAndColors(generatedMap);
         PlaceRandomObjects(generatedMap);
-        GenerateCeil(generatedMap);
+        //GenerateCeil(generatedMap);
 
     }
 
@@ -342,6 +351,7 @@ public class ProceduralGenerator : MonoBehaviour
                     randomPrefab.transform.rotation = Quaternion.Euler(0, randomRotations * 90, 0);
                     Vector3 prefabSize = GetPrefabSize(randomPrefab);
 
+
                     if (CanPlacePrefab(randomCell, prefabSize, room.MapGrid, room.MapObjectPlacementCells, randomPrefab.transform.rotation))
                     {
                         Vector3 objectPosition = new Vector3(randomCell.x * wallSpacing + room.MapObject.transform.position.x, 0, randomCell.y * wallSpacing + room.MapObject.transform.position.z);
@@ -349,6 +359,7 @@ public class ProceduralGenerator : MonoBehaviour
                         // Applique la rotation avant de placer l'objet
                         GameObject instantiatedPrefab = Instantiate(randomPrefab, objectPosition, Quaternion.identity, room.MapObjectsParent.transform);
                         instantiatedPrefab.transform.rotation = randomPrefab.transform.rotation;
+                        SetMaterialsRecursively(instantiatedPrefab, mapMaterial);
 
                         RemoveOccupiedCells(randomCell, prefabSize, room.MapGrid, room.MapObjectPlacementCells, instantiatedPrefab.transform.rotation);
                         placementAttempts = 0;
@@ -377,6 +388,8 @@ public class ProceduralGenerator : MonoBehaviour
                         // Applique la rotation avant de placer l'objet
                         GameObject instantiatedPrefab = Instantiate(randomPrefab, objectPosition, Quaternion.identity, room.MapObjectsParent.transform);
                         instantiatedPrefab.transform.rotation = randomPrefab.transform.rotation;
+                        SetMaterialsRecursively(instantiatedPrefab, mapMaterial);
+
 
                         RemoveOccupiedCells(randomCell, prefabSize, room.MapGrid, room.MapObjectPlacementCells, instantiatedPrefab.transform.rotation);
                         placementAttempts = 0;
@@ -408,6 +421,8 @@ public class ProceduralGenerator : MonoBehaviour
                         // Applique la rotation avant de placer l'objet
                         GameObject instantiatedPrefab = Instantiate(randomPrefab, objectPosition, Quaternion.identity, room.MapObjectsParent.transform);
                         instantiatedPrefab.transform.rotation = randomPrefab.transform.rotation;
+                        SetMaterialsRecursively(instantiatedPrefab, mapMaterial);
+
 
                         RemoveOccupiedCells(randomCell, prefabSize, room.MapGrid, room.MapObjectPlacementCells, instantiatedPrefab.transform.rotation);
                         placementAttempts = 0;
@@ -454,6 +469,8 @@ public class ProceduralGenerator : MonoBehaviour
                 // Applique la rotation avant de placer l'objet
                 GameObject instantiatedPrefab = Instantiate(randomPrefab, objectPosition, Quaternion.identity, room.MapObjectsParent.transform);
                 instantiatedPrefab.transform.rotation = randomPrefab.transform.rotation;
+                SetMaterialsRecursively(instantiatedPrefab, mapMaterial);
+
 
                 RemoveOccupiedCells(randomCell, prefabSize, room.MapGrid, room.MapObjectPlacementCells, instantiatedPrefab.transform.rotation);
                 placementAttempts = 0;
@@ -468,6 +485,42 @@ public class ProceduralGenerator : MonoBehaviour
                     break;
                 }
             }
+        }
+    }
+
+    int GetTotalChildCount(GameObject parent)
+    {
+        int totalChildCount = 0;
+
+        foreach (Transform child in parent.transform)
+        {
+            totalChildCount++;
+
+            totalChildCount += GetTotalChildCount(child.gameObject);
+        }
+
+        return totalChildCount;
+    }
+
+    void SetMaterialsRecursively(GameObject parent, Material material)
+    {
+        foreach (Transform child in parent.transform)
+        {
+            MeshRenderer childRenderer = child.GetComponent<MeshRenderer>();
+            if (childRenderer != null)
+            {
+                if (child.CompareTag("Wall"))
+                {
+                    childRenderer.material = material;
+                }
+                else if (child.CompareTag("Floor"))
+                {
+                    childRenderer.material = material;
+                }
+            }
+
+            // Parcours récursif des descendants
+            SetMaterialsRecursively(child.gameObject, material);
         }
     }
 
@@ -510,10 +563,13 @@ public class ProceduralGenerator : MonoBehaviour
 
     void RemoveOccupiedCells(Cell startCell, Vector3 prefabSize, Cell[,] grid, List<Cell> availableCells, Quaternion rotation)
     {
-        // Retire les cellules occup�es par le prefab de la liste des cellules disponibles
-        for (int x = startCell.x; x < startCell.x + prefabSize.x / wallSpacing; x++)
+        int extraSpaceX = 1;
+        int extraSpaceY = 1;
+
+        // Retire les cellules occupées par le prefab de la liste des cellules disponibles
+        for (int x = startCell.x - extraSpaceX; x < startCell.x + prefabSize.x / wallSpacing + extraSpaceX; x++)
         {
-            for (int y = startCell.y; y < startCell.y + prefabSize.z / wallSpacing; y++)
+            for (int y = startCell.y - extraSpaceY; y < startCell.y + prefabSize.z / wallSpacing + extraSpaceY; y++)
             {
                 Vector3 rotatedPosition = rotation * new Vector3(x - startCell.x, 0, y - startCell.y);
                 int rotatedX = Mathf.RoundToInt(rotatedPosition.x) + startCell.x;
@@ -523,14 +579,11 @@ public class ProceduralGenerator : MonoBehaviour
                 {
                     availableCells.Remove(grid[rotatedX, rotatedY]);
                     grid[rotatedX, rotatedY].Occupied = true;
-                    Debug.Log(grid[rotatedX, rotatedY] + "C'est occup�");
+                    Debug.Log(grid[rotatedX, rotatedY] + "C'est occupé");
                 }
             }
         }
     }
     #endregion
-
-
-
 }
 
