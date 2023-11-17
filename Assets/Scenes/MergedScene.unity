@@ -2648,6 +2648,10 @@ PrefabInstance:
       propertyPath: monsterTarget
       value: 
       objectReference: {fileID: 956696361}
+    - target: {fileID: 5163862137832869184, guid: 8fa4e7aaf3b424a7692da853838311c9, type: 3}
+      propertyPath: MaxDistance
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8348605613535444048, guid: 8fa4e7aaf3b424a7692da853838311c9, type: 3}
       propertyPath: m_Name
       value: Zombie_Idle
