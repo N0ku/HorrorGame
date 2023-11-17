@@ -71,10 +71,10 @@ public class OnSearchCardAction : MonoBehaviour, IInteractable
 
         float probToFind = 0;
 
-        if (probs > 10) {
-            probToFind = probs / 1.5f;
-        } else if (probs > 5) {
+        if (probs > 20) {
             probToFind = probs / 1.2f;
+        } else if (probs > 10) {
+            probToFind = probs / 1.1f;
         } else {
             probToFind = probs;
         }
