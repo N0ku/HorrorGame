@@ -69,17 +69,22 @@ public class OnSearchCardAction : MonoBehaviour, IInteractable
     private void DidHeFind(int probs) {
         int random = Random.Range(1, probs);
 
+        Debug.Log(probs);
+
         float probToFind = 0;
 
-        if (probs > 100) {
+        if (probs > 40) {
             probToFind = probs / 1.2f;
-        } else if (probs > 30) {
+        } else if (probs > 20) {
             probToFind = probs / 1.1f;
         } else {
-            probToFind = probs;
+            probToFind = probs / 1.05f;
         }
         // Get 40% of the time the card
-        if (random < probToFind) {
+
+        Debug.Log(random);
+        Debug.Log(probToFind);
+        if (random > probToFind) {
             GameObject player = GameObject.Find("Player");
             player.GetComponent<Inventory>().AddItem("Card");
 
