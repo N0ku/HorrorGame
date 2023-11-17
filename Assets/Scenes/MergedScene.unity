@@ -343,7 +343,7 @@ MonoBehaviour:
   - {fileID: 6953067132859500624, guid: c09ffa685b843482b97f1f23f94b3151, type: 3}
   HistoryRoom_Etage1: {fileID: 6953067132859500624, guid: c65e8032362fd402ab262fa1b8596c5c, type: 3}
   ThomasRoom_Etage1: {fileID: 6953067132859500624, guid: bf1c2d35acdab4013a841628e28d38d1, type: 3}
-  ElevatorExit_Etage1: {fileID: 6922621680172606366, guid: 29770b27e334e4604b600f2249ff5e3f, type: 3}
+  ElevatorExit_Etage1: {fileID: 6922621680172606366, guid: cbc9244b6e8fd48a6b01a1b1017394a3, type: 3}
   staticmapSizeX_Etage2: 40
   staticmapSizeY_Etage2: 40
   mapMaterial_Etage2: {fileID: 2100000, guid: 2b1d50fbc808a294b9864b393c9de656, type: 2}
