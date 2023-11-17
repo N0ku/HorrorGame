@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static ProceduralGenerator;
 using static MonsterScript;
+using UnityEngine.SceneManagement;
 
 public class CollisionManager : MonoBehaviour
 {
@@ -116,16 +117,22 @@ public class CollisionManager : MonoBehaviour
     {        
         player = GameObject.Find("Player");
         if ((other.gameObject.tag == "freezeExitElevator" && canOpenElevator && isPlayerFreeze)) {
-            GameObject manageThomasElevator = GameObject.FindWithTag("manageThomasElevator");
-            if (manageThomasElevator != null) {
-                player.transform.position = manageThomasElevator.transform.position;
+            if (player.GetComponent<Inventory>().GetInventory()[2] == "0") {
+                SceneManager.LoadScene(2);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                unfreezePlayer();
+            } else if (int.Parse(player.GetComponent<Inventory>().GetInventory()[2]) > 0 && int.Parse(player.GetComponent<Inventory>().GetInventory()[2]) < 3) {
+                SceneManager.LoadScene(3);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                unfreezePlayer();
+            } else if (int.Parse(player.GetComponent<Inventory>().GetInventory()[2]) >= 3) {
+                SceneManager.LoadScene(4);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                unfreezePlayer();
             }
-        }
-        if ((other.gameObject.tag == "manageThomasElevator" && isPlayerFreeze)) {
-            Invoke(nameof(unfreezePlayer), 1f);
-            player.GetComponent<Inventory>().EmptyInventory();
-            Inventory.isCardCollected = false;
-            Inventory.isSouvenirCollected = false;
         }
     }
 
