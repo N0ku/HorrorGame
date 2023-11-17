@@ -900,7 +900,7 @@ GameObject:
   - component: {fileID: 578780083}
   m_Layer: 5
   m_Name: TextMP
-  m_TagString: Untagged
+  m_TagString: FlashlightText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1029,6 +1029,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4031331293040185101, guid: a28cbfebccd224c13b7bf0ba03360f96, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4031331293040185101, guid: a28cbfebccd224c13b7bf0ba03360f96, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4031331293040185101, guid: a28cbfebccd224c13b7bf0ba03360f96, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4031331293040185101, guid: a28cbfebccd224c13b7bf0ba03360f96, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4525433683743386884, guid: a28cbfebccd224c13b7bf0ba03360f96, type: 3}
       propertyPath: FlashlightLight
       value: 
@@ -2534,7 +2550,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1730292174
 MonoBehaviour:
   m_ObjectHideFlags: 0

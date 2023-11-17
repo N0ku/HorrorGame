@@ -33,6 +33,7 @@ TagManager:
   - Floor
   - Wall
   - ThomasFirstSpawn
+  - FlashlightText
   layers:
   - Default
   - TransparentFX

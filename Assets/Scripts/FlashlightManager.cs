@@ -50,7 +50,7 @@ public class FlashlightManager : MonoBehaviour
         currentBattery = startBattery;
         state = FlashlightState.On;
         flashlightIsOn = true;
-        mText = FindObjectOfType<TextMeshProUGUI>();
+        mText = GameObject.FindWithTag("FlashlightText").GetComponent<TextMeshProUGUI>();
 
         InvokeRepeating(nameof(LoseBattery), 0, batteryLostTick);
     }
