@@ -11,13 +11,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MergedScene.unity
     guid: a18013ea5e659463abcb021fc3eb740a
-  - enabled: 0
-    path: Assets/Scenes/NightScene.unity
-    guid: 6bdf16dbe25064b8eb7ee835dc41f067
-  - enabled: 0
-    path: Assets/Scenes/ProceduralRoom.unity
-    guid: 23320ec79e7c46c4c85bffc9480170a1
-  - enabled: 0
-    path: Assets/Scenes/MovementScene.unity
-    guid: 4592f71be7390434f85f6745e9125dd3
+  - enabled: 1
+    path: Assets/Scenes/End 1.unity
+    guid: 956625bda98f64ab0abb4ec5f5db4fc5
+  - enabled: 1
+    path: Assets/Scenes/End 2.unity
+    guid: 9d2ef05e936d54051bc276eda60abbc2
+  - enabled: 1
+    path: Assets/Scenes/End 3.unity
+    guid: c51862d22f98648cbbc041ca95db5665
+  - enabled: 1
+    path: Assets/Scenes/End 4.unity
+    guid: 35fc9c1bf3b4b42038e50f9c1be88a5e
   m_configObjects: {}
