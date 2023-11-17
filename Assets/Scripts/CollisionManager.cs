@@ -80,8 +80,8 @@ public class CollisionManager : MonoBehaviour
                 if (manageThomasElevator != null)
                 {
                     Vector3 newPosition = manageThomasElevator.transform.position;
-                    newPosition.z += 1;
-                    newPosition.y += 1;
+                    newPosition.x += 2;
+                    newPosition.y += 2;
                     player.transform.position = newPosition;
                     unfreezePlayer();
                 }
@@ -98,9 +98,9 @@ public class CollisionManager : MonoBehaviour
                 if (manageThomasElevator != null)
                 {
                     Vector3 newPosition = manageThomasElevator.transform.position;
-                    newPosition.z += 1;
-                    newPosition.y += 1;
                     player.transform.position = newPosition;
+                    newPosition.x += 2;
+                    newPosition.y += 2;
                 }
                 else
                 {
