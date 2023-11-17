@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using static ProceduralGenerator;
 using static MonsterScript;
+using static GestionnaireDeNiveau;
+using UnityEngine.SceneManagement;
 
 public class CollisionManager : MonoBehaviour
 {
@@ -108,6 +110,22 @@ public class CollisionManager : MonoBehaviour
                 }
                 isPlayerKilled = false;
             }
+            else if ( actualEtage== EtageType.Etage2 && player.transform.position == new Vector3(-20, 0.999f, -20))
+            {
+                player = GameObject.Find("Player");
+                GameObject manageThomasElevator = GameObject.FindWithTag("manageThomasElevator");
+
+                if (manageThomasElevator != null)
+                {
+                    Vector3 newPosition = manageThomasElevator.transform.position;
+                    player.transform.position = newPosition;
+                    unfreezePlayer();
+                }
+                else
+                {
+                    Debug.LogError("VAS TE FAIRE ENCULER GUILLAUME");
+                }
+            }
         }
     }
 
@@ -119,14 +137,19 @@ public class CollisionManager : MonoBehaviour
             GameObject manageThomasElevator = GameObject.FindWithTag("manageThomasElevator");
             if (manageThomasElevator != null) {
                 player.transform.position = manageThomasElevator.transform.position;
+               
             }
+            GestionnaireDeNiveau.NiveauTermine();
         }
         if ((other.gameObject.tag == "manageThomasElevator" && isPlayerFreeze)) {
             Invoke(nameof(unfreezePlayer), 1f);
             player.GetComponent<Inventory>().EmptyInventory();
             Inventory.isCardCollected = false;
             Inventory.isSouvenirCollected = false;
+       
+
         }
+       
     }
 
     void OnTriggerExit(Collider other)

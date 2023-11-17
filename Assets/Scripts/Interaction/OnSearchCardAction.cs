@@ -84,7 +84,7 @@ public class OnSearchCardAction : MonoBehaviour, IInteractable
 
         Debug.Log(random);
         Debug.Log(probToFind);
-        if (random > probToFind) {
+        if (random < probToFind) {
             GameObject player = GameObject.Find("Player");
             player.GetComponent<Inventory>().AddItem("Card");
 

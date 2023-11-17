@@ -270,9 +270,9 @@ MonoBehaviour:
   - {fileID: 6953067132859500624, guid: bf1c2d35acdab4013a841628e28d38d1, type: 3}
   - {fileID: 6953067132859500624, guid: fb9b73eb7af24480b9a9f982789ece3f, type: 3}
   - {fileID: 6953067132859500624, guid: 4e7aed40436bb487a9072d04c91cea1b, type: 3}
-  HistoryRoom_Etage2: {fileID: 0}
-  ThomasRoom_Etage2: {fileID: 0}
-  ElevatorExit_Etage2: {fileID: 0}
+  HistoryRoom_Etage2: {fileID: 6953067132859500624, guid: 6207967818ff9480db045455964b6348, type: 3}
+  ThomasRoom_Etage2: {fileID: 6953067132859500624, guid: fb9b73eb7af24480b9a9f982789ece3f, type: 3}
+  ElevatorExit_Etage2: {fileID: 4886882673182521500, guid: 00dd9a58621e4424da803ef3fd4298d7, type: 3}
   staticmapSizeX_Etage3: 50
   staticmapSizeY_Etage3: 50
   mapMaterial_Etage3: {fileID: 2100000, guid: 84f3a21d510a57b4fab04043a2e5f977, type: 2}
@@ -2648,10 +2648,6 @@ PrefabInstance:
       propertyPath: monsterTarget
       value: 
       objectReference: {fileID: 956696361}
-    - target: {fileID: 5163862137832869184, guid: 8fa4e7aaf3b424a7692da853838311c9, type: 3}
-      propertyPath: MaxDistance
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 8348605613535444048, guid: 8fa4e7aaf3b424a7692da853838311c9, type: 3}
       propertyPath: m_Name
       value: Zombie_Idle

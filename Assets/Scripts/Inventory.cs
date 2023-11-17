@@ -5,9 +5,9 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     
-    public static bool isCardCollected = false;
+    public static bool isCardCollected = true;
 
-    public static bool isSouvenirCollected = false;
+    public static bool isSouvenirCollected = true;
 
     public static string nbOfDeaths = "0";
 
@@ -17,8 +17,8 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         inventorySlots = new string[3];
-        inventorySlots.SetValue("Empty", 0);
-        inventorySlots.SetValue("Empty", 1);
+        inventorySlots.SetValue("Card", 0);
+        inventorySlots.SetValue("Souvenir", 1);
         inventorySlots.SetValue("0", 2);
         
     }
