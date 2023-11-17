@@ -29,12 +29,14 @@ public class Fear : MonoBehaviour
     {
         if (fear >= 100f)
         {
+            KillPlayer();
+            
             fear = 0f;
 
-            AddMadness();
+            if (madnessState != MadnessState.Terrified) {
+                AddMadness();
+            }
 
-            transform.position = new Vector3(0, 2f, -2f);
-            Debug.Log("you are dead");
         }
     }
 
@@ -105,7 +107,6 @@ public class Fear : MonoBehaviour
         else if (madnessState == MadnessState.Terrified)
         {
             fearPermamentMalusList.Add(fearMalusList[UnityEngine.Random.Range(0, fearMalusList.Count)]);
-            Debug.Log("End of the game");
         }
         fearMalusList.Clear();
     }
@@ -141,6 +142,29 @@ public class Fear : MonoBehaviour
         if (fearMalusList.Contains(FearMalus.HorrorSounds) || fearPermamentMalusList.Contains(FearMalus.HorrorSounds))
         {
             // TODO
+        }
+    }
+
+    private void KillPlayer() {
+        GameObject playerEverything = GameObject.Find("Player");
+        playerEverything.GetComponent<PlayerMovement>().enabled = false;
+        TeleportPlayer();
+    }
+
+    private void TeleportPlayer() {
+        GameObject playerEverything = GameObject.Find("Player");
+        GameObject elevator = GameObject.FindWithTag("manageThomasElevator");
+        
+        if (elevator != null) {
+            playerEverything.transform.position = elevator.transform.position;
+            playerEverything.GetComponent<PlayerMovement>().enabled = true;
+            elevator.transform.parent.GetComponent<Animator>().Play("OpenDoors");
+            int nbOfDeaths = int.Parse(playerEverything.GetComponent<Inventory>().GetInventory()[2]);
+            playerEverything.GetComponent<Inventory>().AddItem((nbOfDeaths + 1).ToString());
+
+            if (Vector3.Distance(playerEverything.transform.position, elevator.transform.position) > 2f) {
+                elevator.transform.parent.GetComponent<Animator>().Play("CloseDoors");
+            }
         }
     }
 }
