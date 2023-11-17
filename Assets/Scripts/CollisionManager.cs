@@ -87,7 +87,7 @@ public class CollisionManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogError("Le GameObject avec le tag 'ThomasFirstSpawn' n'a pas été trouvé.");
+                    Debug.LogError("Le GameObject avec le tag 'ThomasFirstSpawn' n'a pas ï¿½tï¿½ trouvï¿½.");
                 }
             }
             else if (actualEtage == EtageType.Etage1 && isPlayerKilled)
@@ -104,8 +104,9 @@ public class CollisionManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogError("Le GameObject avec le tag 'ThomasFirstSpawn' n'a pas été trouvé.");
+                    Debug.LogError("Le GameObject avec le tag 'ThomasFirstSpawn' n'a pas ï¿½tï¿½ trouvï¿½.");
                 }
+                isPlayerKilled = false;
             }
         }
     }
