@@ -61,7 +61,6 @@ public class MonsterScript : MonoBehaviour
         {
             MonsterSeenPlayerTime++;
             monster.destination = player.position.normalized * -MonsterSeenPlayerTime;
-            monster.speed = 0.3f;
 
         }
         else if (hasSeenPlayer && canSeePlayer)
@@ -69,7 +68,6 @@ public class MonsterScript : MonoBehaviour
             MonsterSeenPlayerTime = 0;
             monster.destination = player.position;
             lastPlayerPosition = player.position;
-            monster.speed = calculateSpeed(playerStress);
 
             if (Vector3.Distance(transform.position, player.position) < 1.5f)
             {
@@ -87,14 +85,18 @@ public class MonsterScript : MonoBehaviour
                 MonsterSeenPlayerTime = 0;
             }
         }
-        /*  else
-         {
-             footsteps.enabled = false;
-             monster.destination = transform.position;
-         } */
         else
         {
-            // create a routine that makes the monster walk around the room
+            if (monster.remainingDistance < 0.5f)
+            {
+                Vector3 randomDirection = Random.insideUnitSphere * 10;
+                randomDirection += transform.position;
+                NavMeshHit hit;
+                NavMesh.SamplePosition(randomDirection, out hit, 10, 1);
+                Vector3 finalPosition = hit.position;
+                monster.destination = finalPosition;
+            }
+
         }
     }
     private bool isLooking(Camera c, GameObject target)
