@@ -10366,6 +10366,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3496075192617248875}
     m_Modifications:
+    - target: {fileID: 4870756878536609032, guid: fdfda38ede08540ef95f6a0b2fd8d2f0, type: 3}
+      propertyPath: monsterTarget
+      value: 
+      objectReference: {fileID: 1826462595836395620}
     - target: {fileID: 8369787239278553156, guid: fdfda38ede08540ef95f6a0b2fd8d2f0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8
@@ -10418,6 +10422,11 @@ PrefabInstance:
 --- !u!4 &1302444783816252126 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8369787239278553156, guid: fdfda38ede08540ef95f6a0b2fd8d2f0, type: 3}
+  m_PrefabInstance: {fileID: 7364585539840127642}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1826462595836395620 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9181895755386581758, guid: fdfda38ede08540ef95f6a0b2fd8d2f0, type: 3}
   m_PrefabInstance: {fileID: 7364585539840127642}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7383611068695420359

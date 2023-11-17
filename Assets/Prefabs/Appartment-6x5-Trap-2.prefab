@@ -3712,7 +3712,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1122680716994669000, guid: 806845e13ef08a749bae3f682a8c4bfe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.63
+      value: 3.72
       objectReference: {fileID: 0}
     - target: {fileID: 1122680716994669000, guid: 806845e13ef08a749bae3f682a8c4bfe, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3720,7 +3720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1122680716994669000, guid: 806845e13ef08a749bae3f682a8c4bfe, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.09
+      value: 6.52
       objectReference: {fileID: 0}
     - target: {fileID: 1122680716994669000, guid: 806845e13ef08a749bae3f682a8c4bfe, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12376,11 +12376,20 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5734576136796356776, guid: 97026741325d542b480ca622dd2db781, type: 3}
+      propertyPath: monsterTarget
+      value: 
+      objectReference: {fileID: 4695578843149537207}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97026741325d542b480ca622dd2db781, type: 3}
+--- !u!1 &4695578843149537207 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4606265478014461645, guid: 97026741325d542b480ca622dd2db781, type: 3}
+  m_PrefabInstance: {fileID: 9135184712312482170}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5359807718581654797 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3794122846914100343, guid: 97026741325d542b480ca622dd2db781, type: 3}
