@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Fear : MonoBehaviour
 {
@@ -38,6 +39,12 @@ public class Fear : MonoBehaviour
             if (madnessState != MadnessState.Terrified)
             {
                 AddMadness();
+            } 
+            else if (madnessState == MadnessState.Terrified) 
+            {
+                SceneManager.LoadScene(5);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
 
         }
