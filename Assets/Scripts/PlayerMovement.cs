@@ -108,24 +108,20 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        // start crouching
+        // start crouching ( replace with slower walk)
+        // if (Input.GetKeyDown(crouchKey))
+        // {
+        //     transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
+        //     flashlightItem.localScale = new Vector3(flashlightItem.localScale.x, flashlightItem.localScale.y, 4f);
+        //     rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+        // }
 
-        if (Input.GetKeyDown(crouchKey))
-        {
-            transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
-            flashlightItem.localScale = new Vector3(flashlightItem.localScale.x, flashlightItem.localScale.y, 4f);
-            rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
-        }
-
-        // stop crouching
-        if (Input.GetKeyUp(crouchKey))
-        {
-            transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
-            flashlightItem.localScale = new Vector3(flashlightItem.localScale.x, flashlightItem.localScale.y, 2f);
-        }
-
-        // check if player can stand up
-        // if (Physics.Raycast(transform.position, Vector3.up, playerHeight / 2 + 0.2f, groundMask))
+        // // stop crouching
+        // if (Input.GetKeyUp(crouchKey))
+        // {
+        //     transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
+        //     flashlightItem.localScale = new Vector3(flashlightItem.localScale.x, flashlightItem.localScale.y, 2f);
+        // }
 
     }
 
