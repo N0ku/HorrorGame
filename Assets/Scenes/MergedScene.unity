@@ -1050,6 +1050,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4525433683743386884, guid: a28cbfebccd224c13b7bf0ba03360f96, type: 3}
+      propertyPath: fearTick
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4525433683743386884, guid: a28cbfebccd224c13b7bf0ba03360f96, type: 3}
       propertyPath: FlashlightLight
       value: 
       objectReference: {fileID: 343916938}

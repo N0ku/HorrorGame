@@ -14,6 +14,8 @@ public class Fear : MonoBehaviour
     public static ArrayList fearMalusList = new ArrayList();
     public static ArrayList fearPermamentMalusList = new ArrayList();
 
+    [SerializeField] private float fearTick = 0.35f;
+    [SerializeField] private bool ShowDebugFear = false;
     public static float fear;
 
     [SerializeField]
@@ -30,10 +32,11 @@ public class Fear : MonoBehaviour
         if (fear >= 100f)
         {
             KillPlayer();
-            
+
             fear = 0f;
 
-            if (madnessState != MadnessState.Terrified) {
+            if (madnessState != MadnessState.Terrified)
+            {
                 AddMadness();
             }
 
@@ -46,7 +49,10 @@ public class Fear : MonoBehaviour
         CheckFear();
         CheckMalus();
 
-        // Debug.Log("fear : " + fear);
+        if (ShowDebugFear)
+        {
+            Debug.Log("fear : " + fear);
+        }
         // Debug.Log("madnessState : " + madnessState);
 
         for (int i = 0; i < fearMalusList.Count; i++)
@@ -64,7 +70,7 @@ public class Fear : MonoBehaviour
     {
         if (FlashlightManager.flashlightIsOn == false || FlashlightManager.isUsable == false)
         {
-            fear += 0.15f * Time.deltaTime;
+            fear += fearTick * Time.deltaTime;
             // Debug.Log("increased : " + fear);
         }
     }
@@ -145,24 +151,28 @@ public class Fear : MonoBehaviour
         }
     }
 
-    private void KillPlayer() {
+    private void KillPlayer()
+    {
         GameObject playerEverything = GameObject.Find("Player");
         playerEverything.GetComponent<PlayerMovement>().enabled = false;
         TeleportPlayer();
     }
 
-    private void TeleportPlayer() {
+    private void TeleportPlayer()
+    {
         GameObject playerEverything = GameObject.Find("Player");
         GameObject elevator = GameObject.FindWithTag("manageThomasElevator");
-        
-        if (elevator != null) {
+
+        if (elevator != null)
+        {
             playerEverything.transform.position = elevator.transform.position;
             playerEverything.GetComponent<PlayerMovement>().enabled = true;
             elevator.transform.parent.GetComponent<Animator>().Play("OpenDoors");
             int nbOfDeaths = int.Parse(playerEverything.GetComponent<Inventory>().GetInventory()[2]);
             playerEverything.GetComponent<Inventory>().AddItem((nbOfDeaths + 1).ToString());
 
-            if (Vector3.Distance(playerEverything.transform.position, elevator.transform.position) > 2f) {
+            if (Vector3.Distance(playerEverything.transform.position, elevator.transform.position) > 2f)
+            {
                 elevator.transform.parent.GetComponent<Animator>().Play("CloseDoors");
             }
         }
